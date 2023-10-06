@@ -66,7 +66,8 @@ Configuration nécessaire sur le code :
 
     python manage.py createsuperuser
 
--Petite commande pour vérifier l'état : python manage.py check
+-Petite commande pour vérifier l'état : 
+    python manage.py check
 
 -Maintenant pour lancer le "build" (lancer le serveur):
 
