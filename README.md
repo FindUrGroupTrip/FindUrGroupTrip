@@ -12,7 +12,7 @@ Au choix mais de préférence créer un environnement virtuel :
 
     -Créer un répertoire pour le projet
     -Se placer dans le répertoire : cd le_nom_du_repertoire
-    -Créer l'environnement virtuell : python –m venv FUGTenv
+    -Créer l'environnement virtuel : python –m venv FUGTenv
     -Pour activer l'environnement se placer dans FUGTenv\Scripts :  cd FUGTenv\Scripts
     -Puis taper la commande : activate
 
