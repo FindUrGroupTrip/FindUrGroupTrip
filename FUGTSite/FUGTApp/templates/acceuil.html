@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page avec un bouton et une image</title>
+    {% load static %}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            text-align: center;
+            background-color: #001130;
+            color: #ffffff;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+
+        .blue-box {
+            background-color: #0b4270;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #afficher_image {
+            background-color: #001130;
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            font-size: 24px;
+            padding: 15px 40px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #afficher_image:hover {
+            background-color: #002744;
+        }
+
+        #image_container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>FIND UR GROUP TRIP
+        </h1>
+    </div>
+    <div class="container">
+        <div class="blue-box">
+            <button id="afficher_image">Afficher l'image</button>
+            <div id="image_container">
+                <img src="{% static 'carte-interactive.jpeg' %}" alt="Mon image">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('afficher_image').addEventListener('click', function() {
+            var imageContainer = document.getElementById('image_container');
+            imageContainer.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
