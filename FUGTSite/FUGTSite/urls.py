@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import DefaultRouter
+router = DefaultRouter()
+from FUGTApp.views import HelloWorldView
 from FUGTApp import views
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('acceuil/', views.acceuil, name='acceuil'),
+    path('api/hello/', HelloWorldView.as_view(), name='hello-world'),
+    path('static/carte-interactive.jpeg', views.serve_static_image, name='serve_static_image'),
 ]
