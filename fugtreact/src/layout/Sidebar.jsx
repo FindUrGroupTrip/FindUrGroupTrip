@@ -518,7 +518,6 @@ export function Sidebar() {
                       transform="matrix(16 -19.968 19.968 16 256 230.4)"
                     />
                   </svg>
-                  中文 (繁體)
                 </div>
               </a>
             </li>
