@@ -7,6 +7,8 @@ Prérequis d'installation :
     - Mysql Workbench : https://dev.mysql.com/downloads/workbench/
     (PS : Des fois problème de connection serveur Mysql pour cela retélécharger Mysql Community Server : https://dev.mysql.com/downloads/mysql/)
     - Un IDE au choix (Visual Studio Code, Pycharm...)
+    - Télécharger Node.js pour React : https://nodejs.org/en
+    
     
 
 Au choix mais de préférence créer un environnement virtuel :
@@ -74,3 +76,9 @@ Configuration nécessaire sur le code :
 -Maintenant pour lancer le "build" (lancer le serveur):
 
     python manage.py runserver
+
+-Pour lancer React 
+
+    Se placer dans le répertoire du front
+    Lancer cette commande : npm start
+    
