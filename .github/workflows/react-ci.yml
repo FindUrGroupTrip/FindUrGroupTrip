@@ -1,0 +1,40 @@
+name: 'fug react ci'
+
+on:
+  push:
+    paths:
+      - 'fugtreact/**'
+      - '.github/workflows/react-ci.yml'
+
+
+# Set default working directory to react directory
+defaults:
+  run:
+    working-directory: './fugtreact'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # checkout the code
+    steps:
+      - uses: actions/checkout@v4
+
+      # name: install dependencies
+      - uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: install dependencies
+        run: npm install
+
+      - name: run tests
+        run: npm test
+
+      - name: build
+        run: npm run build
+
+
+
+
+
