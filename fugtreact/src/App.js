@@ -1,6 +1,4 @@
 import React from 'react'
-import HomePage from './HomePage'
-import { Footer } from './layout/footer/Footer'
 import { Header } from './layout/header/Header'
 import './App.scss'
 import { Sidebar } from './layout/Sidebar'
