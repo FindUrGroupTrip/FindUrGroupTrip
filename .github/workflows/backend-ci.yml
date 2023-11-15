@@ -20,11 +20,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Clear Python cache
+        run: |
+          rm -rf $RUNNER_TOOL_CACHE/Python*
+
       # set up Python
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.10
+          python-version: 3.x
 
       - name: Install dependencies
         run: |
@@ -38,6 +42,7 @@ jobs:
 
       - name: Run tests
         run: python manage.py test
+
 
 
 
