@@ -20,12 +20,20 @@ Au choix mais de préférence créer un environnement virtuel :
     -Puis taper la commande : activate
 
 
-Les installations pip à faire (dansl'environnement ou bien directement dans "C:/") :
+Les installations pip à faire (dans l'environnement ou bien directement dans "C:/") :
 
     pip install django (installation de django)
     pip install --upgrade django (mettre la dernière version de Django)
 
     pip install mysql-connector-python (Pour faire la mise en relation de python à mysql)
+    pip install djangorestframework (Pour créer l'APIRest et faire le lien entre le back et le front)
+    pip install django-cors-headers (Pour autoriser certaines API comme la récuperation d'une image stockée dans le back)
+
+Installation nmp à faire :
+
+    -npm install react-scripts (Pour installer les scripts ->
+                                    pouvoir utiliser les scripts comme npm start, npm run ...)
+
 
 Récuperation du code sur git :
 
