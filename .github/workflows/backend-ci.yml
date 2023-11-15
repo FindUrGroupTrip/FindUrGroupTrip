@@ -1,0 +1,30 @@
+name: 'fug react ci'
+
+on:
+  push:
+    paths:
+      - 'FUGTSite/**'
+      - '.github/workflows/backend-ci.yml'
+
+
+# Set default working directory to react directory
+defaults:
+  run:
+    working-directory: './FUGTSite'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # checkout the code
+    steps:
+      - uses: actions/checkout@v4
+
+      # name: install dependencies
+      - uses: actions/checkout@v4
+        with:
+          node-version: '3.10'
+
+
+
+
