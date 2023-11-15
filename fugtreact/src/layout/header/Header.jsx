@@ -51,7 +51,7 @@ export function Header() {
               <img
                 src="https://flowbite.s3.amazonaws.com/logo.svg"
                 className="mr-3 h-8"
-                alt="Flowbite Logo"
+                alt="application"
               />
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 {applicationName}
@@ -136,7 +136,7 @@ export function Header() {
               </div>
               <div>
                 <a
-                  href="#"
+                  href="/"
                   className="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                 >
                   <div className="flex-shrink-0">
@@ -172,7 +172,7 @@ export function Header() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                 >
                   <div className="flex-shrink-0">
@@ -210,7 +210,7 @@ export function Header() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                 >
                   <div className="flex-shrink-0">
@@ -252,14 +252,14 @@ export function Header() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                 >
                   <div className="flex-shrink-0">
                     <img
                       className="w-11 h-11 rounded-full"
                       src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/roberta-casas.png"
-                      alt="Roberta Casas image"
+                      alt="Roberta Casas"
                     />
                     <div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-green-400 rounded-full border border-white dark:border-gray-700">
                       <svg
@@ -294,14 +294,14 @@ export function Header() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="flex py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-600"
                 >
                   <div className="flex-shrink-0">
                     <img
                       className="w-11 h-11 rounded-full"
                       src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/robert-brown.png"
-                      alt="Robert image"
+                      alt="Robert"
                     />
                     <div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-purple-500 rounded-full border border-white dark:border-gray-700">
                       <svg
@@ -330,7 +330,7 @@ export function Header() {
                 </a>
               </div>
               <a
-                href="#"
+                href="/"
                 className="block py-2 text-md font-medium text-center text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-600 dark:text-white dark:hover:underline"
               >
                 <div className="inline-flex items-center">
@@ -379,7 +379,7 @@ export function Header() {
               </div>
               <div className="grid grid-cols-3 gap-4 p-4">
                 <a
-                  href="#"
+                  href="/"
                   className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group"
                 >
                   <svg
@@ -400,7 +400,7 @@ export function Header() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group"
                 >
                   <svg
@@ -417,7 +417,7 @@ export function Header() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group"
                 >
                   <svg
@@ -438,7 +438,7 @@ export function Header() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group"
                 >
                   <svg
@@ -459,7 +459,7 @@ export function Header() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group"
                 >
                   <svg
@@ -480,7 +480,7 @@ export function Header() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group"
                 >
                   <svg
@@ -502,7 +502,7 @@ export function Header() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group"
                 >
                   <svg
@@ -524,7 +524,7 @@ export function Header() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group"
                 >
                   <svg
@@ -545,7 +545,7 @@ export function Header() {
                   </div>
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group"
                 >
                   <svg
@@ -580,7 +580,7 @@ export function Header() {
               <img
                 className="w-8 h-8 rounded-full"
                 src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
-                alt="user photo"
+                alt="user"
               />
             </button>
 
@@ -602,7 +602,7 @@ export function Header() {
               >
                 <li>
                   <a
-                    href="#"
+                    href="/"
                     className="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                   >
                     My profile
@@ -610,7 +610,7 @@ export function Header() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/"
                     className="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                   >
                     Account settings
@@ -623,7 +623,7 @@ export function Header() {
               >
                 <li>
                   <a
-                    href="#"
+                    href="/"
                     className="flex items-center py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     <svg
@@ -643,7 +643,7 @@ export function Header() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/"
                     className="flex items-center py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     <svg
@@ -659,7 +659,7 @@ export function Header() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/"
                     className="flex justify-between items-center py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     <span className="flex items-center">
@@ -700,7 +700,7 @@ export function Header() {
               >
                 <li>
                   <a
-                    href="#"
+                    href="/"
                     className="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Sign out

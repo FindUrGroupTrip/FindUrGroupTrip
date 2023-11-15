@@ -8,7 +8,7 @@ export function Sidebar() {
       id="drawer-navigation"
     >
       <div className="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
-        <form action="#" method="GET" className="md:hidden mb-2">
+        <form action="/" method="GET" className="md:hidden mb-2">
           <label htmlFor="sidebar-search" className="sr-only">
             Search
           </label>
@@ -38,7 +38,7 @@ export function Sidebar() {
         <ul className="space-y-2">
           <li>
             <a
-              href="#"
+              href="/"
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
@@ -91,7 +91,7 @@ export function Sidebar() {
             <ul id="dropdown-pages" className="py-2 space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   Settings
@@ -99,7 +99,7 @@ export function Sidebar() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   Kanban
@@ -107,7 +107,7 @@ export function Sidebar() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   Calendar
@@ -153,7 +153,7 @@ export function Sidebar() {
             <ul id="dropdown-sales" className="py-2 space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   Products
@@ -161,7 +161,7 @@ export function Sidebar() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   Billing
@@ -169,7 +169,7 @@ export function Sidebar() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   Invoice
@@ -179,7 +179,7 @@ export function Sidebar() {
           </li>
           <li>
             <a
-              href="#"
+              href="/"
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
@@ -235,7 +235,7 @@ export function Sidebar() {
             <ul id="dropdown-authentication" className="hidden py-2 space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   Sign In
@@ -243,7 +243,7 @@ export function Sidebar() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   Sign Up
@@ -251,7 +251,7 @@ export function Sidebar() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   Forgot Password
@@ -263,7 +263,7 @@ export function Sidebar() {
         <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
           <li>
             <a
-              href="#"
+              href="/"
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
             >
               <svg
@@ -284,7 +284,7 @@ export function Sidebar() {
           </li>
           <li>
             <a
-              href="#"
+              href="/"
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
             >
               <svg
@@ -300,7 +300,7 @@ export function Sidebar() {
           </li>
           <li>
             <a
-              href="#"
+              href="/"
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
             >
               <svg
@@ -322,7 +322,7 @@ export function Sidebar() {
       </div>
       <div className="hidden absolute bottom-0 left-0 justify-center p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20">
         <a
-          href="#"
+          href="/"
           className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-600"
         >
           <svg
@@ -335,7 +335,7 @@ export function Sidebar() {
           </svg>
         </a>
         <a
-          href="#"
+          href="/"
           data-tooltip-target="tooltip-settings"
           className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
         >
@@ -370,13 +370,13 @@ export function Sidebar() {
             className="h-5 w-5 rounded-full mt-0.5"
             viewBox="0 0 3900 3900"
           >
-            <path fill="#b22234" d="M0 0h7410v3900H0z" />
+            <path fill="/b22234" d="M0 0h7410v3900H0z" />
             <path
               d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
-              stroke="#fff"
+              stroke="/fff"
               stroke-width="300"
             />
-            <path fill="#3c3b6e" d="M0 0h2964v2100H0z" />
+            <path fill="/3c3b6e" d="M0 0h2964v2100H0z" />
           </svg>
         </button>
 
@@ -387,7 +387,7 @@ export function Sidebar() {
           <ul className="py-1" role="none">
             <li>
               <a
-                href="#"
+                href="/"
                 className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:text-white dark:text-gray-300 dark:hover:bg-gray-600"
                 role="menuitem"
               >
@@ -401,23 +401,23 @@ export function Sidebar() {
                     <g fill-rule="evenodd">
                       <g stroke-width="1pt">
                         <path
-                          fill="#bd3d44"
+                          fill="/bd3d44"
                           d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
                           transform="scale(3.9385)"
                         />
                         <path
-                          fill="#fff"
+                          fill="/fff"
                           d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
                           transform="scale(3.9385)"
                         />
                       </g>
                       <path
-                        fill="#192f5d"
+                        fill="/192f5d"
                         d="M0 0h98.8v70H0z"
                         transform="scale(3.9385)"
                       />
                       <path
-                        fill="#fff"
+                        fill="/fff"
                         d="M8.2 3l1 2.8H12L9.7 7.5l.9 2.7-2.4-1.7L6 10.2l.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7L74 8.5l-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 7.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 24.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 21.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 38.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 35.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 52.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 49.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 66.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 63.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9z"
                         transform="scale(3.9385)"
                       />
@@ -429,7 +429,7 @@ export function Sidebar() {
             </li>
             <li>
               <a
-                href="#"
+                href="/"
                 className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-600"
                 role="menuitem"
               >
@@ -440,9 +440,9 @@ export function Sidebar() {
                     id="flag-icon-css-de"
                     viewBox="0 0 512 512"
                   >
-                    <path fill="#ffce00" d="M0 341.3h512V512H0z" />
+                    <path fill="/ffce00" d="M0 341.3h512V512H0z" />
                     <path d="M0 0h512v170.7H0z" />
-                    <path fill="#d00" d="M0 170.7h512v170.6H0z" />
+                    <path fill="/d00" d="M0 170.7h512v170.6H0z" />
                   </svg>
                   Deutsch
                 </div>
@@ -450,7 +450,7 @@ export function Sidebar() {
             </li>
             <li>
               <a
-                href="#"
+                href="/"
                 className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-600"
                 role="menuitem"
               >
@@ -462,9 +462,9 @@ export function Sidebar() {
                     viewBox="0 0 512 512"
                   >
                     <g fill-rule="evenodd" stroke-width="1pt">
-                      <path fill="#fff" d="M0 0h512v512H0z" />
-                      <path fill="#009246" d="M0 0h170.7v512H0z" />
-                      <path fill="#ce2b37" d="M341.3 0H512v512H341.3z" />
+                      <path fill="/fff" d="M0 0h512v512H0z" />
+                      <path fill="/009246" d="M0 0h170.7v512H0z" />
+                      <path fill="/ce2b37" d="M341.3 0H512v512H341.3z" />
                     </g>
                   </svg>
                   Italiano
@@ -473,7 +473,7 @@ export function Sidebar() {
             </li>
             <li>
               <a
-                href="#"
+                href="/"
                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:text-white dark:text-gray-300 dark:hover:bg-gray-600"
                 role="menuitem"
               >
@@ -487,11 +487,11 @@ export function Sidebar() {
                     <defs>
                       <path
                         id="a"
-                        fill="#ffde00"
+                        fill="/ffde00"
                         d="M1-.3L-.7.8 0-1 .6.8-1-.3z"
                       />
                     </defs>
-                    <path fill="#de2910" d="M0 0h512v512H0z" />
+                    <path fill="/de2910" d="M0 0h512v512H0z" />
                     <use
                       width="30"
                       height="20"
