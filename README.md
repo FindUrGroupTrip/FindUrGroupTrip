@@ -2,7 +2,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![fugt backend ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/backend-ci.yml/badge.svg)
 ![fugt react ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/react-ci.yml/badge.svg)
-![Tag](https://img.shields.io/github/tag/FindUrGroupTrip/FindUrGroupTrip.svg?label=tag&style=flat-square)
 
 
 Prérequis d'installation :
