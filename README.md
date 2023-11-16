@@ -1,5 +1,8 @@
 # FindUrGroupTrip
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![fugt backend ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/fugt%20backend%20ci/badge.svg)
+![fugt react ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/fugt%20react%20ci/badge.svg)
+
 
 Prérequis d'installation :
 
