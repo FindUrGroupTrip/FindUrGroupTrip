@@ -49,11 +49,6 @@ jobs:
       - name: Run tests
         run: python manage.py test
 
-      env:
-        CI: true
-        CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
-
-
-
-
-
+    env:
+      CI: true
+      CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
