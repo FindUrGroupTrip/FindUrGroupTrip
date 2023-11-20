@@ -3,7 +3,7 @@
 ![fugt backend ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/backend-ci.yml/badge.svg)
 ![fugt react ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/react-ci.yml/badge.svg)
 [![Tag](https://img.shields.io/badge/Tag-v0.1-blue)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/tree/v0.1)
-[![Tag](https://img.shields.io/github/v/tag/FindUrGroupTrip/FindUrGroupTrip?label=tag&style=flat-square)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/releases)
+[![Tag](https://img.shields.io/github/v/tag/FindUrGroupTrip/FindUrGroupTrip?label=tag&style=flat-square)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/Tags)
 
 Prérequis d'installation :
 
