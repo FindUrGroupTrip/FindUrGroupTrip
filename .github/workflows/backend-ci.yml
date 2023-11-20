@@ -34,7 +34,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install codeclimate-test-reporter
+          pip install codeclimate-test-reporter pytest
 
       - name: Activate virtual environment
         run: |
