@@ -1,6 +1,6 @@
 # FindUrGroupTrip
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![fugt backend ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/backend-ci.yml/badge.svg)(https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/backend-ci.yml)
+[![fugt backend ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/backend-ci.yml)
 [![fugt react ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/react-ci.yml/badge.svg)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/react-ci.yml)
 
 [![Tag](https://img.shields.io/badge/Tag-v0.1-blue)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/tree/v0.1)
