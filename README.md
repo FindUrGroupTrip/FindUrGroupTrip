@@ -3,8 +3,7 @@
 [![fugt backend ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/backend-ci.yml)
 [![fugt react ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/react-ci.yml/badge.svg)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/react-ci.yml)
 [![Tag](https://img.shields.io/badge/Tag-v0.1-blue)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/tree/v0.1)
-[![Code Climate](https://img.shields.io/codeclimate/coverage/655b74361a748e2c5a0875cb)](https://codeclimate.com/repos/655b74361a748e2c5a0875cb)
-
+[![Maintainability](https://api.codeclimate.com/v1/badges/c5aa48c106e4ebfd9bc7/maintainability)](https://codeclimate.com/repos/655b74361a748e2c5a0875cb/maintainability)
 
 
 Prérequis d'installation :
