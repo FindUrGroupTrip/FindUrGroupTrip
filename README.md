@@ -2,8 +2,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![fugt backend ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/backend-ci.yml)
 [![fugt react ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/react-ci.yml/badge.svg)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/react-ci.yml)
-
 [![Tag](https://img.shields.io/badge/Tag-v0.1-blue)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/tree/v0.1)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/655b74361a748e2c5a0875cb)](https://codeclimate.com/repos/655b74361a748e2c5a0875cb)
+
+
 
 Prérequis d'installation :
 
