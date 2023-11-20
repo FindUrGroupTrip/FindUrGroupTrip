@@ -34,15 +34,24 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install codeclimate-test-reporter
 
       - name: Activate virtual environment
         run: |
           python -m venv venv
           source venv/bin/activate
+          
+      - name: Run Tests and Coverage
+        run: |
+          codeclimate-test-reporter coverage run -m pytest
+          codeclimate-test-reporter
 
       - name: Run tests
         run: python manage.py test
-
+        
+        env:
+          CI: true
+          CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
 
 
 
