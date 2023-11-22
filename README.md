@@ -39,6 +39,7 @@ Installation nmp à faire :
 
     -npm install react-scripts (Pour installer les scripts ->
                                     pouvoir utiliser les scripts comme npm start, npm run ...)
+    -npm install react-router-dom (Pour définir des routes)
 
 
 Récuperation du code sur git :
