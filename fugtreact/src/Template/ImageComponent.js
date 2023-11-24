@@ -5,7 +5,7 @@ function ImageComponent() {
   const [imageURL, setImageURL] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:8000/static/carte-interactive.jpeg')
+    axios.get('http://localhost:8000/static/FUGTLogo.png')
       .then(response => {
         setImageURL(response.config.url);
       })
@@ -16,8 +16,7 @@ function ImageComponent() {
 
   return (
     <div>
-      <h1>Image depuis Django</h1>
-      {imageURL && <img src={imageURL} alt="Carte interactive" />}
+      {imageURL && <img src={imageURL} />}
     </div>
   );
 }

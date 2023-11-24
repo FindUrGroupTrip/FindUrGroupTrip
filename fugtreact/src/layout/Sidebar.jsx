@@ -51,7 +51,7 @@ export function Sidebar() {
               <span className="ml-3">Créer une activité</span>
             </a>
           </li>
-          <li>
+          /*<li>
             <button
               type="button"
               className="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -71,7 +71,7 @@ export function Sidebar() {
                 ></path>
               </svg>
               <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                Pages
+                Les Activités
               </span>
               <svg
                 aria-hidden="true"
@@ -519,7 +519,7 @@ export function Sidebar() {
                 </div>
               </a>
             </li>
-          </ul>
+          </ul>*/
         </div>
       </div>
     </aside>

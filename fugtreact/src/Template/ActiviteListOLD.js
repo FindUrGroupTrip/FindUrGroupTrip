@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-const ActiviteList = () => {
+const ActiviteListOLD = () => {
     const [activites, setActivites] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Replace 'http://localhost:8000' with the base URL of your Django server
                 const response = await fetch('http://localhost:8000/api/activites/');
                 const data = await response.json();
                 setActivites(data);
@@ -27,9 +26,9 @@ const ActiviteList = () => {
                     <tr>
                         <th className="py-2 px-4 border-b">ID</th>
                         <th className="py-2 px-4 border-b">Name</th>
-                        <th className="py-2 px-4 border-b">lieu</th>
-                        <th className="py-2 px-4 border-b">date</th>
-                        {/* Add more headers for other fields */}
+                        <th className="py-2 px-4 border-b">Lieu</th>
+                        <th className="py-2 px-4 border-b">Date</th>
+                        <th className="py-2 px-4 border-b">Details</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -39,8 +38,12 @@ const ActiviteList = () => {
                             <td className="py-2 px-4 border-b">{activite.nom}</td>
                             <td className="py-2 px-4 border-b">{activite.lieu}</td>
                             <td className="py-2 px-4 border-b">{activite.date}</td>
-
-                            {/* Add more cells for other fields */}
+                            <td className="py-2 px-4 border-b">
+                                {/* Bouton sans lien */}
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                    No Link
+                                </button>
+                            </td>
                         </tr>
                     ))}
                     </tbody>
@@ -50,6 +53,10 @@ const ActiviteList = () => {
     );
 };
 
-export default ActiviteList;
+export default ActiviteListOLD;
+
+
+
+
 
 

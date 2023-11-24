@@ -14,7 +14,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 import json
 from .models import Activite
-
+from django.shortcuts import get_object_or_404
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CreerActiviteView(View):
@@ -42,7 +42,19 @@ def serve_static_image(request):
     image_path = os.path.join(settings.STATIC_ROOT, 'carte-interactive.jpeg')
     with open(image_path, 'rb') as image_file:
         return FileResponse(image_file)
+def get_activite_details(request, idactivite):
+    if idactivite is None:
+        return JsonResponse({'error': 'ID not provided'}, status=400)
 
+    activite = get_object_or_404(Activite, idactivite=idactivite)
+    data = {
+        'idactivite': activite.idactivite,
+        'nom': activite.nom,
+        'lieu': activite.lieu,
+        'date': activite.date,
+        'description': activite.description,
+    }
+    return JsonResponse(data)
 
 class ActiviteListView(ListCreateAPIView):
     queryset = Activite.objects.all()

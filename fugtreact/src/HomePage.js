@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ImageComponent from './ImageComponent';
+import ImageComponent from './Template/ImageComponent';
 
 function HomePage() {
   const [showImage, setShowImage] = useState(false);

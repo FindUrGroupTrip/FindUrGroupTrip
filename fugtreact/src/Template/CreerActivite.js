@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const CreerActivite = () => {
@@ -6,7 +6,10 @@ const CreerActivite = () => {
         register,
         handleSubmit,
         formState: { errors },
+        reset, // Ajouter reset de react-hook-form
     } = useForm();
+
+    const [isSubmitted, setIsSubmitted] = useState(null);
 
     const onSubmit = async (data) => {
         try {
@@ -31,10 +34,11 @@ const CreerActivite = () => {
                 throw new Error('Échec de la requête');
             }
 
-            const responseData = await response.json();
-            console.log(responseData);
+            setIsSubmitted(true); // La requête a réussi
+            reset(); // Réinitialiser le formulaire après un enregistrement réussi
         } catch (error) {
             console.error('Erreur lors de l\'envoi des données au backend:', error);
+            setIsSubmitted(false); // La requête a échoué
         }
     };
 
@@ -108,6 +112,8 @@ const CreerActivite = () => {
                     >
                         Enregistrer
                     </button>
+                    {isSubmitted && <p className="text-green-500 text-xs italic">Enregistrement réussi !</p>}
+                    {isSubmitted === false && <p className="text-red-500 text-xs italic">Échec de l'enregistrement.</p>}
                 </div>
             </form>
         </div>
