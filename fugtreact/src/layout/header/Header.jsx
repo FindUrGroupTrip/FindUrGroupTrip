@@ -49,7 +49,7 @@ export function Header() {
             <HamburgerButton></HamburgerButton>
             <a href="/" className="flex items-center justify-between mr-4">
               <img
-                src="https://flowbite.s3.amazonaws.com/logo.svg"
+                src="http://localhost:8000/static/FUGTLogo.png"
                 className="mr-3 h-8"
                 alt="application"
               />
