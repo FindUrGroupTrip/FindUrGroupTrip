@@ -79,18 +79,18 @@ WSGI_APPLICATION = 'FUGTSite.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
- 'default': {
- 'ENGINE': 'mysql.connector.django',
- 'NAME': 'dbPSI',
- 'USER': 'root',
- 'PASSWORD': 'root42',
- 'HOST': '127.0.0.1',
- 'PORT': '3306',
- },
- 'sqlite': {
- 'ENGINE': 'mysql.connector.django',
- 'NAME': BASE_DIR / 'db.sqlite3',
- }
+    'default': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'dbPSI',
+        'USER': 'root',
+        'PASSWORD': 'root42',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    },
+    'sqlite': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # Password validation
