@@ -16,6 +16,10 @@ import json
 from .models import Activite
 from django.shortcuts import get_object_or_404
 
+from rest_framework import generics
+from .models import Vacation
+from .serializers import VacationSerializer
+
 @method_decorator(csrf_exempt, name='dispatch')
 class CreerActiviteView(View):
     def post(self, request, *args, **kwargs):
@@ -60,3 +64,6 @@ class ActiviteListView(ListCreateAPIView):
     queryset = Activite.objects.all()
     serializer_class = ActiviteSerializer
 
+class VacationListCreateView(generics.ListCreateAPIView):
+    queryset = Vacation.objects.all()
+    serializer_class = VacationSerializer

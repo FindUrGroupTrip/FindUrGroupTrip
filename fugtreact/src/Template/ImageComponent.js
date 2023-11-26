@@ -16,7 +16,7 @@ function ImageComponent() {
 
   return (
     <div>
-      {imageURL && <img src={imageURL} />}
+      {imageURL && <img src={imageURL} alt="Logo FUGT" />} {}
     </div>
   );
 }

@@ -20,3 +20,5 @@ class Activite(models.Model):
         managed = False
         db_table = 'activite'
 
+class Vacation(models.Model):
+    name = models.CharField(max_length=100)

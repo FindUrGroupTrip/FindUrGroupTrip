@@ -3,10 +3,13 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Header } from './layout/header/Header';
 import { Activitelist } from './pages/activitelist';
-import ActiviteList from './pages/activitelist'; // Import your ActiviteListOLD component
+//import ActiviteList from './pages/activitelist'; // Import your ActiviteListOLD component
 import CreerActivite from './Template/CreerActivite'; // Import your CreerActivite component
 import LeftSidebar from './LeftSideBar';
 import SingleActivite from "./Template/SingleActivite";
+import VacationList from "./Template/VacationList"; // Import your new VacationList component
+
+
 function App() {
     return (
         <Router>
@@ -19,6 +22,7 @@ function App() {
                         <Route path="/activitelist" element={<Activitelist />} />
                         <Route path="/activites/:idactivite" element={<SingleActivite />} />
                         <Route path="/creer-activite" element={<CreerActivite />} />
+                        <Route path="/vacationlist" element={<VacationList />} />
                     </Routes>
                 </main>
             </div>
