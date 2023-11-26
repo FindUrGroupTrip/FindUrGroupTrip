@@ -16,8 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import DefaultRouter
-from FUGTApp.views import HelloWorldView
 from FUGTApp import views
+from FUGTApp.views import HelloWorldView, ActiviteListView , CreerActiviteView, serve_static_image, get_activite_details
+from django.contrib.staticfiles.views import serve
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 router = DefaultRouter()
 
@@ -25,4 +29,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/hello/', HelloWorldView.as_view(), name='hello-world'),
     path('static/carte-interactive.jpeg', views.serve_static_image, name='serve_static_image'),
-]
+    path('api/activites/', ActiviteListView.as_view(), name='activite-list'),
+    path('api/creer_activite/', CreerActiviteView.as_view(), name='creer_activite'),
+    path('static/<path:path>', serve),
+    path('api/activites/<int:idactivite>/', get_activite_details, name='get_activite_details'),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

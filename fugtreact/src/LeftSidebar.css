@@ -1,0 +1,20 @@
+/* LeftSidebar.css */
+.left-sidebar {
+    @apply fixed h-full w-64 bg-white text-gray-800 shadow-lg ease-in-out transition-all transform -translate-x-full;
+}
+
+.left-sidebar.open {
+    @apply transform translate-x-0;
+}
+
+.toggle-button {
+    @apply cursor-pointer p-4 text-xl bg-gray-400 text-white rounded-r-md;
+}
+
+.sidebar-content {
+    @apply p-4;
+}
+
+.sidebar-button {
+    @apply w-full p-2 mb-2 text-left bg-gray-100 text-gray-800 no-underline rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200;
+}
