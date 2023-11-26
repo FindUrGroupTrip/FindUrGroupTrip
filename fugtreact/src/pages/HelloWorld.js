@@ -1,4 +1,4 @@
-// HelloWorld.js
+/ HelloWorld.js
 import React from 'react';
 
 function HelloWorld() {
