@@ -80,15 +80,15 @@ WSGI_APPLICATION = 'FUGTSite.wsgi.application'
 
 DATABASES = {
  'default': {
- 'ENGINE': 'django.db.backends.mysql',
+ 'ENGINE': 'mysql.connector.django',
  'NAME': 'dbPSI',
  'USER': 'root',
  'PASSWORD': 'root42',
- 'HOST': '127.0.0.1', // @du serveur
- 'PORT': '3306', // port du serveur
+ 'HOST': '127.0.0.1',
+ 'PORT': '3306',
  },
  'sqlite': {
- 'ENGINE': 'django.db.backends.sqlite3',
+ 'ENGINE': 'mysql.connector.django',
  'NAME': BASE_DIR / 'db.sqlite3',
  }
 }
