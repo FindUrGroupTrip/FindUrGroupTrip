@@ -15,6 +15,10 @@ from django.views import View
 import json
 from .models import Activite
 from django.shortcuts import get_object_or_404
+from .models import ReservationAnonyme
+from django.core.mail import send_mail
+from django.views.decorators.http import require_POST
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CreerActiviteView(View):
@@ -60,3 +64,28 @@ class ActiviteListView(ListCreateAPIView):
     queryset = Activite.objects.all()
     serializer_class = ActiviteSerializer
 
+@csrf_exempt
+@require_POST
+def create_reservation_anonyme(request, idactivite):
+    # Récupérez les données de la requête POST
+    data = json.loads(request.body.decode('utf-8'))
+
+    # Créez une réservation anonyme dans la base de données
+    reservation = ReservationAnonyme.objects.create(
+        nom=data['nom'],
+        email=data['email'],
+        activite=idactivite,  # Assurez-vous d'avoir cet attribut dans vos données
+        # Ajoutez d'autres champs nécessaires pour la réservation anonyme
+    )
+
+    # Envoyez un e-mail de confirmation
+    send_mail(
+        'Confirmation de réservation',
+        'Merci pour votre réservation!',
+        'votre@email.com',  # Remplacez par votre adresse e-mail d'envoi
+        [data['email']],
+        fail_silently=False,
+    )
+
+    # Répondez avec un message JSON
+    return JsonResponse({'message': 'Réservation créée avec succès!'})

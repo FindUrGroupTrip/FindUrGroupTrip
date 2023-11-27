@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+
 import ImageComponent from './ImageComponent';
 
 const SingleActivite = () => {
     const { idactivite } = useParams();
     const [activite, setActivite] = useState(null);
+    const navigate = useNavigate(); // Utilisez useNavigate à la place de useHistory
 
     useEffect(() => {
         const fetchActiviteDetails = async () => {
@@ -20,18 +22,29 @@ const SingleActivite = () => {
         fetchActiviteDetails();
     }, [idactivite]);
 
+    const handleReservationClick = () => {
+        // Redirigez l'utilisateur vers la page de réservation avec l'identifiant de l'activité
+        navigate(`/activite/${idactivite}/reservation`);
+    };
+
     return (
-        <div className="flex items-center justify-center h-screen bg-gray-100">
+        <div className="bg-gray-50 min-h-screen flex flex-col">
+            <Link to="/activitelist" className="text-gray-500 mt-4 ml-12 hover:text-gray-700">
+                <span className="mr-2">&larr;</span> Retour à la liste d'activités
+            </Link>
             {activite ? (
-                <div className="max-w-md w-full mx-auto bg-white rounded-md shadow-md overflow-hidden">
+                <div className="max-w-md mx-auto bg-white rounded-md shadow-md overflow-hidden mt-4">
                     <div className="bg-gray-300 text-gray-700 p-6 text-center">
                         <h2 className="text-3xl font-semibold">{activite.nom}</h2>
                         <p className="text-sm mt-2">Emplacement : {activite.lieu}</p>
-                        <p className="text-sm">A la date suivante: {activite.date}</p>
-                    </div>
-                    <div className="p-6 text-gray-700 text-center">
-                        <p className="text-lg mb-4">Briève description de l'activité : {activite.description}</p>
-                        {/* Ajoutez d'autres détails en conséquence */}
+                        <p className="text-sm">À la date suivante : {activite.date}</p>
+                        <p className="text-lg mb-4">Brève description de l'activité : {activite.description}</p>
+                        <button
+                            className="bg-blue-500 text-white p-4 hover:bg-blue-700"
+                            onClick={handleReservationClick}
+                        >
+                            Réserver cette activité
+                        </button>
                     </div>
                     {activite.image ? (
                         <div className="w-full h-64 overflow-hidden">
@@ -46,16 +59,10 @@ const SingleActivite = () => {
                     )}
                 </div>
             ) : (
-                <p className="text-center">Chargement des détails de l'activité...</p>
+                <p className="text-center mt-4">Chargement des détails de l'activité...</p>
             )}
         </div>
     );
 };
 
 export default SingleActivite;
-
-
-
-
-
-

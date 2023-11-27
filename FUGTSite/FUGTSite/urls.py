@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from FUGTApp import views
-from FUGTApp.views import HelloWorldView, ActiviteListView , CreerActiviteView, serve_static_image, get_activite_details
+from FUGTApp.views import HelloWorldView, ActiviteListView , CreerActiviteView, serve_static_image, get_activite_details, create_reservation_anonyme
 from django.contrib.staticfiles.views import serve
 from django.conf import settings
 from django.conf.urls.static import static
@@ -33,6 +33,8 @@ urlpatterns = [
     path('api/creer_activite/', CreerActiviteView.as_view(), name='creer_activite'),
     path('static/<path:path>', serve),
     path('api/activites/<int:idactivite>/', get_activite_details, name='get_activite_details'),
+    path('api/activites/<int:idactivite>/reservation-anonyme/', create_reservation_anonyme, name='reservation-anonyme-create'),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

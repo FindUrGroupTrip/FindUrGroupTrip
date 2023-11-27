@@ -9,6 +9,7 @@ class Image(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
+
 class Activite(models.Model):
     idactivite = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=45)
@@ -20,3 +21,12 @@ class Activite(models.Model):
         managed = False
         db_table = 'activite'
 
+
+class ReservationAnonyme(models.Model):
+    idreservationanonyme = models.AutoField(primary_key=True)
+    nom = models.CharField(max_length=255)
+    email = models.EmailField()
+    activite = models.ForeignKey(Activite, on_delete=models.CASCADE, to_field='idactivite')
+
+    def __str__(self):
+        return f"Réservation Anonyme - {self.nom} pour {self.activite.nom}"

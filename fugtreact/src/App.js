@@ -7,6 +7,7 @@ import ActiviteList from './pages/activitelist'; // Import your ActiviteListOLD 
 import CreerActivite from './Template/CreerActivite'; // Import your CreerActivite component
 import LeftSidebar from './LeftSideBar';
 import SingleActivite from "./Template/SingleActivite";
+import ReservationPage from './Template/reservation/ReservationPage';
 function App() {
     return (
         <Router>
@@ -19,6 +20,7 @@ function App() {
                         <Route path="/activitelist" element={<Activitelist />} />
                         <Route path="/activites/:idactivite" element={<SingleActivite />} />
                         <Route path="/creer-activite" element={<CreerActivite />} />
+                        <Route path="/activite/:idactivite/reservation" element={<ReservationPage />} />
                     </Routes>
                 </main>
             </div>
