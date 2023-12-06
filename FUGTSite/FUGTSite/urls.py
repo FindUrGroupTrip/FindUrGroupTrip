@@ -27,6 +27,7 @@ router = DefaultRouter()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #path('api/', views.api_home, name='api-home'),
     path('api/hello/', HelloWorldView.as_view(), name='hello-world'),
     path('static/carte-interactive.jpeg', views.serve_static_image, name='serve_static_image'),
     path('api/activites/', ActiviteListView.as_view(), name='activite-list'),
