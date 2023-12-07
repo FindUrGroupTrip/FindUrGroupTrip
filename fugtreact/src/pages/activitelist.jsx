@@ -28,8 +28,8 @@ export function Activitelist() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mb-4">
                 {activities.map((activity) => (
                     <Link
-                        to={`/activites/${activity.idactivite}`}
-                        key={activity.idactivite}
+                        to={`/activites/${activity.id}`}
+                        key={activity.id}
                         className="rounded-lg overflow-hidden bg-white shadow-md hover:shadow-lg transition duration-300"
                     >
                         {activity.image ? (

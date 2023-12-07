@@ -1,24 +1,33 @@
+// ReservationPage.jsx
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import AnonymousReservationForm from './AnonymousReservationForm';
+import ReservationForm from './ReservationForm';
+import ReservationComponent from './ReservationComponent';
 
 const ReservationPage = () => {
     const { idactivite } = useParams();
-    const [reservationDetails, setReservationDetails] = useState({ nom: '', email: '' });
+    const [reservationDetails, setReservationDetails] = useState({ nom: '', prenom: '' });
+    const [reservationConfirmed, setReservationConfirmed] = useState(false);
 
     const handleReservationSubmit = (details) => {
-        // Vous pouvez envoyer les détails de la réservation à votre backend ici
+        // You can send reservation details to your backend here
         console.log('Détails de la réservation:', details);
-        // Redirigez l'utilisateur vers une page de confirmation, par exemple.
+        // Update state to show the confirmation component
+        setReservationDetails(details);
+        setReservationConfirmed(true);
     };
 
     return (
         <div className="bg-gray-50 min-h-screen flex flex-col">
-            <Link to={`/activite/${idactivite}`} className="text-gray-500 mt-4 ml-12 hover:text-gray-700">
+            <Link to={`/activites/${idactivite}`} className="text-gray-500 mt-4 ml-12 hover:text-gray-700">
                 <span className="mr-2">&larr;</span> Retour à la page de l'activité
             </Link>
-            <div className="max-w-md mx-auto bg-white rounded-md shadow-md overflow-hidden mt-4 p-6">
-                <AnonymousReservationForm idactivite={idactivite} onSubmit={handleReservationSubmit} />
+            <div className="max-w-md mx-auto mt-4">
+                {reservationConfirmed ? (
+                    <ReservationComponent reservationDetails={reservationDetails} />
+                ) : (
+                    <ReservationForm idactivite={idactivite} onSubmit={handleReservationSubmit} />
+                )}
             </div>
         </div>
     );

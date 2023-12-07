@@ -20,14 +20,19 @@ export function Register() {
   }
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     try {
-      await registerUser(registrationRequest)
-      navigate(ROUTES.login.path)
+      await registerUser(registrationRequest);
+      navigate(ROUTES.login.path);
     } catch (error) {
-      setError(error.response.data.error)
+      if (error.response && error.response.data) {
+        setError(error.response.data.error);
+      } else {
+        setError('Une erreur inattendue s\'est produite.');
+      }
     }
-  }
+  };
+
 
   return (
     <div className="container mx-auto px-4">

@@ -53,3 +53,4 @@ def logout_view(request):
 @permission_classes([IsAuthenticated])
 def verify_token(request):
     return Response({'isTokenValid': True})
+

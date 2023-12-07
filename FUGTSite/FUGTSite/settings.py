@@ -19,20 +19,75 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(5yph5t()zo9)@09n*5zt7aj$@-u98$8iwjwqu=snvv9t0i(#8'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+CORS_ALLOW_ALL_ORIGINS = True
 
 ALLOWED_HOSTS = []
-CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3001',
     'http://localhost:3000',
 ]
+# Dans vos paramètres Django, ajoutez les méthodes HTTP nécessaires à CORS_ALLOWED_METHODS
+CORS_ALLOWED_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+    'PROPFIND',
+    'PROPPATCH',
+    'MKCOL',
+    'COPY',
+    'MOVE',
+    'LOCK',
+]
+
+# Vous pouvez également ajouter des méthodes spécifiques à CORS_ALLOW_METHODS pour un contrôle plus fin
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+    'PROPFIND',
+    'PROPPATCH',
+    'MKCOL',
+    'COPY',
+    'MOVE',
+    'LOCK',
+]
+
+# Dans vos paramètres Django, ajoutez 'content-type' à CORS_ALLOWED_HEADERS
+CORS_ALLOWED_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',  # Ajoutez 'content-type' ici
+    'access-control-allow-headers',
+    'access-control-allow-origin',
+    # Autres en-têtes nécessaires
+]
+# In your Django settings.py
 # Application definition
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',  # Assurez-vous que content-type est autorisé
+    'access-control-allow-headers',
+    'access-control-allow-origin',
+    # Ajoutez tout autre en-tête nécessaire
+]
+
+
 
 INSTALLED_APPS = [
+    'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,8 +95,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken',
     'FUGTApp',
 ]
 
@@ -56,6 +109,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SECRET_KEY = 'django-insecure-(5yph5t()zo9)@09n*5zt7aj$@-u98$8iwjwqu=snvv9t0i(#8'
 ROOT_URLCONF = 'FUGTSite.urls'
 
 TEMPLATES = [
@@ -81,6 +135,14 @@ WSGI_APPLICATION = 'FUGTSite.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'localfugt',
+        'USER': 'root',
+        'PASSWORD': 'pass',
+        'HOST': '127.0.0.1',
+        'PORT': '3308',
+    },
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
@@ -123,7 +185,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
