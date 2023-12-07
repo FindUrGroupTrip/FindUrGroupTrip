@@ -10,13 +10,13 @@ import SingleActivite from "./Template/SingleActivite";
 import ReservationPage from './Template/reservation/ReservationPage';
 import './App.scss'
 import { Sidebar } from './layout/Sidebar'
-import Login from './pages/auth/Login'
-import Logout from './pages/auth/Logout'
-import { Register } from './pages/auth/Register'
-import { ProtectedRoute } from './pages/auth/ProtectedRoute'
-import './pages/auth/axios-interceptor'
+import Login from './auth/Login'
+import Logout from './auth/Logout'
+import { Register } from './auth/Register'
+import { ProtectedRoute } from './auth/ProtectedRoute'
+import './auth/axios-interceptor'
 import HomePage from './pages/HomePage'
-import { AuthProvider } from './pages/auth/auth-context'
+import { AuthProvider } from './auth/auth-context'
 import ImageComponent from './Template/ImageComponent'
 import ReservationForm from "./Template/reservation/ReservationForm";
 

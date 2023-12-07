@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useIsAuthenticated } from './auth/is-authenticated'; // Adjust the path accordingly
+import { useIsAuthenticated } from '../auth/is-authenticated'; // Adjust the path accordingly
 
 export function Header() {
   const applicationName = 'FindUrGroupTrip';

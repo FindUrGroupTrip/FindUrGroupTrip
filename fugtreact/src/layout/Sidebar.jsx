@@ -1,9 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { useAuth } from '../pages/auth/auth-context'
+import { useAuth } from '../auth/auth-context'
 import { Link, useNavigate } from 'react-router-dom'
-import { logout } from '../pages/auth/auth-service'
+import { logout } from '../auth/auth-service'
 import { ROUTES } from '../routes'
 
 export function Sidebar() {
