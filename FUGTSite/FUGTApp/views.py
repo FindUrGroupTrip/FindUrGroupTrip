@@ -13,12 +13,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
 import json
-from .models import Activite
+from .models import Activite, Vacation
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 
-from rest_framework import generics
-from .models import Vacation
-from .serializers import VacationSerializer
+from rest_framework.decorators import api_view
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CreerActiviteView(View):
@@ -60,10 +59,28 @@ def get_activite_details(request, idactivite):
     }
     return JsonResponse(data)
 
+def get_vacations(request):
+    vacations = Vacation.objects.all()
+    data = [{
+        'idvacation': vacation.idvacation,
+        'nom': vacation.nom,
+        'lieu': vacation.lieu,
+        'date': vacation.date,
+        'description': vacation.description,
+        'nb_souhait': vacation.nb_souhait,
+    } for vacation in vacations]
+    return JsonResponse(data, safe=False)
+
+def update_nb_souhait(request, idvacation):
+    if idvacation is None:
+        return JsonResponse({'error': 'ID not provided'}, status=400)
+
+    vacation = get_object_or_404(Vacation, idvacation=idvacation)
+    vacation.nb_souhait += 1
+    vacation.save()
+
+    return JsonResponse({'success': True})
+
 class ActiviteListView(ListCreateAPIView):
     queryset = Activite.objects.all()
     serializer_class = ActiviteSerializer
-
-class VacationListCreateView(generics.ListCreateAPIView):
-    queryset = Vacation.objects.all()
-    serializer_class = VacationSerializer

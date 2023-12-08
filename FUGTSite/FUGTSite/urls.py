@@ -17,11 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from FUGTApp import views
-from FUGTApp.views import HelloWorldView, ActiviteListView , CreerActiviteView, serve_static_image, get_activite_details, VacationListCreateView
+from FUGTApp.views import HelloWorldView, ActiviteListView , CreerActiviteView, serve_static_image, get_activite_details
 from django.contrib.staticfiles.views import serve
 from django.conf import settings
 from django.conf.urls.static import static
-
+from FUGTApp.views import get_vacations
 
 router = DefaultRouter()
 
@@ -34,7 +34,8 @@ urlpatterns = [
     path('api/creer_activite/', CreerActiviteView.as_view(), name='creer_activite'),
     path('static/<path:path>', serve),
     path('api/activites/<int:idactivite>/', get_activite_details, name='get_activite_details'),
-    path('api/vacations/', VacationListCreateView.as_view(), name='vacation-list-create'),
+    path('api/update-nb-souhait/<int:idvacation>/', views.update_nb_souhait, name='update_nb_souhait'),
+    path('api/vacations/', get_vacations, name='get_vacations'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
