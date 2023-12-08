@@ -161,3 +161,4 @@ cython_debug/
 
 #ignore le fichier settings.py qui est change selon le PC local
 settings.py
+node_modules/
