@@ -19,6 +19,13 @@ from django.shortcuts import render
 
 from rest_framework.decorators import api_view
 
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_http_methods
+from django.db import models
+from django.db.models import F
+
 @method_decorator(csrf_exempt, name='dispatch')
 class CreerActiviteView(View):
     def post(self, request, *args, **kwargs):
@@ -80,6 +87,34 @@ def update_nb_souhait(request, idvacation):
     vacation.save()
 
     return JsonResponse({'success': True})
+
+@require_POST
+def valider_vacations(request):
+    if request.method == 'POST':
+        selected_vacations = request.POST.getlist('selectedVacations[]')
+
+        # Mettez en œuvre la logique de mise à jour de nb_souhait ici
+        # Par exemple, en utilisant la méthode .filter et .update sur le modèle Vacation
+
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class ValiderVacationsView(View):
+    @csrf_exempt  # Ajoutez également cette ligne
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        try:
+            data = request.POST.getlist('selectedVacations[]')
+            # Utilisez update pour mettre à jour la valeur de nb_souhait
+            Vacation.objects.filter(idvacation__in=data).update(nb_souhait=models.F('nb_souhait') + 1)
+            return JsonResponse({'message': 'Mise à jour réussie'})
+        except Exception as e:
+            print(e)
+            return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
 
 class ActiviteListView(ListCreateAPIView):
     queryset = Activite.objects.all()

@@ -30,6 +30,15 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3001',
     'http://localhost:3000',
 ]
+
+# Autorisez les méthodes nécessaires (GET, POST, etc.) en fonction de vos besoins
+CORS_ALLOW_METHODS = [
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -83,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'localfugt',
         'USER': 'root',
-        'PASSWORD': 'VtQYM8zD0317*',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     },
