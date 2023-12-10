@@ -15,9 +15,15 @@ class Activite(models.Model):
     lieu = models.CharField(max_length=45, blank=True, null=True)
     description = models.CharField(max_length=45, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
+    moyenne_notes = models.FloatField(default=0)
     class Meta:
         managed = False
         db_table = 'activite'
+
+
+class Note(models.Model):
+    note = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])
+
 
 class ActiviteReservation(models.Model):
     id = models.CharField(primary_key=True,   max_length=200)

@@ -18,7 +18,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from FUGTApp import views
 from FUGTApp.views import HelloWorldView, ActiviteListView , CreerActiviteView, serve_static_image,\
-    get_activite_details,reserve_activity, CreerActiviteReservation
+    get_activite_details,reserve_activity, CreerActiviteReservation,add_note_to_activite
 from django.contrib.staticfiles.views import serve
 from django.conf import settings
 from django.conf.urls.static import static
@@ -37,6 +37,7 @@ urlpatterns = [
     path('api/creer_activite_reservation/', CreerActiviteReservation.as_view(), name='creer_activite_reservation'),
     path('static/<path:path>', serve),
     path('api/activites/<int:id>/', get_activite_details, name='get_activite_details'),
+    path('api/activites/${activite_id}/add-note/', add_note_to_activite, name='add-note')
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:

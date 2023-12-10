@@ -1,4 +1,4 @@
-
+from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 # views.py
@@ -13,8 +13,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
 import json
-from .models import Activite ,ActiviteReservation
-from django.shortcuts import get_object_or_404
+from .models import Activite, ActiviteReservation, Note
+from django.shortcuts import get_object_or_404, render
 from django.core.mail import send_mail
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
@@ -81,8 +81,25 @@ from django.http import HttpResponse
 
 from django.http import HttpResponse
 
+@api_view(['POST'])
+def add_note_to_activite(request, activite_id):
+    activite = get_object_or_404(Activite, id=activite_id)
+
+    if request.method == 'POST':
+        note_value = request.data.get('note')
+
+        if note_value and note_value.isdigit() and 1 <= int(note_value) <= 5:
+            note = Note.objects.create(note=note_value)
+            activite.notes.add(note)
+            activite.save()
+
+            serializer = ActiviteSerializer(activite)
+            return Response(serializer.data)
+        else:
+            return Response({'error': 'Invalid note value'}, status=400)
+
 @csrf_exempt
-def reserve_activity(request, activity_id):
+def reserve_activity(request, activite_id):
     if request.method == 'OPTIONS':
         response = HttpResponse(status=204)
         response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
@@ -94,7 +111,7 @@ def reserve_activity(request, activity_id):
         if request.user.is_authenticated:
             try:
                 # Vérifiez si l'activité existe
-                activity = Activite.objects.get(id=activity_id)
+                activity = Activite.objects.get(id=activite_id)
                 # Créez une réservation
                # Reservation.objects.create(user=request.user, activity=activity)
                 return JsonResponse({'message': 'Réservation réussie!'})
