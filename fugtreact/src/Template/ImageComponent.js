@@ -1,5 +1,5 @@
-import React from 'react';
-import FUGTLogo from './FUGTLogo.png';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function ImageComponent() {
     return (

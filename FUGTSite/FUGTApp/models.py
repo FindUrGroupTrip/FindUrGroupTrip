@@ -30,3 +30,17 @@ class ActiviteReservation(models.Model):
         db_table = 'activite_reservation'
 
 
+#class Vacation(models.Model):
+#    name = models.CharField(max_length=100)
+
+class Vacation(models.Model):
+    idvacation = models.AutoField(primary_key=True)
+    nom = models.CharField(max_length=45)
+    lieu = models.CharField(max_length=45, blank=True, null=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    nb_souhait = models.IntegerField(default=0)
+
+    class Meta:
+        managed = False
+        db_table = 'vacation'

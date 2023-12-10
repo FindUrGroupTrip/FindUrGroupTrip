@@ -1,7 +1,6 @@
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-# views.py
 
 from .serializers import ActiviteSerializer
 from django.http import FileResponse, HttpResponse
@@ -14,10 +13,21 @@ from django.utils.decorators import method_decorator
 from django.views import View
 import json
 from .models import Activite ,ActiviteReservation
+from .models import Activite, Vacation
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render
+
+from rest_framework.decorators import api_view
+
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
+from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_http_methods
+from django.db import models
+from django.db.models import F
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CreerActiviteView(View):
@@ -145,6 +155,56 @@ def get_activite_details(request, id):
         'description': activite.description,
     }
     return JsonResponse(data)
+
+def get_vacations(request):
+    vacations = Vacation.objects.all()
+    data = [{
+        'idvacation': vacation.idvacation,
+        'nom': vacation.nom,
+        'lieu': vacation.lieu,
+        'date': vacation.date,
+        'description': vacation.description,
+        'nb_souhait': vacation.nb_souhait,
+    } for vacation in vacations]
+    return JsonResponse(data, safe=False)
+
+def update_nb_souhait(request, idvacation):
+    if idvacation is None:
+        return JsonResponse({'error': 'ID not provided'}, status=400)
+
+    vacation = get_object_or_404(Vacation, idvacation=idvacation)
+    vacation.nb_souhait += 1
+    vacation.save()
+
+    return JsonResponse({'success': True})
+
+@require_POST
+def valider_vacations(request):
+    if request.method == 'POST':
+        selected_vacations = request.POST.getlist('selectedVacations[]')
+
+        # Mettez en œuvre la logique de mise à jour de nb_souhait ici
+        # Par exemple, en utilisant la méthode .filter et .update sur le modèle Vacation
+
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class ValiderVacationsView(View):
+    @csrf_exempt  # Ajoutez également cette ligne
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        try:
+            data = request.POST.getlist('selectedVacations[]')
+            # Utilisez update pour mettre à jour la valeur de nb_souhait
+            Vacation.objects.filter(idvacation__in=data).update(nb_souhait=models.F('nb_souhait') + 1)
+            return JsonResponse({'message': 'Mise à jour réussie'})
+        except Exception as e:
+            print(e)
+            return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
 
 class ActiviteListView(ListCreateAPIView):
     queryset = Activite.objects.all()

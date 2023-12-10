@@ -23,6 +23,7 @@ from django.contrib.staticfiles.views import serve
 from django.conf import settings
 from django.conf.urls.static import static
 
+from FUGTApp.views import get_vacations, ValiderVacationsView
 
 router = DefaultRouter()
 
@@ -38,6 +39,9 @@ urlpatterns = [
     path('static/<path:path>', serve),
     path('api/activites/<int:id>/', get_activite_details, name='get_activite_details'),
 
+    path('api/activites/<int:idactivite>/', get_activite_details, name='get_activite_details'),
+    path('api/vacations/', get_vacations, name='get_vacations'),
+    path('api/valider-vacations/', ValiderVacationsView.as_view(), name='valider_vacations'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
