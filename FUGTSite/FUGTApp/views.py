@@ -19,6 +19,10 @@ from django.core.mail import send_mail
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 
+from rest_framework import generics
+from .models import Vacation
+from .serializers import VacationSerializer
+
 @method_decorator(csrf_exempt, name='dispatch')
 class CreerActiviteView(View):
     def post(self, request, *args, **kwargs):
@@ -150,3 +154,6 @@ class ActiviteListView(ListCreateAPIView):
     queryset = Activite.objects.all()
     serializer_class = ActiviteSerializer
 
+class VacationListCreateView(generics.ListCreateAPIView):
+    queryset = Vacation.objects.all()
+    serializer_class = VacationSerializer

@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react'
-import { verifyToken } from './auth-service'
+import { useEffect, useState } from 'react'
+import { fetchConnectedUser } from './auth-service'
 import { USER_TOKEN_KEY } from './auth-consts'
 import { useLocation } from 'react-router-dom'
 
 export function useIsAuthenticated() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [connectedUser, setConnectedUser] = useState(null)
   const location = useLocation()
 
   useEffect(() => {
@@ -19,8 +20,9 @@ export function useIsAuthenticated() {
 
     const checkAuth = async () => {
       try {
-        const result = await verifyToken(token)
-        setIsAuthenticated(result)
+        const connectedUser = await fetchConnectedUser()
+        setIsAuthenticated(true)
+        setConnectedUser(connectedUser)
       } catch (error) {
         setIsAuthenticated(false)
       }
@@ -30,7 +32,7 @@ export function useIsAuthenticated() {
     checkAuth().then((_) => _)
   }, [location])
 
-  return { isAuthenticated, isLoading }
+  return { isAuthenticated, isLoading, connectedUser }
 }
 
 export default useIsAuthenticated

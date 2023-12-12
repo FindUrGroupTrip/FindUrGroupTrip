@@ -1,0 +1,68 @@
+/* src/Template/VacationList.css */
+
+.vacation-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.vacation-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff; /* Couleur du texte (par exemple, blanc) */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre du texte (optionnel) */
+}
+
+
+.vacation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vacation-item {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.vacation-checkbox {
+  margin-right: 10px;
+}
+
+.vacation-description {
+  color: #555;
+}
+
+/* Ajoutez plus de styles au besoin */
+
+.valider-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.valider-button:hover {
+  background-color: #45a049;
+}
+
+/* Ajoutez ces styles pour la demande élevée */
+.high-demand {
+  background-color: #ffc107; /* Couleur de fond pour la demande élevée (par exemple, jaune) */
+  border: 1px solid #ffca28; /* Couleur de bordure pour la demande élevée (par exemple, jaune foncé) */
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.5); /* Ombre pour la demande élevée (par exemple, jaune) */
+}
+
+/* Styles pour le message de mise à jour */
+.update-message {
+  margin-top: 10px;
+  color: #4caf50; /* Couleur du texte pour le message de mise à jour (par exemple, vert) */
+  font-weight: bold;
+}

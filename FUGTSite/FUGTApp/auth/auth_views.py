@@ -51,6 +51,12 @@ def logout_view(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def verify_token(request):
+def verify_token():
     return Response({'isTokenValid': True})
 
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def current_user(request):
+    username = request.user.username
+    return Response({'username': username})
