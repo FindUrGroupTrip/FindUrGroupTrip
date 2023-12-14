@@ -31,15 +31,11 @@ jobs:
       - name: Run tests with coverage
         run: npm test -- --coverage
 
-      - name: Download Code Climate Test Reporter
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-
-      - name: Upload coverage to Code Climate
-        run: |
-          ./cc-test-reporter before-build
-          ./cc-test-reporter after-build --exit-code $? --id ${{ secrets.CC_TEST_REPORTER_ID }} --coverage-input-type lcov --xml-report coverage/lcov.info
+      - name: Upload coverage report as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: react-coverage-report
+          path: coverage/lcov.info
           
       - name: build
         run: npm run build
