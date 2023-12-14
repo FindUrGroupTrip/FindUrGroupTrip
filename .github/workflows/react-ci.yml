@@ -28,11 +28,32 @@ jobs:
       - name: install dependencies
         run: npm install
 
-      - name: run tests
-        run: npm test
+      - name: Run tests with coverage
+        run: npm test -- --coverage
 
+      - name: Upload coverage to Code Climate
+        uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm test -- --coverage
+          coverageLocations: "coverage/lcov.info:lcov"
+
+      - name: Run tests with coverage
+        run: npm test -- --coverage
+
+      - name: Upload coverage to Code Climate
+        uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm test -- --coverage
+          coverageLocations: "coverage/lcov.info:lcov"
+          
       - name: build
         run: npm run build
+
+
 
 
 
