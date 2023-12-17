@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import ImageComponent from '../Template/ImageComponent'
 import ActivitiesFilterComponent from '../Template/ActivitiesFilterComponent'
@@ -12,7 +12,7 @@ export function Activitelist() {
     setFilters({ ...filters, [e.target.name]: e.target.value })
   }
 
-  const fetchActivities = async () => {
+  const fetchActivities = useCallback(async () => {
     try {
       const response = await axios.get('http://localhost:8000/api/activites', {
         params: filters,
@@ -21,23 +21,17 @@ export function Activitelist() {
     } catch (error) {
       console.error('Error fetching data:', error)
     }
-  }
+  }, [filters])
 
-  // Utilisez useEffect pour charger les activités depuis votre backend lorsque le composant est monté
   useEffect(() => {
-    fetchActivities()
-  }, [])
-
-  const handleFilterSubmit = () => {
-    fetchActivities()
-  }
+    fetchActivities().then((_) => _)
+  }, [fetchActivities])
 
   return (
     <>
       <ActivitiesFilterComponent
         filters={filters}
         onFilterChange={handleFilterChange}
-        onFilterSubmit={handleFilterSubmit}
       />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mb-4">
         {activities.map((activity) => (

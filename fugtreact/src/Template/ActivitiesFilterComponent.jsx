@@ -31,12 +31,14 @@ function ActivitiesFilterComponent({
           onChange={onFilterChange}
           className="p-2 border border-gray-300 rounded"
         />
-        <button
-          onClick={onFilterSubmit}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Filter
-        </button>
+        {onFilterSubmit && (
+          <button
+            onClick={onFilterSubmit}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Filter
+          </button>
+        )}
       </div>
     </div>
   )
