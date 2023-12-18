@@ -28,11 +28,19 @@ jobs:
       - name: install dependencies
         run: npm install
 
-      - name: run tests
-        run: npm test
+      - name: Run tests with coverage
+        run: npm test -- --coverage
 
+      - name: Upload coverage report as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: react-coverage-report
+          path: coverage/lcov.info
+          
       - name: build
         run: npm run build
+
+
 
 
 

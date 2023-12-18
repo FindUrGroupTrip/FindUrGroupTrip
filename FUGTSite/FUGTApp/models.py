@@ -29,10 +29,6 @@ class ActiviteReservation(models.Model):
         managed = False
         db_table = 'activite_reservation'
 
-
-#class Vacation(models.Model):
-#    name = models.CharField(max_length=100)
-
 class Vacation(models.Model):
     idvacation = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=45)

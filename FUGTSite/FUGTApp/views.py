@@ -1,4 +1,4 @@
-
+from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -20,6 +20,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 
 from django.http import JsonResponse
+from .models import Activite, ActiviteReservation
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from django.views.decorators.http import require_POST
@@ -28,6 +29,12 @@ from django.views.decorators.http import require_POST
 from django.views.decorators.http import require_http_methods
 from django.db import models
 from django.db.models import F
+from django.http import HttpResponse
+from rest_framework import generics
+from .models import Vacation
+from .serializers import VacationSerializer
+import random
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CreerActiviteView(View):
@@ -76,20 +83,11 @@ class CreerActiviteReservation(View):
             return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
 
 
-
-
 class HelloWorldView(APIView):
     def get(self, request):
         message = "Hello, World!"
         return Response({"message": message})
 
-from django.contrib.auth.decorators import login_required
-
-from django.http import HttpResponse
-
-
-
-from django.http import HttpResponse
 
 @csrf_exempt
 def reserve_activity(request, activity_id):
@@ -106,7 +104,7 @@ def reserve_activity(request, activity_id):
                 # Vérifiez si l'activité existe
                 activity = Activite.objects.get(id=activity_id)
                 # Créez une réservation
-               # Reservation.objects.create(user=request.user, activity=activity)
+                # Reservation.objects.create(user=request.user, activity=activity)
                 return JsonResponse({'message': 'Réservation réussie!'})
             except Activite.DoesNotExist:
                 return JsonResponse({'error': 'L\'activité n\'existe pas.'}, status=404)
@@ -138,10 +136,13 @@ def register_view(request):
 
     return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
 
+
 def serve_static_image(request):
     image_path = os.path.join(settings.STATIC_ROOT, 'FUGTLogo.png')
     with open(image_path, 'rb') as image_file:
         return FileResponse(image_file)
+
+
 def get_activite_details(request, id):
     if id is None:
         return JsonResponse({'error': 'ID not provided'}, status=400)
@@ -207,6 +208,27 @@ class ValiderVacationsView(View):
             return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
 
 class ActiviteListView(ListCreateAPIView):
-    queryset = Activite.objects.all()
-    serializer_class = ActiviteSerializer
 
+@api_view(['GET'])
+def activite_list(request):
+    queryset = Activite.objects.all()
+    # Retrieve query parameters
+    nom = request.query_params.get('nom')
+    lieu = request.query_params.get('lieu')
+    date = request.query_params.get('date')
+
+    # Apply filters
+    if nom:
+        queryset = queryset.filter(nom__icontains=nom)
+    if lieu:
+        queryset = queryset.filter(lieu__icontains=lieu)
+    if date:
+        queryset = queryset.filter(date=date)
+
+    serializer = ActiviteSerializer(queryset, many=True)
+    return Response(serializer.data)
+
+
+class VacationListCreateView(generics.ListCreateAPIView):
+    queryset = Vacation.objects.all()
+    serializer_class = VacationSerializer

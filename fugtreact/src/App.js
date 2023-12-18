@@ -4,21 +4,16 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Header } from './pages/Header';
 import { Activitelist } from './pages/activitelist';
 import ActiviteList from './pages/activitelist'; // Import your ActiviteListOLD component
-import CreerActivite from './Template/CreerActivite'; // Import your CreerActivite component
+import CreerActivite from './Template/CreerActivite';
 import LeftSidebar from './LeftSideBar';
 import SingleActivite from "./Template/SingleActivite";
 import ReservationPage from './Template/reservation/ReservationPage';
 import './App.scss'
-import { Sidebar } from './layout/Sidebar'
 import Login from './auth/Login'
-import Logout from './auth/Logout'
 import { Register } from './auth/Register'
 import { ProtectedRoute } from './auth/ProtectedRoute'
 import './auth/axios-interceptor'
-import HomePage from './pages/HomePage'
-import { AuthProvider } from './auth/auth-context'
 import ImageComponent from './Template/ImageComponent'
-import ReservationForm from "./Template/reservation/ReservationForm";
 
 import VacationList from "./Template/VacationList"; // Import your new VacationList component
 
@@ -48,14 +43,12 @@ function App() {
                         <Route path="/vacationlist" element={<VacationList />} />
                         <Route path="/reservation-form/:idactivite" element={<ReservationPage />} />
 
-                        {/* Add more routes as needed */}
-                    </Routes>
-                </main>
-            </div>
-        </Router>
-    );
+            {/* Add more routes as needed */}
+          </Routes>
+        </main>
+      </div>
+    </Router>
+  )
 }
 
 export default App;
-
-

@@ -15,7 +15,7 @@ export function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const data = await login(credentials)
+      await login(credentials)
       navigate(ROUTES.home.path)
     } catch (error) {
       setError('Erreur de connexion. Veuillez vérifier vos identifiants.')
