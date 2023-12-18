@@ -11,41 +11,37 @@ function VacationList() {
     axios.get('http://localhost:8000/api/vacations/')
       .then(response => {
         setVacations(response.data);
+        console.log(response.data);
+
       })
       .catch(error => {
         console.error(error);
       });
   }, []);
 
-  const handleCheckboxChange = (idvacation) => {
-    setSelectedVacations(prevSelected => {
-      if (prevSelected.includes(idvacation)) {
-        return prevSelected.filter(selectedId => selectedId !== idvacation);
-      } else {
-        return [...prevSelected, idvacation];
-      }
-    });
-  };
+    const handleCheckboxChange = (idvacation) => {
+        setSelectedVacations(prevSelected => {
+            const updatedSelected = prevSelected.includes(idvacation)
+                ? prevSelected.filter(selectedId => selectedId !== idvacation)
+                : [...prevSelected, idvacation];
+            console.log('Selected Vacations after Checkbox Change:', updatedSelected);  // Ajoutez cette ligne
+            return updatedSelected;
+        });
+    };
 
-  const handleValidation = () => {
-    axios.post('http://localhost:8000/api/valider-vacations/', { selectedVacations })
-      .then(response => {
-        console.log('Mise à jour réussie !');
-        setUpdateMessage('Mise à jour réussie !');
-        setVacations(prevVacations =>
-          prevVacations.map(vacation => ({
-            ...vacation,
-            nb_souhait: selectedVacations.includes(vacation.idvacation)
-              ? vacation.nb_souhait + 1
-              : vacation.nb_souhait,
-          }))
-        );
-        setSelectedVacations([]);
-      })
-      .catch(error => {
-        console.error('Erreur lors de la mise à jour :', error);
-      });
-  };
+
+    const handleValidation = () => {
+        console.log('Selected Vacations before POST:', selectedVacations);  // Ajoutez cette ligne
+        axios.post('http://localhost:8000/api/valider-vacations/', { selectedVacations })
+            .then(response => {
+                console.log('Mise à jour réussie !', response);
+                // ...
+            })
+            .catch(error => {
+                console.error('Erreur lors de la mise à jour :', error);
+            });
+    };
+
 
   return (
     <div className="vacation-container">

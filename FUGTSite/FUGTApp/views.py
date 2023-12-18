@@ -1,3 +1,4 @@
+from datetime import datetime
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -15,7 +16,7 @@ from django.views import View
 import json
 from .models import Activite, ActiviteReservation, Note
 from django.shortcuts import get_object_or_404, render
-from .models import Activite ,ActiviteReservation
+from .models import Activite, ActiviteReservation
 from .models import Activite, Vacation
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
@@ -48,13 +49,17 @@ def reservations_par_activite_api(request, id_activite):
     except Activite.DoesNotExist:
         return JsonResponse({'error': 'Activité non trouvée'}, status=404)
 
+
 def get_reservations_by_activite(request, id_activite):
     reservations = ActiviteReservation.objects.filter(id_activite=id_activite)
     data = [{'nom': reservation.nom, 'prenom': reservation.prenom} for reservation in reservations]
     return JsonResponse(data, safe=False)
+
+
 class ActiviteListView(ListCreateAPIView):
     queryset = Activite.objects.all()
     serializer_class = ActiviteSerializer
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CreerActiviteView(View):
@@ -71,8 +76,11 @@ class CreerActiviteView(View):
         except Exception as e:
             print(e)
             return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
+
+
 import random
 import uuid  # Import the uuid module
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CreerActiviteReservation(View):
@@ -101,6 +109,7 @@ class CreerActiviteReservation(View):
         except Exception as e:
             print(e)
             return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
+
 
 def get_activite_details(request, id):
     if id is None:
@@ -148,16 +157,16 @@ def reserve_activity(request, activite_id):
     return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
 
 
-
-
 def serve_static_image(request):
     image_path = os.path.join(settings.STATIC_ROOT, 'FUGTLogo.png')
     with open(image_path, 'rb') as image_file:
         return FileResponse(image_file)
 
+
 from django.http import HttpResponse
 
 import logging
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class add_note_to_activite(View):
@@ -193,8 +202,6 @@ class add_note_to_activite(View):
             # Gérer les erreurs et renvoyer une réponse d'erreur
             print(e)
             return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
-
-
 
 
 def register_view(request):
@@ -240,6 +247,7 @@ def get_activite_details(request, id):
     }
     return JsonResponse(data)
 
+
 def get_vacations(request):
     vacations = Vacation.objects.all()
     data = [{
@@ -252,6 +260,7 @@ def get_vacations(request):
     } for vacation in vacations]
     return JsonResponse(data, safe=False)
 
+
 def update_nb_souhait(request, idvacation):
     if idvacation is None:
         return JsonResponse({'error': 'ID not provided'}, status=400)
@@ -261,6 +270,7 @@ def update_nb_souhait(request, idvacation):
     vacation.save()
 
     return JsonResponse({'success': True})
+
 
 @require_POST
 def valider_vacations(request):
@@ -273,6 +283,7 @@ def valider_vacations(request):
         return JsonResponse({'success': True})
     else:
         return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class ValiderVacationsView(View):
@@ -290,22 +301,31 @@ class ValiderVacationsView(View):
             print(e)
             return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
 
+
 @api_view(['GET'])
 def activite_list(request):
+    # Obtenez tous les objets Activite
     queryset = Activite.objects.all()
-    # Retrieve query parameters
+
+    # Récupérez les paramètres de la requête
     nom = request.query_params.get('nom')
     lieu = request.query_params.get('lieu')
     date = request.query_params.get('date')
-    
-    # Apply filters
+
+    # Ajoutez des logs de débogage pour vérifier les paramètres de requête
+    print(f"nom: {nom}, lieu: {lieu}, date: {date}")
+
+    # Appliquez les filtres
     if nom:
         queryset = queryset.filter(nom__icontains=nom)
     if lieu:
         queryset = queryset.filter(lieu__icontains=lieu)
     if date:
+        # Convertissez la date au format requis
+        date = datetime.strptime(date, '%Y-%m-%d').date()
         queryset = queryset.filter(date=date)
-    
+
+    # Sérialisez les objets filtrés et renvoyez la réponse
     serializer = ActiviteSerializer(queryset, many=True)
     return Response(serializer.data)
 

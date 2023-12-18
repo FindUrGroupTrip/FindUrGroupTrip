@@ -12,7 +12,6 @@ class ActiviteSerializer(serializers.ModelSerializer):
 
 class VacationSerializer(serializers.ModelSerializer):
     participants = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-
     class Meta:
         model = Vacation
         fields = '__all__'

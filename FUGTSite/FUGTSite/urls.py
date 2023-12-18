@@ -21,7 +21,7 @@ from FUGTApp.views import  ActiviteListView , CreerActiviteView, serve_static_im
     get_activite_details,reserve_activity, CreerActiviteReservation,add_note_to_activite,\
     reservations_par_activite_api, get_reservations_by_activite
 from FUGTApp.views import HelloWorldView, CreerActiviteView, \
-    get_activite_details, reserve_activity, CreerActiviteReservation, activite_list
+    get_activite_details, reserve_activity, CreerActiviteReservation,activite_list
 from django.contrib.staticfiles.views import serve
 from django.conf import settings
 from django.conf.urls.static import static
@@ -35,7 +35,8 @@ urlpatterns = [
     path('api/activites/<int:activity_id>/reserve/', reserve_activity, name='reserve_activity'),
     path('api/activites/<int:id>/', get_activite_details, name='get_activite_details'),
     path('static/FUGTLogo.png', views.serve_static_image, name='serve_static_image'),
-    path('api/activites/', ActiviteListView.as_view(), name='activite-list'),
+    path('api/activites/', activite_list, name='activite_list'),
+
     path('api/creer_activite/', CreerActiviteView.as_view(), name='creer_activite'),
     path('api/creer_activite_reservation/', CreerActiviteReservation.as_view(), name='creer_activite_reservation'),
     path('static/<path:path>', serve),
