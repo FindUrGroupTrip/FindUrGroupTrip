@@ -45,8 +45,7 @@ urlpatterns = [
     path('api/reservations_par_activite/<str:id_activite>/', reservations_par_activite_api, name='reservations_par_activite_api'),
     path('api/reservations/<str:id_activite>/', get_reservations_by_activite, name='get_reservations_by_activite'),
     path('api/activites/<int:id>/', get_activite_details, name='get_activite_details'),
-
-    path('api/activites/<int:idactivite>/', get_activite_details, name='get_activite_details'),
+    
     path('api/vacations/', get_vacations, name='get_vacations'),
     path('api/valider-vacations/', ValiderVacationsView.as_view(), name='valider_vacations'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
