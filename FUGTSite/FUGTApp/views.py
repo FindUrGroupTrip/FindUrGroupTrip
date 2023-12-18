@@ -1,7 +1,8 @@
-from rest_framework.decorators import api_view
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
+# views.py
+import logging
 from .serializers import ActiviteSerializer
 from django.http import FileResponse, HttpResponse
 from django.conf import settings
@@ -12,6 +13,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
 import json
+from .models import Activite, ActiviteReservation, Note
+from django.shortcuts import get_object_or_404, render
 from .models import Activite ,ActiviteReservation
 from .models import Activite, Vacation
 from django.shortcuts import get_object_or_404
@@ -35,6 +38,23 @@ from .models import Vacation
 from .serializers import VacationSerializer
 import random
 
+
+def reservations_par_activite_api(request, id_activite):
+    try:
+        activite = Activite.objects.get(id=id_activite)
+        reservations = ActiviteReservation.objects.filter(id_activite=activite).values('nom', 'prenom')
+        data = {'activite': activite.nom, 'reservations': list(reservations)}
+        return JsonResponse(data, safe=False)
+    except Activite.DoesNotExist:
+        return JsonResponse({'error': 'Activité non trouvée'}, status=404)
+
+def get_reservations_by_activite(request, id_activite):
+    reservations = ActiviteReservation.objects.filter(id_activite=id_activite)
+    data = [{'nom': reservation.nom, 'prenom': reservation.prenom} for reservation in reservations]
+    return JsonResponse(data, safe=False)
+class ActiviteListView(ListCreateAPIView):
+    queryset = Activite.objects.all()
+    serializer_class = ActiviteSerializer
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CreerActiviteView(View):
@@ -82,6 +102,20 @@ class CreerActiviteReservation(View):
             print(e)
             return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
 
+def get_activite_details(request, id):
+    if id is None:
+        return JsonResponse({'error': 'ID not provided'}, status=400)
+
+    activite = get_object_or_404(Activite, id=id)
+    data = {
+        'idactivite': activite.id,
+        'nom': activite.nom,
+        'lieu': activite.lieu,
+        'date': activite.date,
+        'description': activite.description,
+    }
+    return JsonResponse(data)
+
 
 class HelloWorldView(APIView):
     def get(self, request):
@@ -90,7 +124,7 @@ class HelloWorldView(APIView):
 
 
 @csrf_exempt
-def reserve_activity(request, activity_id):
+def reserve_activity(request, activite_id):
     if request.method == 'OPTIONS':
         response = HttpResponse(status=204)
         response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
@@ -102,7 +136,7 @@ def reserve_activity(request, activity_id):
         if request.user.is_authenticated:
             try:
                 # Vérifiez si l'activité existe
-                activity = Activite.objects.get(id=activity_id)
+                activity = Activite.objects.get(id=activite_id)
                 # Créez une réservation
                 # Reservation.objects.create(user=request.user, activity=activity)
                 return JsonResponse({'message': 'Réservation réussie!'})
@@ -112,6 +146,55 @@ def reserve_activity(request, activity_id):
             return JsonResponse({'error': 'Vous devez être connecté pour réserver une activité.'}, status=401)
 
     return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+
+
+
+
+def serve_static_image(request):
+    image_path = os.path.join(settings.STATIC_ROOT, 'FUGTLogo.png')
+    with open(image_path, 'rb') as image_file:
+        return FileResponse(image_file)
+
+from django.http import HttpResponse
+
+import logging
+
+@method_decorator(csrf_exempt, name='dispatch')
+class add_note_to_activite(View):
+    def post(self, request, *args, **kwargs):
+        try:
+            # Récupérer l'ID de l'activité depuis les paramètres de l'URL
+            activity_id = kwargs.get('activity_id')
+
+            if activity_id is None:
+                # Gérer l'absence de l'ID de l'activité dans les paramètres de l'URL
+                return JsonResponse({'error': 'ID de l\'activité manquant dans les paramètres de l\'URL'}, status=400)
+
+            # Charger les données JSON de la requête
+            data = json.loads(request.body)
+
+            # Générer un ID unique
+            random_id = str(random.randint(1, 100000))
+
+            # Convertir l'ID de l'activité en entier
+            id_activite = int(activity_id)
+
+            # Créer une note avec les données fournies
+            note = Note.objects.create(
+                id=random_id,
+                note=data.get('note', ''),
+                id_activite=id_activite
+            )
+
+            # Retourner la réponse avec l'ID de la note créée
+            return JsonResponse({'id': note.id})
+
+        except Exception as e:
+            # Gérer les erreurs et renvoyer une réponse d'erreur
+            print(e)
+            return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
+
+
 
 
 def register_view(request):

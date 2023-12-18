@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
-import ImageComponent from '../Template/ImageComponent'
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
+import ImageComponent from '../Template/ImageComponent';
+import AddNoteForm from "../Template/AddNoteForm";
 import ActivitiesFilterComponent from '../Template/ActivitiesFilterComponent'
 import axios from 'axios'
 
@@ -53,15 +54,21 @@ export function Activitelist() {
               <ImageComponent />
             )}
 
-            <div className="p-4">
-              <h3 className="text-lg font-semibold mb-2">{activity.nom}</h3>
-              <p className="text-gray-600">{activity.lieu}</p>
-              <p className="text-gray-700">{activity.description}</p>
-              <p className="text-gray-500">{activity.date}</p>
+                        <div className="p-4">
+                            <h3 className="text-lg font-semibold mb-2">{activity.nom}</h3>
+                            <p className="text-gray-600">{activity.lieu}</p>
+                            <p className="text-gray-700">{activity.description}</p>
+                            <p className="text-gray-500">{activity.date}</p>
+                            {activity && (
+                                <div className="mt-4">
+                                    <p className="text-yellow-500">{`Note moyenne : ${activity.average_rating} étoile(s)`}</p>
+                                </div>
+                            )}
+                        </div>
+                    </Link>
+                ))}
             </div>
-          </Link>
-        ))}
-      </div>
-    </>
-  )
+        </>
+    );
 }
+
