@@ -292,24 +292,24 @@ class ValiderVacationsView(View):
 
 class ActiviteListView(ListCreateAPIView):
 
-@api_view(['GET'])
-def activite_list(request):
-    queryset = Activite.objects.all()
-    # Retrieve query parameters
-    nom = request.query_params.get('nom')
-    lieu = request.query_params.get('lieu')
-    date = request.query_params.get('date')
-
-    # Apply filters
-    if nom:
-        queryset = queryset.filter(nom__icontains=nom)
-    if lieu:
-        queryset = queryset.filter(lieu__icontains=lieu)
-    if date:
-        queryset = queryset.filter(date=date)
-
-    serializer = ActiviteSerializer(queryset, many=True)
-    return Response(serializer.data)
+    @api_view(['GET'])
+    def activite_list(request):
+        queryset = Activite.objects.all()
+        # Retrieve query parameters
+        nom = request.query_params.get('nom')
+        lieu = request.query_params.get('lieu')
+        date = request.query_params.get('date')
+    
+        # Apply filters
+        if nom:
+            queryset = queryset.filter(nom__icontains=nom)
+        if lieu:
+            queryset = queryset.filter(lieu__icontains=lieu)
+        if date:
+            queryset = queryset.filter(date=date)
+    
+        serializer = ActiviteSerializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 class VacationListCreateView(generics.ListCreateAPIView):
