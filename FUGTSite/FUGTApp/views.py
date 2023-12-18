@@ -297,7 +297,7 @@ def activite_list(request):
     nom = request.query_params.get('nom')
     lieu = request.query_params.get('lieu')
     date = request.query_params.get('date')
-
+    
     # Apply filters
     if nom:
         queryset = queryset.filter(nom__icontains=nom)
@@ -305,7 +305,7 @@ def activite_list(request):
         queryset = queryset.filter(lieu__icontains=lieu)
     if date:
         queryset = queryset.filter(date=date)
-
+    
     serializer = ActiviteSerializer(queryset, many=True)
     return Response(serializer.data)
 
