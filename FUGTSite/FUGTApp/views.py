@@ -290,8 +290,6 @@ class ValiderVacationsView(View):
             print(e)
             return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
 
-class ActiviteListView(ListCreateAPIView):
-
 @api_view(['GET'])
 def activite_list(request):
     queryset = Activite.objects.all()
