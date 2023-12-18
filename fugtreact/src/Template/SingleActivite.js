@@ -2,27 +2,33 @@ import ImageComponent from './ImageComponent';
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import AddNote from './AddNote';
+import ReservationsList from './reservation/ReservationList';
 import AddNoteForm from './AddNoteForm';
+
+
 const SingleActivite = () => {
-    // Get the 'idactivite' parameter from the URL
-    const { idactivite  } = useParams();
+    const { idactivite } = useParams();
     const [activite, setActivite] = useState(null);
     const navigate = useNavigate();
 
+    // Function to refresh the activity details
+    const refreshActiviteDetails = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/api/activites/${idactivite}`);
+            const data = await response.json();
+            setActivite({
+                ...data,
+                average_rating: data.average_rating || 0,
+            });
+            console.log('Activite Data:', data);
+        } catch (error) {
+            console.error('Erreur lors de la récupération des détails de l\'activité:', error);
+        }
+    };
+
     // Fetch activity details when the component mounts
     useEffect(() => {
-        const fetchActiviteDetails = async () => {
-            try {
-                const response = await fetch(`http://localhost:8000/api/activites/${idactivite}`);
-                const data = await response.json();
-                setActivite(data);
-                console.log('Activite Data:', data);
-            } catch (error) {
-                console.error('Erreur lors de la récupération des détails de l\'activité:', error);
-            }
-        };
-
-        fetchActiviteDetails();
+        refreshActiviteDetails();
     }, [idactivite]);
 
     // Handle the click event for the 'Réserver' button
@@ -52,7 +58,8 @@ const SingleActivite = () => {
                         <p className="text-sm mt-2">Emplacement : {activite.lieu}</p>
                         <p className="text-sm">À la date suivante : {activite.date}</p>
                         <p className="text-lg mb-4">Brève description de l'activité : {activite.description}</p>
-                    </div>
+
+
 
                     {/* Reservation button */}
                     <button
@@ -61,7 +68,7 @@ const SingleActivite = () => {
                     >
                         Réserver
                     </button>
-
+                    </div>
                     {/* Activity image or default component */}
                     {activite.image ? (
                         <div className="w-full h-64 overflow-hidden mt-4">
@@ -77,7 +84,7 @@ const SingleActivite = () => {
 
                     {activite && (
                         <div className="mt-4">
-                            <AddNoteForm activite_id={idactivite} />
+                            <AddNoteForm activite_id={idactivite} refreshData={refreshActiviteDetails}/>
                         </div>
                     )}
                 </div>
@@ -85,6 +92,7 @@ const SingleActivite = () => {
                 // Loading message
                 <p className="text-center mt-4">Chargement des détails de l'activité...</p>
             )}
+                    <ReservationsList idActivite={idactivite} />
         </div>
     );
 };

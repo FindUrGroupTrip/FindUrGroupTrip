@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ImageComponent from '../Template/ImageComponent';
+import AddNoteForm from "../Template/AddNoteForm";
 
 export function Activitelist() {
     const [activities, setActivities] = useState([]);
@@ -50,6 +51,11 @@ export function Activitelist() {
                             <p className="text-gray-600">{activity.lieu}</p>
                             <p className="text-gray-700">{activity.description}</p>
                             <p className="text-gray-500">{activity.date}</p>
+                            {activity && (
+                                <div className="mt-4">
+                                    <p className="text-yellow-500">{`Note moyenne : ${activity.average_rating} étoile(s)`}</p>
+                                </div>
+                            )}
                         </div>
                     </Link>
                 ))}

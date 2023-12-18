@@ -1,63 +1,64 @@
 import React, { useState } from 'react';
+import { FaStar } from 'react-icons/fa';
 
-const AddNoteForm = ({ activite_id }) => {
-    const [note, setNote] = useState('');
+const AddNoteForm = ({ activite_id, refreshData }) => {
+    const [note, setNote] = useState(0);
     const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
-    const handleNoteChange = (e) => {
-        setNote(e.target.value);
+    const handleStarClick = (clickedNote) => {
+        setNote(clickedNote);
         setError('');
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Check if the note is a valid number between 1 and 5
-        const parsedNote = parseInt(note, 10);
-        if (isNaN(parsedNote) || parsedNote < 1 || parsedNote > 5) {
-            setError('La note doit être un nombre entre 1 et 5');
+        if (note === 0) {
+            setError('Veuillez choisir une note entre 1 et 5');
             return;
         }
 
-        // Send the note to the backend
         try {
             const response = await fetch(`http://localhost:8000/api/activites/${activite_id}/add-note/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ note: parsedNote }),
+                body: JSON.stringify({ note }),
             });
 
             if (response.ok) {
-                // Handle success (you may redirect or show a success message)
                 console.log('Note ajoutée avec succès!');
+                setSuccessMessage('Note ajoutée avec succès!');
+                refreshData(); // Refresh activity details after adding the note
             } else {
-                // Handle error
                 console.error('Erreur lors de l\'ajout de la note:', response.statusText);
+                setSuccessMessage('');
             }
         } catch (error) {
             console.error('Erreur lors de la requête:', error);
+            setError('Erreur lors de la requête: ' + error.message);
+            setSuccessMessage('');
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="mt-4">
+        <form onSubmit={handleSubmit} className="mt-4 flex flex-col items-center justify-center">
             <label htmlFor="note" className="block text-gray-700 text-sm font-bold mb-2">
                 Note (entre 1 et 5) :
             </label>
-            <input
-                type="number"
-                id="note"
-                name="note"
-                value={note}
-                onChange={handleNoteChange}
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                min="1"
-                max="5"
-                required
-            />
+            <div className="flex">
+                {[1, 2, 3, 4, 5].map((star) => (
+                    <FaStar
+                        key={star}
+                        className={star <= note ? 'text-yellow-500 cursor-pointer text-3xl' : 'text-gray-300 cursor-pointer text-3xl'}
+                        onClick={() => handleStarClick(star)}
+                    />
+                ))}
+            </div>
             {error && <p className="text-red-500 text-xs italic">{error}</p>}
+            {successMessage && <p className="text-green-500 text-xs italic">{successMessage}</p>}
             <button
                 type="submit"
                 className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2 focus:outline-none focus:shadow-outline"
