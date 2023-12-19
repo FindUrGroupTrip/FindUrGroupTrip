@@ -17,7 +17,7 @@ import json
 from .models import Activite, ActiviteReservation, Note
 from django.shortcuts import get_object_or_404, render
 from .models import Activite, ActiviteReservation
-from .models import Activite, Vacation
+from .models import Activite, Vacation, Question, Answer
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
@@ -36,7 +36,7 @@ from django.db.models import F
 from django.http import HttpResponse
 from rest_framework import generics
 from .models import Vacation
-from .serializers import VacationSerializer
+from .serializers import VacationSerializer, QuestionSerializer, AnswerSerializer
 import random
 
 
@@ -333,3 +333,16 @@ def activite_list(request):
 class VacationListCreateView(generics.ListCreateAPIView):
     queryset = Vacation.objects.all()
     serializer_class = VacationSerializer
+
+#Forum
+class QuestionListView(generics.ListCreateAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+
+class AnswerListView(generics.ListCreateAPIView):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
+
+class AnswerDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
