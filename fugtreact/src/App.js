@@ -9,16 +9,14 @@ import LeftSidebar from './LeftSideBar';
 import SingleActivite from "./Template/SingleActivite";
 import ReservationPage from './Template/reservation/ReservationPage';
 import './App.scss'
-import { Sidebar } from './layout/Sidebar'
 import Login from './auth/Login'
-import Logout from './auth/Logout'
 import { Register } from './auth/Register'
 import { ProtectedRoute } from './auth/ProtectedRoute'
 import './auth/axios-interceptor'
-import HomePage from './pages/HomePage'
-import { AuthProvider } from './auth/auth-context'
 import ImageComponent from './Template/ImageComponent'
-import ReservationForm from "./Template/reservation/ReservationForm";
+
+import VacationList from "./Template/VacationList"; // Import your new VacationList component
+
 
 function App() {
     return (
@@ -42,14 +40,15 @@ function App() {
                         <Route path="/activitelist" element={<Activitelist />} />
                         <Route path="/activites/:idactivite" element={<SingleActivite />} />
                         <Route path="/creer-activite" element={<CreerActivite />} />
+                        <Route path="/vacationlist" element={<VacationList />} />
                         <Route path="/reservation-form/:idactivite" element={<ReservationPage />} />
 
-                        {/* Add more routes as needed */}
-                    </Routes>
-                </main>
-            </div>
-        </Router>
-    );
+            {/* Add more routes as needed */}
+          </Routes>
+        </main>
+      </div>
+    </Router>
+  )
 }
 
 export default App;
