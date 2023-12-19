@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Activite, Vacation
+from .models import Activite, Vacation, Question, Answer
 
 class ActiviteSerializer(serializers.ModelSerializer):
     average_rating = serializers.SerializerMethodField()
@@ -14,4 +14,14 @@ class VacationSerializer(serializers.ModelSerializer):
     participants = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = Vacation
+        fields = '__all__'
+
+class QuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = '__all__'
+
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
         fields = '__all__'

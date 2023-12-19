@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Si vous utilisez React Router
 // LeftSidebar.js
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faList, faPlus, faTasks } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faList, faPlus, faTasks, faComments} from '@fortawesome/free-solid-svg-icons';
 
 import './LeftSidebar.css';
 
@@ -34,6 +34,11 @@ const LeftSidebar = () => {
                 <Link to="/vacationlist">
                     <button className="sidebar-button">
                         <FontAwesomeIcon icon={faTasks} /> Liste de vacances
+                    </button>
+                </Link>
+                <Link to="/forum">
+                    <button className="sidebar-button">
+                        <FontAwesomeIcon icon={faComments} /> Forum
                     </button>
                 </Link>
 
