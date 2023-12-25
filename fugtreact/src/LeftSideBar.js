@@ -1,9 +1,8 @@
 // LeftSidebar.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Si vous utilisez React Router
-// LeftSidebar.js
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faList, faPlus, faTasks } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faList, faPlus, faTasks, faEnvelope } from '@fortawesome/free-solid-svg-icons'; // Ajout de l'icône d'enveloppe
 
 import './LeftSidebar.css';
 
@@ -14,7 +13,6 @@ const LeftSidebar = () => {
         setIsOpen(!isOpen);
     };
 
-// LeftSidebar.js
     return (
         <div className={`left-sidebar ${isOpen ? 'open' : ''}`}>
             <div className="toggle-button" onClick={toggleSidebar}>
@@ -36,11 +34,15 @@ const LeftSidebar = () => {
                         <FontAwesomeIcon icon={faTasks} /> Liste de vacances
                     </button>
                 </Link>
-
+                {/* Ajout du bouton pour rediriger vers /contact */}
+                <Link to="/contact">
+                    <button className="sidebar-button">
+                        <FontAwesomeIcon icon={faEnvelope} /> Contact
+                    </button>
+                </Link>
             </div>
         </div>
     );
-
 };
 
 export default LeftSidebar;
