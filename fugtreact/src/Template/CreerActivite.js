@@ -6,14 +6,14 @@ const CreerActivite = () => {
         register,
         handleSubmit,
         formState: { errors },
-        reset, // Ajouter reset de react-hook-form
+        reset,
     } = useForm();
 
     const [isSubmitted, setIsSubmitted] = useState(null);
+    const [image, setImage] = useState(null);
 
     const onSubmit = async (data) => {
         try {
-            // Valider si tous les champs sont remplis
             const areAllFieldsFilled = Object.values(data).every((value) => value !== '');
 
             if (!areAllFieldsFilled) {
@@ -21,24 +21,31 @@ const CreerActivite = () => {
                 return;
             }
 
-            // Envoyer les données au backend ici
+            const formData = new FormData();
+            formData.append('nom', data.nom);
+            formData.append('lieu', data.lieu);
+            formData.append('description', data.description);
+            formData.append('date', data.date);
+            formData.append('image', data.image[0]);
+
             const response = await fetch('http://localhost:8000/api/creer_activite/', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
+                body: formData,
             });
 
             if (!response.ok) {
                 throw new Error('Échec de la requête');
             }
 
-            setIsSubmitted(true); // La requête a réussi
-            reset(); // Réinitialiser le formulaire après un enregistrement réussi
+            setIsSubmitted(true);
+            reset();
+
+            if (data.image[0]) {
+                setImage(URL.createObjectURL(data.image[0]));
+            }
         } catch (error) {
             console.error('Erreur lors de l\'envoi des données au backend:', error);
-            setIsSubmitted(false); // La requête a échoué
+            setIsSubmitted(false);
         }
     };
 
@@ -105,6 +112,29 @@ const CreerActivite = () => {
                     />
                     {errors.date && <p className="text-red-500 text-xs italic">{errors.date.message}</p>}
                 </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
+                        Image :
+                    </label>
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        {...register('image', { required: 'Ce champ est requis' })}
+                        className={`border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                            errors.image ? 'border-red-500' : ''
+                        }`}
+                    />
+                    {errors.image && <p className="text-red-500 text-xs italic">{errors.image.message}</p>}
+                </div>
+                {image && (
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="preview">
+                            Image ajoutée :
+                        </label>
+                        <img src={image} alt="Preview" className="max-w-full mb-2" />
+                    </div>
+                )}
                 <div className="flex items-center justify-between">
                     <button
                         type="submit"
@@ -121,6 +151,3 @@ const CreerActivite = () => {
 };
 
 export default CreerActivite;
-
-
-

@@ -19,14 +19,14 @@ from rest_framework.routers import DefaultRouter
 from FUGTApp import views
 from FUGTApp.views import  ActiviteListView , CreerActiviteView, serve_static_image,\
     get_activite_details,reserve_activity, CreerActiviteReservation,add_note_to_activite,\
-    reservations_par_activite_api, get_reservations_by_activite
+    reservations_par_activite_api, get_reservations_by_activite, activite_list
 from FUGTApp.views import HelloWorldView, CreerActiviteView, \
     get_activite_details, reserve_activity, CreerActiviteReservation,activite_list
 from django.contrib.staticfiles.views import serve
 from django.conf import settings
 from django.conf.urls.static import static
 
-from FUGTApp.views import get_vacations, ValiderVacationsView
+from FUGTApp.views import get_vacations, ValiderVacationsView, contact_view
 
 router = DefaultRouter()
 
@@ -45,9 +45,11 @@ urlpatterns = [
     path('api/reservations_par_activite/<str:id_activite>/', reservations_par_activite_api, name='reservations_par_activite_api'),
     path('api/reservations/<str:id_activite>/', get_reservations_by_activite, name='get_reservations_by_activite'),
     path('api/activites/<int:id>/', get_activite_details, name='get_activite_details'),
-    
+
     path('api/vacations/', get_vacations, name='get_vacations'),
     path('api/valider-vacations/', ValiderVacationsView.as_view(), name='valider_vacations'),
+
+    path('contact/', contact_view, name='contact_view'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

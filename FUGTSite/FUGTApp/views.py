@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 # views.py
@@ -21,7 +22,7 @@ from .models import Activite, Vacation
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, parser_classes
 
 from django.http import JsonResponse
 from .models import Activite, ActiviteReservation
@@ -34,7 +35,7 @@ from django.views.decorators.http import require_http_methods
 from django.db import models
 from django.db.models import F
 from django.http import HttpResponse
-from rest_framework import generics
+from rest_framework import generics, status
 from .models import Vacation
 from .serializers import VacationSerializer
 import random
@@ -55,6 +56,14 @@ def get_reservations_by_activite(request, id_activite):
     data = [{'nom': reservation.nom, 'prenom': reservation.prenom} for reservation in reservations]
     return JsonResponse(data, safe=False)
 
+@api_view(['POST'])
+@parser_classes([MultiPartParser, FormParser])
+def creer_activite(request):
+    serializer = ActiviteSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ActiviteListView(ListCreateAPIView):
     queryset = Activite.objects.all()
@@ -333,3 +342,26 @@ def activite_list(request):
 class VacationListCreateView(generics.ListCreateAPIView):
     queryset = Vacation.objects.all()
     serializer_class = VacationSerializer
+
+
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def contact_view(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            subject = data.get('subject', '')
+            message = f"Demande envoyée par : {data.get('from_email', '')}\n\n{data.get('message', '')}"
+            to_email = ['findurgrouptrip@gmail.com']
+
+            send_mail(subject, message, data.get('from_email', ''), to_email)
+            return JsonResponse({'success': True})
+        except json.JSONDecodeError as e:
+            return JsonResponse({'success': False, 'error': f'Invalid JSON format: {str(e)}'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})

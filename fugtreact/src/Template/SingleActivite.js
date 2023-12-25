@@ -76,7 +76,7 @@ const SingleActivite = () => {
                                 src={activite.image}
                                 alt={activite.nom}
                                 className="object-cover w-full h-full"
-                            />
+                F             />
                         </div>
                     ) : (
                         <ImageComponent />
