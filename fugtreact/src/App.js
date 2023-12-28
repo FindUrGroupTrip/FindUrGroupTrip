@@ -16,7 +16,8 @@ import './auth/axios-interceptor'
 import ImageComponent from './Template/ImageComponent'
 
 import VacationList from "./Template/VacationList"; // Import your new VacationList component
-import Forum from './pages/Forum';
+import Forum from './forum/Forum';
+
 
 function App() {
     return (

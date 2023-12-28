@@ -31,6 +31,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3001',
     'http://localhost:3000',
 ]
+
 # Dans vos paramètres Django, ajoutez les méthodes HTTP nécessaires à CORS_ALLOWED_METHODS
 CORS_ALLOWED_METHODS = [
     'DELETE',
@@ -85,8 +86,6 @@ CORS_ALLOW_HEADERS = [
     # Ajoutez tout autre en-tête nécessaire
 ]
 
-
-
 INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
@@ -136,8 +135,23 @@ WSGI_APPLICATION = 'FUGTSite.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'localfugt',
+        'USER': 'root',
+        'PASSWORD': 'pass',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    },
+    'test': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'localfugt',
+        'USER': 'root',
+        'PASSWORD': 'pass',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    },
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }

@@ -26,7 +26,7 @@ from django.contrib.staticfiles.views import serve
 from django.conf import settings
 from django.conf.urls.static import static
 
-from FUGTApp.views import get_vacations, ValiderVacationsView, QuestionListView, AnswerListView, AnswerDetailView
+from FUGTApp.views import get_vacations, ValiderVacationsView, QuestionListView, AnswerListView, AnswerDetailView, QuestionDetailView, AnswerCreateView
 
 router = DefaultRouter()
 
@@ -48,9 +48,11 @@ urlpatterns = [
 
     path('api/vacations/', get_vacations, name='get_vacations'),
     path('api/valider-vacations/', ValiderVacationsView.as_view(), name='valider_vacations'),
-    path('questions/', QuestionListView.as_view(), name='question-list'),
-    path('answers/', AnswerListView.as_view(), name='answer-list'),
-    path('answers/<int:pk>/', AnswerDetailView.as_view(), name='answer-detail'),
+    path('api/questions/', QuestionListView.as_view(), name='question-list'),
+    path('api/questions/<int:pk>/', QuestionDetailView.as_view(), name='question-detail'),
+    path('api/answers/', AnswerListView.as_view(), name='answer-list'),
+    path('api/answers/<int:pk>/', AnswerDetailView.as_view(), name='answer-detail'),
+    path('api/answers/create/', AnswerCreateView.as_view(), name='answer-create'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

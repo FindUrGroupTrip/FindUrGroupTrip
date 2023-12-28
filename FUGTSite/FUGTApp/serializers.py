@@ -17,11 +17,15 @@ class VacationSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class QuestionSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField(source='author.username', read_only=True)
+
     class Meta:
         model = Question
         fields = '__all__'
 
 class AnswerSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField(source='author.username', read_only=True)
+
     class Meta:
         model = Answer
         fields = '__all__'
