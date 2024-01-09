@@ -3,7 +3,7 @@
 
 [![fugt backend ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/backend-ci.yml)
 [![fugt react ci](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/react-ci.yml/badge.svg)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/actions/workflows/react-ci.yml)
-[![Tag](https://img.shields.io/badge/Tag-v0.2-blue)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/tree/v0.2)
+[![Tag](https://img.shields.io/badge/Tag-v0.3-blue)](https://github.com/FindUrGroupTrip/FindUrGroupTrip/tree/v0.3)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c5aa48c106e4ebfd9bc7/test_coverage)](https://codeclimate.com/repos/655b74361a748e2c5a0875cb/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c5aa48c106e4ebfd9bc7/maintainability)](https://codeclimate.com/repos/655b74361a748e2c5a0875cb/maintainability)
 
