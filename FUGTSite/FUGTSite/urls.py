@@ -26,7 +26,7 @@ from django.contrib.staticfiles.views import serve
 from django.conf import settings
 from django.conf.urls.static import static
 
-from FUGTApp.views import get_vacations, ValiderVacationsView, contact_view
+from FUGTApp.views import get_vacations, ValiderVacationsView, contact_view,contact_requests_api
 
 router = DefaultRouter()
 
@@ -50,6 +50,7 @@ urlpatterns = [
     path('api/valider-vacations/', ValiderVacationsView.as_view(), name='valider_vacations'),
 
     path('contact/', contact_view, name='contact_view'),
+    path('api/contact-requests/', contact_requests_api, name='contact_requests_api'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

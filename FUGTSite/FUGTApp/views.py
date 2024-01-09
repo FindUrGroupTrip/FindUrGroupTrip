@@ -15,7 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
 import json
-from .models import Activite, ActiviteReservation, Note
+from .models import Activite, ActiviteReservation, Note, ContactRequest
 from django.shortcuts import get_object_or_404, render
 from .models import Activite, ActiviteReservation
 from .models import Activite, Vacation
@@ -74,13 +74,17 @@ class ActiviteListView(ListCreateAPIView):
 class CreerActiviteView(View):
     def post(self, request, *args, **kwargs):
         try:
-            data = json.loads(request.body)
+            data = request.POST  # Utiliser request.POST pour les données du formulaire
+            image = request.FILES.get('image')  # Utiliser request.FILES pour les fichiers
             activite = Activite.objects.create(
                 nom=data.get('nom'),
                 lieu=data.get('lieu', ''),
                 description=data.get('description', ''),
                 date=data.get('date', ''),
+                image=image  # Utiliser directement le fichier image
             )
+            activite.image_path = activite.image.url
+            activite.save()
             return JsonResponse({'idactivite': activite.id})
         except Exception as e:
             print(e)
@@ -120,19 +124,6 @@ class CreerActiviteReservation(View):
             return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
 
 
-def get_activite_details(request, id):
-    if id is None:
-        return JsonResponse({'error': 'ID not provided'}, status=400)
-
-    activite = get_object_or_404(Activite, id=id)
-    data = {
-        'idactivite': activite.id,
-        'nom': activite.nom,
-        'lieu': activite.lieu,
-        'date': activite.date,
-        'description': activite.description,
-    }
-    return JsonResponse(data)
 
 
 class HelloWorldView(APIView):
@@ -253,6 +244,7 @@ def get_activite_details(request, id):
         'lieu': activite.lieu,
         'date': activite.date,
         'description': activite.description,
+        'image_path':activite.image_path
     }
     return JsonResponse(data)
 
@@ -352,16 +344,40 @@ from django.views.decorators.csrf import csrf_exempt
 def contact_view(request):
     if request.method == 'POST':
         try:
+            random_id = str(random.randint(1, 100000))
+
+            # Convertir l'ID de l'activité en entier
+
             data = json.loads(request.body)
             subject = data.get('subject', '')
-            message = f"Demande envoyée par : {data.get('from_email', '')}\n\n{data.get('message', '')}"
-            to_email = ['findurgrouptrip@gmail.com']
+            from_email = data.get('from_email', '')
+            message = data.get('message', '')
 
-            send_mail(subject, message, data.get('from_email', ''), to_email)
+            print('Received data:', data)
+
+            # Enregistrez les données dans la base de données
+            contact_request = ContactRequest.objects.create(
+                idcontactrequest=random_id,
+                subject=subject,
+                from_email=from_email,
+                message=message
+            )
+
+            # Envoyez également l'e-mail si nécessaire
+            to_email = ['findurgrouptrip@gmail.com']
+            send_mail(subject, f"Demande envoyée par : {from_email}\n\n{message}", from_email, to_email)
+
             return JsonResponse({'success': True})
         except json.JSONDecodeError as e:
+            print('JSON Decode Error:', e)
             return JsonResponse({'success': False, 'error': f'Invalid JSON format: {str(e)}'})
         except Exception as e:
+            print('Exception:', e)
             return JsonResponse({'success': False, 'error': str(e)})
 
     return JsonResponse({'success': False, 'error': 'Invalid request method'})
+
+def contact_requests_api(request):
+    contact_requests = ContactRequest.objects.all()
+    data = [{'idcontactrequest': req.idcontactrequest, 'subject': req.subject, 'from_email': req.from_email, 'message': req.message} for req in contact_requests]
+    return JsonResponse(data, safe=False)

@@ -54,6 +54,7 @@ const ContactForm = () => {
     return (
         <div className="min-h-screen flex items-center justify-center">
             <form className="bg-white p-8 shadow-md rounded-md w-96" onSubmit={handleSubmit}>
+                <h2 className="text-2xl font-semibold mb-4">Contact</h2>
                 {successMessage && <div className="text-green-500 mb-4">{successMessage}</div>}
                 {errorMessage && <div className="text-red-500 mb-4">{errorMessage}</div>}
                 <div className="mb-6">

@@ -15,9 +15,14 @@ class Activite(models.Model):
     lieu = models.CharField(max_length=45, blank=True, null=True)
     description = models.CharField(max_length=45, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
+    image = models.ImageField(upload_to='activite_images/', blank=True, null=True)
+    image_path =models.CharField(max_length=200, blank=True, null=True)
     @property
     def average_rating(self):
         return Note.objects.filter(id_activite=self.id).aggregate(models.Avg('note'))['note__avg'] or 0
+    @property
+    def number_of_notes(self):
+        return Note.objects.filter(id_activite=self.id).count()
     class Meta:
         managed = False
         db_table = 'activite'
@@ -52,3 +57,14 @@ class Vacation(models.Model):
     class Meta:
         managed = False
         db_table = 'vacation'
+
+class ContactRequest(models.Model):
+    idcontactrequest = models.AutoField(primary_key=True)
+    subject = models.CharField(max_length=255)
+    from_email = models.CharField(max_length=255)
+    message = models.CharField(max_length=255)
+    def __str__(self):
+        return f'{self.subject} - {self.from_email}'
+    class Meta:
+        managed = False
+        db_table = 'contactrequest'

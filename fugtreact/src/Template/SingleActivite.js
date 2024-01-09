@@ -1,10 +1,8 @@
 import ImageComponent from './ImageComponent';
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import AddNote from './AddNote';
-import ReservationsList from './reservation/ReservationList';
 import AddNoteForm from './AddNoteForm';
-
+import ReservationsList from './reservation/ReservationList';
 
 const SingleActivite = () => {
     const { idactivite } = useParams();
@@ -19,8 +17,14 @@ const SingleActivite = () => {
             setActivite({
                 ...data,
                 average_rating: data.average_rating || 0,
+                number_of_notes: data.number_of_notes || 0,
+                image_path: data.image_path
             });
             console.log('Activite Data:', data);
+            console.log('URL de l\'image:', activite.image_path);
+            console.log('Response Data:', activite.average_rating);
+            console.log('Response Data:', activite.number_of_notes);
+
         } catch (error) {
             console.error('Erreur lors de la récupération des détails de l\'activité:', error);
         }
@@ -33,14 +37,10 @@ const SingleActivite = () => {
 
     // Handle the click event for the 'Réserver' button
     const handleReservationClick = () => {
-        navigate(`/reservation-form/${idactivite }`);
-    };
-    const handleAddNoteClick = () => {
-        navigate(`/add-note-form/${idactivite}`);
+        navigate(`/reservation-form/${idactivite}`);
     };
 
     // Function to refresh the activity details after adding a note
-
 
     return (
         <div className="bg-gray-50 min-h-screen flex flex-col">
@@ -59,28 +59,25 @@ const SingleActivite = () => {
                         <p className="text-sm">À la date suivante : {activite.date}</p>
                         <p className="text-lg mb-4">Brève description de l'activité : {activite.description}</p>
 
-
-
-                    {/* Reservation button */}
-                    <button
-                        onClick={handleReservationClick}
-                        className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
-                    >
-                        Réserver
-                    </button>
+                        {/* Reservation button */}
+                        <button
+                            onClick={handleReservationClick}
+                            className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
+                        >
+                            Réserver
+                        </button>
                     </div>
-                    {/* Activity image or default component */}
-                    {activite.image ? (
-                        <div className="w-full h-64 overflow-hidden mt-4">
+                    <div className="w-full h-64 overflow-hidden mt-4">
+                        {activite.image_path ? (
                             <img
-                                src={activite.image}
+                                src={`http://localhost:8000${activite.image_path}`}
                                 alt={activite.nom}
-                                className="object-cover w-full h-full"
-                F             />
-                        </div>
-                    ) : (
-                        <ImageComponent />
-                    )}
+                                className="object-contain w-full h-full"
+                            />
+                        ) : (
+                            <ImageComponent />
+                        )}
+                    </div>
 
                     {activite && (
                         <div className="mt-4">
@@ -92,7 +89,8 @@ const SingleActivite = () => {
                 // Loading message
                 <p className="text-center mt-4">Chargement des détails de l'activité...</p>
             )}
-                    <ReservationsList idActivite={idactivite} />
+
+            <ReservationsList idActivite={idactivite} />
         </div>
     );
 };

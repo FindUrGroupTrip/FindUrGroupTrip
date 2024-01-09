@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faList, faPlus, faTasks, faEnvelope } from '@fortawesome/free-solid-svg-icons'; // Ajout de l'icône d'enveloppe
-
+import { faHeadset  } from '@fortawesome/free-solid-svg-icons';
 import './LeftSidebar.css';
 
 const LeftSidebar = () => {
@@ -37,7 +37,13 @@ const LeftSidebar = () => {
                 {/* Ajout du bouton pour rediriger vers /contact */}
                 <Link to="/contact">
                     <button className="sidebar-button">
-                        <FontAwesomeIcon icon={faEnvelope} /> Contact
+                        <FontAwesomeIcon icon={faHeadset} /> Contact
+                    </button>
+                </Link>
+                {/* Ajout du bouton pour rediriger vers /contact-request */}
+                <Link to="/contact-request">
+                    <button className="sidebar-button">
+                        <FontAwesomeIcon icon={faEnvelope } /> Tickets
                     </button>
                 </Link>
             </div>

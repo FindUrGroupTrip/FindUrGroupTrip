@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Header } from './pages/Header';
 import ContactForm from './pages/ContactForm';
+import ContactRequests from './pages/ContactRequest';
 import { Activitelist } from './pages/activitelist';
 import ActiviteList from './pages/activitelist'; // Import your ActiviteListOLD component
 import CreerActivite from './Template/CreerActivite';
@@ -44,6 +45,7 @@ function App() {
                         <Route path="/vacationlist" element={<VacationList />} />
                         <Route path="/contact" element={<ContactForm />} />
                         <Route path="/reservation-form/:idactivite" element={<ReservationPage />} />
+                        <Route path="/contact-request" element={<ContactRequests />} />
 
             {/* Add more routes as needed */}
           </Routes>
