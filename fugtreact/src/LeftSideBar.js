@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faList, faPlus, faTasks, faEnvelope } from '@fortawesome/free-solid-svg-icons'; // Ajout de l'icône d'enveloppe
 import { faHeadset  } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faList, faPlus, faTasks, faComments} from '@fortawesome/free-solid-svg-icons';
+
 import './LeftSidebar.css';
 
 const LeftSidebar = () => {
@@ -34,6 +36,12 @@ const LeftSidebar = () => {
                         <FontAwesomeIcon icon={faTasks} /> Liste de vacances
                     </button>
                 </Link>
+                <Link to="/forum">
+                    <button className="sidebar-button">
+                        <FontAwesomeIcon icon={faComments} /> Forum
+                    </button>
+                </Link>
+
                 {/* Ajout du bouton pour rediriger vers /contact */}
                 <Link to="/contact">
                     <button className="sidebar-button">
@@ -49,6 +57,7 @@ const LeftSidebar = () => {
             </div>
         </div>
     );
+
 };
 
 export default LeftSidebar;

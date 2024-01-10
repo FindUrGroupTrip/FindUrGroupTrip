@@ -18,6 +18,7 @@ import './auth/axios-interceptor'
 import ImageComponent from './Template/ImageComponent'
 
 import VacationList from "./Template/VacationList"; // Import your new VacationList component
+import Forum from './forum/Forum';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
                         <Route path="/reservation-form/:idactivite" element={<ReservationPage />} />
                         <Route path="/contact-request" element={<ContactRequests />} />
 
+                        <Route path="/forum" element={<Forum />} />
             {/* Add more routes as needed */}
           </Routes>
         </main>

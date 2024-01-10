@@ -18,7 +18,7 @@ import json
 from .models import Activite, ActiviteReservation, Note, ContactRequest
 from django.shortcuts import get_object_or_404, render
 from .models import Activite, ActiviteReservation
-from .models import Activite, Vacation
+from .models import Activite, Vacation, Question, Answer
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
@@ -35,7 +35,7 @@ from django.views.decorators.http import require_http_methods
 from django.db import models
 from django.db.models import F
 from django.http import HttpResponse
-from rest_framework import generics, status
+from rest_framework import generics
 from .models import Vacation
 from .serializers import VacationSerializer
 import random
@@ -124,6 +124,19 @@ class CreerActiviteReservation(View):
             return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
 
 
+def get_activite_details(request, id):
+    if id is None:
+        return JsonResponse({'error': 'ID not provided'}, status=400)
+
+    activite = get_object_or_404(Activite, id=id)
+    data = {
+        'idactivite': activite.id,
+        'nom': activite.nom,
+        'lieu': activite.lieu,
+        'date': activite.date,
+        'description': activite.description,
+    }
+    return JsonResponse(data)
 
 
 class HelloWorldView(APIView):
@@ -334,6 +347,27 @@ def activite_list(request):
 class VacationListCreateView(generics.ListCreateAPIView):
     queryset = Vacation.objects.all()
     serializer_class = VacationSerializer
+
+#Forum
+class QuestionListView(generics.ListCreateAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+
+class QuestionDetailView(generics.RetrieveAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+
+class AnswerListView(generics.ListCreateAPIView):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
+
+class AnswerDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
+
+class AnswerCreateView(generics.CreateAPIView):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
 
 
 from django.core.mail import send_mail

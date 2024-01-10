@@ -30,6 +30,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3001',
     'http://localhost:3000',
 ]
+
 # Dans vos paramètres Django, ajoutez les méthodes HTTP nécessaires à CORS_ALLOWED_METHODS
 CORS_ALLOWED_METHODS = [
     'DELETE',
@@ -83,8 +84,6 @@ CORS_ALLOW_HEADERS = [
     'access-control-allow-origin',
     # Ajoutez tout autre en-tête nécessaire
 ]
-
-
 
 INSTALLED_APPS = [
     'rest_framework',
@@ -141,7 +140,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'pass',
         'HOST': '127.0.0.1',
-        'PORT': '3308',
+        'PORT': '3306',
     },
     'test': {
         'ENGINE': 'django.db.backends.mysql',
@@ -149,7 +148,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'pass',
         'HOST': '127.0.0.1',
-        'PORT': '3308',
+        'PORT': '3306',
     },
     'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
