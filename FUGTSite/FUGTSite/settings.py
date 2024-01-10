@@ -140,7 +140,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'pass',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '3308',
     },
     'test': {
         'ENGINE': 'django.db.backends.mysql',
@@ -148,7 +148,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'pass',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '3308',
     },
     'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',

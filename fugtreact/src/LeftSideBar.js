@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faList, faPlus, faTasks, faEnvelope } from '@fortawesome/free-solid-svg-icons'; // Ajout de l'icône d'enveloppe
-import { faHeadset  } from '@fortawesome/free-solid-svg-icons';
-import { faBars, faList, faPlus, faTasks, faComments} from '@fortawesome/free-solid-svg-icons';
+import { faHeadset, faComments  } from '@fortawesome/free-solid-svg-icons';
 
 import './LeftSidebar.css';
 

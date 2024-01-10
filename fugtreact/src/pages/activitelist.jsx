@@ -84,38 +84,40 @@ export function Activitelist() {
                         className="rounded-lg overflow-hidden bg-white shadow-md hover:shadow-lg transition duration-300"
                       >
 
-                        {activity.image_path ? (
-                            <div className="relative w-full h-40 overflow-hidden flex items-center justify-center">
-                              <img
-                                  src={`http://localhost:8000${activity.image_path}`}
-                                  alt={activity.nom}
-                                  className="object-cover max-w-full max-h-full"
-                              />
-                            </div>
-                        ) : (
-                            <div className="relative w-full h-40 overflow-hidden flex items-center justify-center">
-                              <ImageComponent />
-                            </div>
-                        )}
+                        <div className="p-4 bg-white rounded-md shadow-md max-w-md mx-auto">
+                          <div className="text-center">
+                            {activity.image_path ? (
+                                <div className="w-full h-40 overflow-hidden flex items-center justify-center mb-4">
+                                  <img
+                                      src={`http://localhost:8000${activity.image_path}`}
+                                      alt={activity.nom}
+                                      className="object-cover max-w-full max-h-full rounded-md"
+                                  />
+                                </div>
+                            ) : (
+                                <div className="w-full h-40 overflow-hidden flex items-center justify-center mb-4">
+                                  <ImageComponent style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+                                </div>
+                            )}
 
-
-
-                        <div className="p-4">
                             <h3 className="text-lg font-semibold mb-2">{activity.nom}</h3>
                             <p className="text-gray-600">{activity.lieu}</p>
                             <p className="text-gray-700">{activity.description}</p>
                             <p className="text-gray-500">{activity.date}</p>
-                          {activity && (
-                              <div className="mt-4">
-                                <div className="flex items-center">
-                                  <p className="text-yellow-500 mr-2">{`Note moyenne : `}</p>
-                                  <StarRating rating={activity.average_rating} />
+
+                            {activity && (
+                                <div className="mt-4">
+                                  <div>
+                                    <p className="text-yellow-500 text-sm mt-2 justify-center">{`Note moyenne : `}</p>
+                                    <StarRating rating={activity.average_rating} />
+                                  </div>
+                                  <p className="text-yellow-600 text-sm mt-2">{`Nombre de notes : ${activity.number_of_notes} `}</p>
                                 </div>
-                                <p className="text-yellow-600 text-sm mt-2">{`Nombre de notes : ${activity.number_of_notes} `}</p>
-                              </div>
-                          )}
+                            )}
+                          </div>
                         </div>
-                    </Link>
+
+                      </Link>
                 ))}
             </div>
         </>
