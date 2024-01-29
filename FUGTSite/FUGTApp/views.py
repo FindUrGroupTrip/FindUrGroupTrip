@@ -35,11 +35,11 @@ from django.views.decorators.http import require_http_methods
 from django.db import models
 from django.db.models import F
 from django.http import HttpResponse
-from rest_framework import generics
+from rest_framework import generics, status
 from .models import Vacation
 from .serializers import VacationSerializer, QuestionSerializer, AnswerSerializer
 import random
-
+from .models import Whatsappchanel
 
 def reservations_par_activite_api(request, id_activite):
     try:
@@ -415,3 +415,76 @@ def contact_requests_api(request):
     contact_requests = ContactRequest.objects.all()
     data = [{'idcontactrequest': req.idcontactrequest, 'subject': req.subject, 'from_email': req.from_email, 'message': req.message} for req in contact_requests]
     return JsonResponse(data, safe=False)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class AddWhatsapp(View):
+    def post(self, request, *args, **kwargs):
+        try:
+            # Récupérer l'ID de l'activité depuis les paramètres de l'URL
+            activity_id = kwargs.get('activity_id')
+
+            if activity_id is None:
+                # Gérer l'absence de l'ID de l'activité dans les paramètres de l'URL
+                return JsonResponse({'error': 'ID de l\'activité manquant dans les paramètres de l\'URL'}, status=400)
+
+            # Charger les données JSON de la requête
+            data = json.loads(request.body)
+
+            # Générer un ID unique
+            random_id = str(random.randint(1, 100000))
+
+            # Convertir l'ID de l'activité en entier
+            id_activite = int(activity_id)
+
+            existing_channel = Whatsappchanel.objects.filter(activiteid=id_activite).first()
+
+            if existing_channel:
+                return JsonResponse({'exists': True, 'link': existing_channel.link})
+
+            # Si aucun lien existant n'a été trouvé, créez-en un nouveau
+            new_channel = Whatsappchanel.objects.create(
+                idwhatsappchanel=str(random_id),
+                link=data.get('link'),
+                activiteid=id_activite
+            )
+
+            return JsonResponse({'created': True, 'idwhatsappchanel': new_channel.idwhatsappchanel})
+
+        except Exception as e:
+            print(e)
+            return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class UpdateWhatsapp(View):
+    def put(self, request, *args, **kwargs):
+        try:
+            activity_id = kwargs.get('activity_id')
+            if activity_id is None:
+                return JsonResponse({'error': 'ID de l\'activité manquant dans les paramètres de l\'URL'}, status=400)
+
+            data = json.loads(request.body)
+            id_activite = int(activity_id)
+
+            # Recherchez le lien WhatsApp existant pour cette activité
+            try:
+                whatsapp_channel = Whatsappchanel.objects.get(activiteid=id_activite)
+            except Whatsappchanel.DoesNotExist:
+                return JsonResponse({'error': 'Aucun canal WhatsApp trouvé pour cette activité'}, status=404)
+
+            # Mise à jour du lien WhatsApp
+            whatsapp_channel.link = data.get('link')
+            whatsapp_channel.save()
+
+            return JsonResponse({'message': 'Canal WhatsApp mis à jour avec succès', 'idwhatsappchanel': whatsapp_channel.idwhatsappchanel})
+
+        except Exception as e:
+            print(e)
+            return JsonResponse({'error': 'Une erreur s\'est produite lors de la mise à jour'}, status=500)
+class GetWhatsapp(View):
+    def get(self, request, *args, **kwargs):
+        id_activite = kwargs.get('idactivite')
+        try:
+            whatsapp_channel = Whatsappchanel.objects.get(activiteid=id_activite)
+            return JsonResponse({'link': whatsapp_channel.link})
+        except Whatsappchanel.DoesNotExist:
+            return JsonResponse({'error': 'Lien non trouvé'}, status=404)

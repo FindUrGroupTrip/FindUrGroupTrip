@@ -19,7 +19,7 @@ import ImageComponent from './Template/ImageComponent'
 
 import VacationList from "./Template/VacationList"; // Import your new VacationList component
 import Forum from './forum/Forum';
-
+import CreateWhatsAppChannel from './Template/CreateWhatsAppChannel';
 
 function App() {
     return (
@@ -46,6 +46,7 @@ function App() {
                         <Route path="/vacationlist" element={<VacationList />} />
                         <Route path="/contact" element={<ContactForm />} />
                         <Route path="/reservation-form/:idactivite" element={<ReservationPage />} />
+                        <Route path="/whatsapp-form/:idactivite" element={<CreateWhatsAppChannel />} />
                         <Route path="/contact-request" element={<ContactRequests />} />
 
                         <Route path="/forum" element={<Forum />} />

@@ -58,10 +58,11 @@ const AddNoteForm = ({ activite_id, refreshData }) => {
                 ))}
             </div>
             {error && <p className="text-red-500 text-xs italic">{error}</p>}
-            {successMessage && <p className="text-green-500 text-xs italic">{successMessage}</p>}
+            {successMessage && <p className="text-yellow-300 text-xs italic">{successMessage}</p>}
             <button
                 type="submit"
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2 focus:outline-none focus:shadow-outline"
+                style={{ maxWidth: '200px', width: '100%' }}
+                className="bg-yellow-300 hover:bg-yellow-300 text-black font-bold py-2 px-4 rounded mt-2 focus:outline-none focus:shadow-outline"
             >
                 Ajouter la note
             </button>

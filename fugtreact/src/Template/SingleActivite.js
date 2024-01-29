@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import AddNoteForm from './AddNoteForm';
 import ReservationsList from './reservation/ReservationList';
-
+import whatsappIcon from './WhatsApp.png';
 const SingleActivite = () => {
     const { idactivite } = useParams();
     const [activite, setActivite] = useState(null);
@@ -39,6 +39,9 @@ const SingleActivite = () => {
     const handleReservationClick = () => {
         navigate(`/reservation-form/${idactivite}`);
     };
+    const handleCreateWhatsAppChannelClick = () => {
+        navigate(`/whatsapp-form/${idactivite}`);
+    };
 
     // Function to refresh the activity details after adding a note
 
@@ -60,12 +63,23 @@ const SingleActivite = () => {
                         <p className="text-lg mb-4">Brève description de l'activité : {activite.description}</p>
 
                         {/* Reservation button */}
-                        <button
-                            onClick={handleReservationClick}
-                            className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
-                        >
-                            Réserver
-                        </button>
+                        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
+                            <button
+                                onClick={handleReservationClick}
+                                style={{ maxWidth: '140px', width: '100%', marginBottom: '10px' }}
+                                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                            >
+                                Réserver
+                            </button>
+                            <button
+                                onClick={handleCreateWhatsAppChannelClick}
+                                style={{ maxWidth: '200px', width: '100%' }}
+                                className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded inline-flex items-center"
+                            >
+                                <img src={whatsappIcon} className="fill-current w-4 h-4 mr-2" alt="WhatsApp"/>
+                                <span>Canal WhatsApp</span>
+                            </button>
+                        </div>
                     </div>
                     <div className="w-full h-64 overflow-hidden mt-4">
                         {activite.image_path ? (
@@ -84,6 +98,7 @@ const SingleActivite = () => {
                             <AddNoteForm activite_id={idactivite} refreshData={refreshActiviteDetails}/>
                         </div>
                     )}
+
                 </div>
             ) : (
                 // Loading message
