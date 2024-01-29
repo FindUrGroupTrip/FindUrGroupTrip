@@ -1,0 +1,55 @@
+.carousel-container {
+    text-align: center;
+}
+
+.carousel-image-wrapper {
+    margin: auto;
+    max-width: 500px; /* adjust as needed */
+    overflow: hidden;
+    border-radius: 10px; /* rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* subtle shadow */
+}
+
+.carousel-image {
+    width: 100%;
+    transition: transform 0.3s ease; /* smooth transition for image change */
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.carousel-button {
+    border: none;
+    background-color: #007bff; /* blue color */
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.carousel-button:hover {
+    background-color: #0056b3; /* darker blue on hover */
+}
+
+.carousel-button:disabled {
+    background-color: #cccccc; /* grey out disabled button */
+}
+
+.prev-button {
+    background-color: #cccccc; /* gray color for previous button */
+    color: #333; /* darker text color for visibility */
+}
+
+.prev-button:hover {
+    background-color: #b3b3b3; /* slightly darker gray on hover */
+}
+
+.next-button {
+    /* Additional styling specific to the next button if needed */
+}

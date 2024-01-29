@@ -42,6 +42,9 @@ const SingleActivite = () => {
     const handleCreateWhatsAppChannelClick = () => {
         navigate(`/whatsapp-form/${idactivite}`);
     };
+    const handleCreateFeedbackImageClick = () => {
+        navigate(`/feedbackimage-form/${idactivite}`);
+    };
 
     // Function to refresh the activity details after adding a note
 
@@ -78,6 +81,13 @@ const SingleActivite = () => {
                             >
                                 <img src={whatsappIcon} className="fill-current w-4 h-4 mr-2" alt="WhatsApp"/>
                                 <span>Canal WhatsApp</span>
+                            </button>
+                            <button
+                                onClick={handleCreateFeedbackImageClick}
+                                style={{ maxWidth: '250px', width: '100%', marginBottom: '10px' }}
+                                className="bg-blue-400 text-white px-4 py-2 rounded-md"
+                            >
+                                Ajouter ou voir les photos
                             </button>
                         </div>
                     </div>

@@ -36,7 +36,7 @@ from django.db import models
 from django.db.models import F
 from django.http import HttpResponse
 from rest_framework import generics, status
-from .models import Vacation
+from .models import Vacation, Feedbackimage
 from .serializers import VacationSerializer, QuestionSerializer, AnswerSerializer
 import random
 from .models import Whatsappchanel
@@ -488,3 +488,38 @@ class GetWhatsapp(View):
             return JsonResponse({'link': whatsapp_channel.link})
         except Whatsappchanel.DoesNotExist:
             return JsonResponse({'error': 'Lien non trouvé'}, status=404)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class AddFeedbackimage(View):
+    def post(self, request, *args, **kwargs):
+        try:
+            activity_id = kwargs.get('activity_id')
+            if activity_id is None:
+                return JsonResponse({'error': 'ID de l\'activité manquant dans les paramètres de l\'URL'}, status=400)
+
+            data = request.POST  # Utiliser request.POST pour les données du formulaire
+            image = request.FILES.get('image')
+            # Utiliser request.FILES pour les fichiers
+            id_activite = int(activity_id)
+            random_id = str(random.randint(1, 100000))
+            feedback = Feedbackimage.objects.create(
+                idfeedbackimage=str(random_id),
+                image=image,
+                activite_id=id_activite # Utiliser directement le fichier image
+            )
+            feedback.image_path = feedback.image.url
+            feedback.save()
+            return JsonResponse({'idfeedbackimage': feedback.idfeedbackimage})
+        except Exception as e:
+            print(e)
+            return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
+
+class GetFeedbackimage(View):
+    def get(self, request, *args, **kwargs):
+        id_activite = kwargs.get('idactivite')
+        try:
+            feedback_images = Feedbackimage.objects.filter(activite_id=id_activite)
+            image_paths = [feedback.image_path for feedback in feedback_images]
+            return JsonResponse({'image_paths': image_paths})
+        except Feedbackimage.DoesNotExist:
+            return JsonResponse({'error': 'Images non trouvées'}, status=404)

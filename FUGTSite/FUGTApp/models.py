@@ -33,6 +33,15 @@ class Activite(models.Model):
         managed = False
         db_table = 'activite'
 
+class Feedbackimage(models.Model):
+    idfeedbackimage = models.IntegerField(primary_key=True)
+    image =  models.ImageField(upload_to='activite_images/', blank=True, null=True)
+    image_path = models.CharField(max_length=200, blank=True, null=True)
+    activite_id = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'feedbackimage'
 
 class Note(models.Model):
     id = models.AutoField(primary_key=True)

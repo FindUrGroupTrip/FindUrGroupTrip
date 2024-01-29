@@ -26,7 +26,7 @@ from django.contrib.staticfiles.views import serve
 from django.conf import settings
 from django.conf.urls.static import static
 
-from FUGTApp.views import get_vacations, ValiderVacationsView, contact_view,contact_requests_api, AddWhatsapp, UpdateWhatsapp,GetWhatsapp
+from FUGTApp.views import get_vacations, ValiderVacationsView, contact_view,contact_requests_api, AddWhatsapp, UpdateWhatsapp,GetWhatsapp, AddFeedbackimage, GetFeedbackimage
 from FUGTApp.views import get_vacations, ValiderVacationsView, QuestionListView, AnswerListView, AnswerDetailView, QuestionDetailView, AnswerCreateView
 
 router = DefaultRouter()
@@ -61,6 +61,8 @@ urlpatterns = [
     path('api/activites/<int:activity_id>/AddWhatsapp/', AddWhatsapp.as_view(), name='add_whatsapp'),
     path('api/activites/<int:idactivite>/get_whatsapp/', GetWhatsapp.as_view(), name='get_whatsapp'),
 
+    path('api/activites/<int:activity_id>/AddFeedbackimage/', AddFeedbackimage.as_view(), name='AddFeedbackimage'),
+    path('api/activites/<int:idactivite>/GetFeedbackimage/', GetFeedbackimage.as_view(), name='GetFeedbackimage'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

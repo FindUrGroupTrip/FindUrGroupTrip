@@ -20,6 +20,7 @@ import ImageComponent from './Template/ImageComponent'
 import VacationList from "./Template/VacationList"; // Import your new VacationList component
 import Forum from './forum/Forum';
 import CreateWhatsAppChannel from './Template/CreateWhatsAppChannel';
+import CreateFeedBackImage from './Template/CreateFeedbackImage';
 
 function App() {
     return (
@@ -47,6 +48,7 @@ function App() {
                         <Route path="/contact" element={<ContactForm />} />
                         <Route path="/reservation-form/:idactivite" element={<ReservationPage />} />
                         <Route path="/whatsapp-form/:idactivite" element={<CreateWhatsAppChannel />} />
+                        <Route path="/feedbackimage-form/:idactivite" element={<CreateFeedBackImage />} />
                         <Route path="/contact-request" element={<ContactRequests />} />
 
                         <Route path="/forum" element={<Forum />} />
