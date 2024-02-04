@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import ImageComponent from '../Template/ImageComponent';
-import AddNoteForm from "../Template/AddNoteForm";
 import ActivitiesFilterComponent from '../Template/ActivitiesFilterComponent';
 import axios from 'axios';
+import MapChart from '../Template/MapChart'
 
 export function Activitelist() {
   const [activities, setActivities] = useState([]);
@@ -29,9 +29,9 @@ export function Activitelist() {
   const pastActivities = activities.filter(activity => new Date(activity.date) < new Date());
   const upcomingActivities = activities.filter(activity => new Date(activity.date) >= new Date());
 
-  const ActivityCard = ({ activity }) => (
+  const ActivityCard = ({ activity, handleMouseEnter }) => (
       <Link to={`/activites/${activity.id}`} key={activity.id} className="rounded-lg overflow-hidden bg-white shadow-md hover:shadow-lg transition duration-300">
-        <div className="p-4 bg-white rounded-md shadow-md max-w-md mx-auto">
+        <div onMouseEnter={(e) => handleMouseEnter(activity.lieu)} className="p-4 bg-white rounded-md shadow-md max-w-md mx-auto">
           <div className="text-center">
             {activity.image_path ? (
                 <div className="w-full h-40 overflow-hidden flex items-center justify-center mb-4">
@@ -75,6 +75,11 @@ export function Activitelist() {
     return <div className="star-rating">{stars}</div>;
   };
 
+
+  const [hoveredAddress, setHoveredAddress] = useState('')
+  function handleAddressHover(address) {
+    setHoveredAddress((_) => address)
+  }
   return (
       <>
         <ActivitiesFilterComponent
@@ -82,20 +87,25 @@ export function Activitelist() {
             onFilterChange={handleFilterChange}
             onFilterSubmit={() => fetchActivities()}
         />
-        <div className="activities-container">
-          <div className="upcoming-activities">
-            <h2>Activités à Venir</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mb-4">
-              {upcomingActivities.map(activity => <ActivityCard activity={activity} key={activity.id} />)}
+        <section className="grid grid-cols-3">
+          <div className="grid gap-4 col-span-2 activities-container">
+            <div className="upcoming-activities">
+              <h2>Activités à Venir</h2>
+              <div className="flex flex-wrap gap-4">
+                {upcomingActivities.map(activity => <ActivityCard handleMouseEnter={handleAddressHover} activity={activity} key={activity.id} />)}
+              </div>
+            </div>
+            <div className="past-activities">
+              <h2>Activités Passées</h2>
+              <div className="flex flex-wrap gap-4">
+                {pastActivities.map(activity => <ActivityCard handleMouseEnter={handleAddressHover} activity={activity} key={activity.id} />)}
+              </div>
             </div>
           </div>
-          <div className="past-activities">
-            <h2>Activités Passées</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mb-4">
-              {pastActivities.map(activity => <ActivityCard activity={activity} key={activity.id} />)}
-            </div>
-          </div>
-        </div>
+          <MapChart
+            address={hoveredAddress}
+          ></MapChart>
+        </section>
       </>
   );
 }

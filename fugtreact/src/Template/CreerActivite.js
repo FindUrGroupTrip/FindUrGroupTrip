@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import AdresseAutoComplete from './AdresseAutoComplete'
 
 const CreerActivite = () => {
     const {
@@ -7,6 +8,7 @@ const CreerActivite = () => {
         handleSubmit,
         formState: { errors },
         reset,
+        setValue,
     } = useForm();
 
     const [isSubmitted, setIsSubmitted] = useState(null);
@@ -49,6 +51,10 @@ const CreerActivite = () => {
         }
     };
 
+    const updateSelectedLocation = (selectedLocation) => {
+        setValue('lieu', selectedLocation);
+    };
+
     return (
         <div className="max-w-md mx-auto mt-8">
             <h2 className="text-2xl font-semibold mb-4">Créer votre activité</h2>
@@ -69,28 +75,25 @@ const CreerActivite = () => {
                     {errors.nom && <p className="text-red-500 text-xs italic">{errors.nom.message}</p>}
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lieu">
+                    <label
+                      className="block text-gray-700 text-sm font-bold mb-2"
+                      htmlFor="lieu"
+                    >
                         Lieu* :
                     </label>
-                    <input
-                        type="text"
-                        id="lieu"
-                        name="lieu"
-                        {...register('lieu', { required: 'Ce champ est requis' })}
-                        className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                            errors.lieu ? 'border-red-500' : ''
-                        }`}
+                    <AdresseAutoComplete
+                      setValue={setValue}
+                      {...{ register, errors }}
                     />
-                    {errors.lieu && <p className="text-red-500 text-xs italic">{errors.lieu.message}</p>}
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
                         Description* :
                     </label>
                     <textarea
-                        id="description"
-                        name="description"
-                        {...register('description', { required: 'Ce champ est requis' })}
+                      id="description"
+                      name="description"
+                      {...register('description', { required: 'Ce champ est requis' })}
                         className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                             errors.description ? 'border-red-500' : ''
                         }`}
