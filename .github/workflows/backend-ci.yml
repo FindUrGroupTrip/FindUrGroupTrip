@@ -46,7 +46,7 @@ jobs:
    #       codeclimate-test-reporter
 
       - name: Run tests
-        run: python manage.py test
+        run: python manage.py test --verbosity=3
 
  #   env:
  #     CI: true
