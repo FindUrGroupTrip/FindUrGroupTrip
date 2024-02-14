@@ -10,7 +10,14 @@ class Image(models.Model):
     image_file = models.ImageField(upload_to='images/')
     description = models.TextField(blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
+class Note(models.Model):
+    id = models.AutoField(primary_key=True)
+    note = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])
+    id_activite = models.IntegerField()
 
+    class Meta:
+        managed = False
+        db_table = 'note'
 
 class Activite(models.Model):
     id = models.AutoField(primary_key=True)
@@ -43,14 +50,7 @@ class Feedbackimage(models.Model):
         managed = False
         db_table = 'feedbackimage'
 
-class Note(models.Model):
-    id = models.AutoField(primary_key=True)
-    note = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])
-    id_activite = models.IntegerField()
 
-    class Meta:
-        managed = False
-        db_table = 'note'
 
 
 class ActiviteReservation(models.Model):
