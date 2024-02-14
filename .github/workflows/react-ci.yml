@@ -37,7 +37,9 @@ jobs:
           name: react-coverage-report
           path: coverage/lcov.info
           
-      - name: build
+      - name: Build
+        env:
+          CI: false
         run: npm run build
 
 

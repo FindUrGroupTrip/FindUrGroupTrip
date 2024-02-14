@@ -2,6 +2,9 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import SimpleTestCase, RequestFactory
 from django.http import HttpRequest
 from unittest.mock import patch, MagicMock
+
+from rest_framework.utils import json
+
 from .views import get_activite_details, register_view,GetWhatsapp, AddFeedbackimage
 from .models import Activite, Whatsappchanel
 from django.contrib.auth.models import User
@@ -193,4 +196,3 @@ class AddFeedbackimageTestCase(SimpleTestCase):
 
         self.assertEqual(response.status_code, 500)
         self.assertJSONEqual(response.content.decode(), {'error': "Une erreur s'est produite"})
-
