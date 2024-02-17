@@ -141,9 +141,9 @@ DATABASES = {
             'NAME': ':memory:',
         },
         'USER': 'root',
-        'PASSWORD': 'VtQYM8zD0317*',
+        'PASSWORD': 'pass',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '3308',
     },
 
     'sqlite': {
