@@ -33,3 +33,13 @@ class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
         fields = '__all__'
+
+#nouvelle version to do list
+from .models import UserReservation
+
+class UserReservationSerializer(serializers.ModelSerializer):
+    activite = ActiviteSerializer()
+
+    class Meta:
+        model = UserReservation
+        fields = '__all__'

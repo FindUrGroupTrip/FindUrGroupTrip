@@ -29,6 +29,9 @@ from django.conf.urls.static import static
 from FUGTApp.views import get_vacations, ValiderVacationsView, contact_view,contact_requests_api, AddWhatsapp, UpdateWhatsapp,GetWhatsapp, AddFeedbackimage, GetFeedbackimage
 from FUGTApp.views import get_vacations, ValiderVacationsView, QuestionListView, AnswerListView, AnswerDetailView, QuestionDetailView, AnswerCreateView
 
+from FUGTApp.views import user_reservations, add_user_reservation, remove_user_reservation, activity_options, toggle_favorite
+
+
 router = DefaultRouter()
 
 urlpatterns = [
@@ -63,6 +66,14 @@ urlpatterns = [
 
     path('api/activites/<int:activity_id>/AddFeedbackimage/', AddFeedbackimage.as_view(), name='AddFeedbackimage'),
     path('api/activites/<int:idactivite>/GetFeedbackimage/', GetFeedbackimage.as_view(), name='GetFeedbackimage'),
+
+    #nouvelle version to do list
+    path('api/user-reservations/', user_reservations, name='user_reservations'),
+    path('api/add-user-reservation/', add_user_reservation, name='add_user_reservation'),
+    path('api/remove-user-reservation/<int:reservation_id>/', remove_user_reservation, name='remove_user_reservation'),
+    path('api/activity-options/', activity_options, name='activity_options'),
+    path('api/toggle-favorite/<int:reservation_id>/', toggle_favorite, name='toggle-favorite'),
+    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

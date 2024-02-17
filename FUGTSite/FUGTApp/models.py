@@ -120,3 +120,12 @@ class Whatsappchanel(models.Model):
     class Meta:
         managed = False
         db_table = 'whatsappchanel'
+
+#Pour nouvelle version to do list
+class UserReservation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    activite = models.ForeignKey('Activite', on_delete=models.CASCADE)
+    is_favorite = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.activite.nom}"

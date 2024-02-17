@@ -5,7 +5,7 @@ import { Header } from './pages/Header';
 import ContactForm from './pages/ContactForm';
 import ContactRequests from './pages/ContactRequest';
 import { Activitelist } from './pages/activitelist';
-import ActiviteList from './pages/activitelist'; // Import your ActiviteListOLD component
+//import ActiviteList from './pages/activitelist'; // Import your ActiviteListOLD component
 import CreerActivite from './Template/CreerActivite';
 import LeftSidebar from './LeftSideBar';
 import SingleActivite from "./Template/SingleActivite";

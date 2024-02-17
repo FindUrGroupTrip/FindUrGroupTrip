@@ -32,7 +32,7 @@ const LeftSidebar = () => {
                 </Link>
                 <Link to="/vacationlist">
                     <button className="sidebar-button">
-                        <FontAwesomeIcon icon={faTasks} /> Liste de vacances
+                        <FontAwesomeIcon icon={faTasks} /> Mes activités
                     </button>
                 </Link>
                 <Link to="/forum">

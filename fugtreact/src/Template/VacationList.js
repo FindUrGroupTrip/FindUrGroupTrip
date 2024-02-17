@@ -1,74 +1,69 @@
-import React, { useState, useEffect } from 'react';
+// VacationList.js
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import VacationItem from './VacationItem';
+import VacationForm from './VacationForm';
 import './VacationList.css';
 
-function VacationList() {
-  const [vacations, setVacations] = useState([]);
-  const [selectedVacations, setSelectedVacations] = useState([]);
-  const [updateMessage, setUpdateMessage] = useState('');
+const VacationList = () => {
+    const [reservations, setReservations] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/vacations/')
-      .then(response => {
-        setVacations(response.data);
-        console.log(response.data);
+    useEffect(() => {
+        fetchReservations();
+    }, []);
 
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
+    const fetchReservations = async () => {
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/user-reservations/');
+            const sortedReservations = response.data.sort((a, b) => {
+                // Convertissez les dates en objets Date pour les comparer
+                const dateA = new Date(a.activite.date);
+                const dateB = new Date(b.activite.date);
 
-    const handleCheckboxChange = (idvacation) => {
-        setSelectedVacations(prevSelected => {
-            const updatedSelected = prevSelected.includes(idvacation)
-                ? prevSelected.filter(selectedId => selectedId !== idvacation)
-                : [...prevSelected, idvacation];
-            console.log('Selected Vacations after Checkbox Change:', updatedSelected);  // Ajoutez cette ligne
-            return updatedSelected;
-        });
-    };
-
-
-    const handleValidation = () => {
-        console.log('Selected Vacations before POST:', selectedVacations);  // Ajoutez cette ligne
-        axios.post('http://localhost:8000/api/valider-vacations/', { selectedVacations })
-            .then(response => {
-                console.log('Mise à jour réussie !', response);
-                // ...
-            })
-            .catch(error => {
-                console.error('Erreur lors de la mise à jour :', error);
+                // Triez par ordre croissant (les dates futures d'abord)
+                return dateA - dateB;
             });
+
+            setReservations(sortedReservations);
+        } catch (error) {
+            console.error('Error fetching reservations:', error);
+        }
     };
 
+    const handleAddReservation = async (activiteId, isFavorite) => {
+        try {
+            await axios.post('http://127.0.0.1:8000/api/add-user-reservation/', { activityId: activiteId, is_favorite: isFavorite });
+            fetchReservations();
+        } catch (error) {
+            console.error('Error adding reservation:', error);
+        }
+    };
 
-  return (
-    <div className="vacation-container">
-      <h2 className="vacation-header">Todo List Vacances</h2>
-      <div className="update-message">{updateMessage}</div>
-      <ul className="vacation-list">
-        {vacations.map(vacation => (
-          <li key={vacation.idvacation} className={`vacation-item ${vacation.nb_souhait >= 5 ? 'high-demand' : ''}`}>
-            <input
-              type="checkbox"
-              className="vacation-checkbox"
-              onChange={() => handleCheckboxChange(vacation.idvacation)}
-              checked={selectedVacations.includes(vacation.idvacation)}
-            />
-            <strong>{vacation.nom}</strong>
-            <p>Date: {vacation.date}</p>
-            <p>Lieu: {vacation.lieu}</p>
-            <p>Description: {vacation.description}</p>
-            <p>Nb_souhait: {vacation.nb_souhait}</p>
-          </li>
+    const handleRemoveReservation = async (reservationId) => {
+        try {
+            await axios.delete(`http://127.0.0.1:8000/api/remove-user-reservation/${reservationId}/`);
+            fetchReservations();
+        } catch (error) {
+            console.error('Error removing reservation:', error);
+        }
+    };
+
+    return (
+      <div className="container">
+        <h2 className="title">Mes activités</h2>
+
+        {reservations.map((reservation) => (
+          <VacationItem
+            key={reservation.id}
+            reservation={reservation}
+            onRemoveReservation={handleRemoveReservation}
+          />
         ))}
-      </ul>
-      <button className="valider-button" onClick={handleValidation}>
-        Valider
-      </button>
-    </div>
-  );
-}
+        <p>Vous voulez ajouter des réservations? Consultez notre <Link to="/activitelist" className="link-to-activities">liste des activités intéressantes</Link>.</p>
+        <VacationForm onAddReservation={handleAddReservation} />
+      </div>
+    );
+};
 
 export default VacationList;

@@ -523,3 +523,79 @@ class GetFeedbackimage(View):
             return JsonResponse({'image_paths': image_paths})
         except Feedbackimage.DoesNotExist:
             return JsonResponse({'error': 'Images non trouvées'}, status=404)
+
+# pour nouvelle version to do list
+from django.http import JsonResponse
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from .models import UserReservation
+from .serializers import UserReservationSerializer, ActiviteSerializer
+
+from rest_framework.response import Response
+from rest_framework import status
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def toggle_favorite(request, reservation_id):
+    try:
+        reservation = UserReservation.objects.get(id=reservation_id, user=request.user)
+        reservation.is_favorite = not reservation.is_favorite
+        reservation.save()
+        return Response({'message': 'Favorite status toggled successfully.'}, status=status.HTTP_200_OK)
+    except UserReservation.DoesNotExist:
+        return Response({'error': 'User reservation not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def activity_options(request):
+    activities = Activite.objects.all()
+    options = [{'id': activity.id, 'name': activity.nom} for activity in activities]
+    return JsonResponse(options, safe=False)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_reservations(request):
+    reservations = UserReservation.objects.filter(user=request.user).select_related('activite')
+
+    # Ajoutez ce point de contrôle pour imprimer les données
+    print("Reservations data:", reservations.values())
+
+    serializer = UserReservationSerializer(reservations, many=True)
+    return JsonResponse(serializer.data, safe=False)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+
+def add_user_reservation(request):
+    data = request.data
+    user = request.user
+    activite_id = data.get('activityId')
+    is_favorite = data.get('is_favorite', False)
+
+    # Vérifier si l'utilisateur a déjà réservé cette activité
+    existing_reservation = UserReservation.objects.filter(user=user, activite_id=activite_id).first()
+    if existing_reservation:
+        return JsonResponse({'error': 'Vous avez déjà réservé cette activité.'}, status=400)
+
+    # Vérifier si l'activité existe
+    try:
+        activite = Activite.objects.get(pk=activite_id)
+    except Activite.DoesNotExist:
+        return JsonResponse({'error': 'L\'activité n\'existe pas.'}, status=404)
+
+    # Créer la réservation
+    user_reservation = UserReservation(user=user, activite=activite, is_favorite=is_favorite)
+    user_reservation.save()
+
+    serializer = UserReservationSerializer(user_reservation)
+    return JsonResponse(serializer.data, status=201)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def remove_user_reservation(request, reservation_id):
+    try:
+        reservation = UserReservation.objects.get(id=reservation_id, user=request.user)
+        reservation.delete()
+        return JsonResponse({'success': True})
+    except UserReservation.DoesNotExist:
+        return JsonResponse({'error': 'La réservation n\'existe pas ou ne vous appartient pas.'}, status=404)

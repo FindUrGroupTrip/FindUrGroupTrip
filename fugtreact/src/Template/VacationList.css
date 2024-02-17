@@ -1,68 +1,111 @@
-/* src/Template/VacationList.css */
+/* VacationItem.css */
 
-.vacation-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+.title {
+  color: #1a237e;
+  cursor: pointer;
 }
 
-.vacation-header {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #000080; /* Couleur du texte (par exemple, blanc) */
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); /* Ombre du texte (optionnel) */
+.vacation-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 16px;
 }
 
+.details-container {
+  flex-grow: 1;
+}
 
-.vacation-list {
-  list-style: none;
+.remove-button {
+  background-color: #1a237e;  /* Ajoutez la couleur bleu foncé ici */
+  color: #fff;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.favorite-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
   padding: 0;
-  margin: 0;
+  margin-left: 8px;
 }
+
+.favorite-button:hover {
+  background-color: transparent;
+}
+
+/* styles.css (ou dans votre méthode de style React) */
 
 .vacation-item {
-  border: 1px solid #ddd;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #fff;
+    border: 1px solid #ddd; /* Ajoutez une bordure autour de chaque activité pour la séparation */
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
-.vacation-checkbox {
-  margin-right: 10px;
+.activite-title {
+    color: darkblue; /* Couleur bleu foncé pour le titre de l'activité */
 }
 
-.vacation-description {
-  color: #555;
+.activite-description,
+.activite-lieu,
+.activite-date {
+    color: #333; /* Couleur du texte normal pour les autres informations de l'activité */
 }
 
-/* Ajoutez plus de styles au besoin */
+.favorite-button {
+    border: none; /* Supprimez la bordure du bouton favori */
+    cursor: pointer;
+    background-color: transparent; /* Fond transparent pour que le cœur soit seul */
+    font-size: 20px; /* Ajustez la taille de la police si nécessaire */
+    margin-left: 10px; /* Ajoutez une marge à gauche pour l'espacement */
+}
 
-.valider-button {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
+.favorite {
+  background-color: #87CEEB;  /* Couleur spéciale pour les activités en favori */
+}
+
+.link-to-activities {
+  color: #1a237e; /* Couleur bleu foncé pour le lien */
+  text-decoration: underline; /* Soulignez le lien */
   cursor: pointer;
+  margin-top: 10px; /* Ajoutez une marge en haut pour l'espacement */
+}
+
+.link-to-activities:hover {
+  color: #0d47a1; /* Couleur bleu foncé plus foncé au survol */
+}
+
+.form-container label {
+  margin-bottom: 10px;
+}
+
+.form-container select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
   font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
-.valider-button:hover {
-  background-color: #45a049;
+/* Styles pour les options du select */
+.form-container select option {
+  padding: 12px;
 }
 
-/* Ajoutez ces styles pour la demande élevée */
-.high-demand {
-  background-color: #ffc107; /* Couleur de fond pour la demande élevée (par exemple, jaune) */
-  border: 1px solid #ffca28; /* Couleur de bordure pour la demande élevée (par exemple, jaune foncé) */
-  box-shadow: 0 0 10px rgba(255, 193, 7, 0.5); /* Ombre pour la demande élevée (par exemple, jaune) */
+/* Styles pour le survol du select */
+.form-container select:hover {
+  border-color: #1a237e;
 }
 
-/* Styles pour le message de mise à jour */
-.update-message {
-  margin-top: 10px;
-  color: #4caf50; /* Couleur du texte pour le message de mise à jour (par exemple, vert) */
-  font-weight: bold;
+/* Styles pour le focus du select */
+.form-container select:focus {
+  border-color: #1a237e;
+  outline: none;
 }
