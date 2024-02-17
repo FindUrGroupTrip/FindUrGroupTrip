@@ -35,6 +35,7 @@ const VacationForm = ({ onAddReservation }) => {
 
             // Appel de la fonction fournie par le composant parent pour mettre à jour la liste
             onAddReservation(selectedActivity);
+            
         } catch (error) {
             // Gérez les erreurs ici (affichez un message d'erreur, etc.)
             if (error.response && error.response.status === 400) {

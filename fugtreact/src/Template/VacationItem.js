@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './VacationList.css';  // Importez votre fichier CSS
 
 const VacationItem = ({ reservation, onRemoveReservation }) => {
@@ -24,6 +25,9 @@ const VacationItem = ({ reservation, onRemoveReservation }) => {
         <p className="activite-description">{activite.description}</p>
         <p className="activite-lieu">Lieu : {activite.lieu}</p>
         <p className="activite-date">Date : {activite.date}</p>
+        <Link to={`/activites/${activite.id}`} className="details-button">
+                    Voir détails
+                </Link>
       </div>
 
       <div className="buttons-container">

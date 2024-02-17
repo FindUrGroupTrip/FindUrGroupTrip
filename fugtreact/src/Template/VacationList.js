@@ -1,5 +1,5 @@
 // VacationList.js
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import VacationItem from './VacationItem';
@@ -13,6 +13,15 @@ const VacationList = () => {
         fetchReservations();
     }, []);
 
+    const handleAddReservation = async (activiteId, isFavorite) => {
+        try {
+            await axios.post('http://127.0.0.1:8000/api/add-user-reservation/', { activityId: activiteId, is_favorite: isFavorite });
+        } catch (error) {
+            console.error('Error adding reservation:', error);
+        }
+        fetchReservations();
+    };
+
     const fetchReservations = async () => {
         try {
             const response = await axios.get('http://127.0.0.1:8000/api/user-reservations/');
@@ -25,18 +34,9 @@ const VacationList = () => {
                 return dateA - dateB;
             });
 
-            setReservations(sortedReservations);
+            setReservations([...sortedReservations]);
         } catch (error) {
             console.error('Error fetching reservations:', error);
-        }
-    };
-
-    const handleAddReservation = async (activiteId, isFavorite) => {
-        try {
-            await axios.post('http://127.0.0.1:8000/api/add-user-reservation/', { activityId: activiteId, is_favorite: isFavorite });
-            fetchReservations();
-        } catch (error) {
-            console.error('Error adding reservation:', error);
         }
     };
 
