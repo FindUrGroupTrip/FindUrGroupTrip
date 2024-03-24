@@ -7,7 +7,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { logout } from '../auth/auth-service'
-import { ROUTES } from '../routes' // Adjust the path accordingly
+import { ROUTES } from '../routes'
+import Weather from '../Template/Weather' // Adjust the path accordingly
 
 export function Header() {
   const applicationName = 'FindUrGroupTrip'
@@ -36,6 +37,8 @@ export function Header() {
               </span>
             </Link>
           </div>
+
+          <Weather></Weather>
 
           <div className="flex items-center">
             {isLoading && <span>Loading...</span>}
