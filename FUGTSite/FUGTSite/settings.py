@@ -135,15 +135,15 @@ WSGI_APPLICATION = 'FUGTSite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
         'NAME': 'localfugt',
         'TEST': {
             'NAME': ':memory:',
         },
         'USER': 'root',
-        'PASSWORD': 'pass',
+        'PASSWORD': 'VtQYM8zD0317*',
         'HOST': '127.0.0.1',
-        'PORT': '3308',
+        'PORT': '3306',
     },
 
     'sqlite': {

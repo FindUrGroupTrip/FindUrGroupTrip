@@ -4,6 +4,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import AddNoteForm from './AddNoteForm';
 import ReservationsList from './reservation/ReservationList';
 import whatsappIcon from './WhatsApp.png';
+import twitterIcon from './Twitter.png'; // Importez l'icône de Twitter
 const SingleActivite = () => {
     const { idactivite } = useParams();
     const [activite, setActivite] = useState(null);
@@ -39,6 +40,13 @@ const SingleActivite = () => {
     const handleReservationClick = () => {
         navigate(`/reservation-form/${idactivite}`);
     };
+
+    const handleTwitterShareClick = () => {
+      const currentUrl = window.location.href;
+      const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent('Découvrez cette superbe expérience sur FUGT!')}`;
+       window.open(shareUrl, '_blank');
+   };
+
     const handleCreateWhatsAppChannelClick = () => {
         navigate(`/whatsapp-form/${idactivite}`);
     };
@@ -65,6 +73,7 @@ const SingleActivite = () => {
                         <p className="text-sm">À la date suivante : {activite.date}</p>
                         <p className="text-lg mb-4">Brève description de l'activité : {activite.description}</p>
 
+
                         {/* Reservation button */}
                         <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
                             <button
@@ -90,6 +99,17 @@ const SingleActivite = () => {
                                 Ajouter ou voir les photos
                             </button>
                         </div>
+                        {/* Bouton de partage Twitter */}
+                        <div className="text-center mt-4">
+                        <button
+                            onClick={handleTwitterShareClick}
+                            className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded inline-flex items-center"
+                        >
+                            <img src={twitterIcon} className="fill-current w-4 h-4 mr-2" alt="Twitter"/>
+                            <span>Partager sur Twitter</span>
+                        </button>
+                        </div>
+                        {/* Bouton de partage Twitter */}
                     </div>
                     <div className="w-full h-64 overflow-hidden mt-4">
                         {activite.image_path ? (
