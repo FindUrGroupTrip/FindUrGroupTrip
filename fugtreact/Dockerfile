@@ -1,23 +1,60 @@
-# Étape 1: Utiliser une image de base avec Node
-FROM node:14
+name: fugt react ci
 
-# Définir le répertoire de travail dans le conteneur
-WORKDIR /app
+on:
+  push:
+    paths:
+      - 'fugtreact/**'
+      - '.github/workflows/react-ci.yml'
 
-# Copier les fichiers package.json et package-lock.json
-COPY package*.json ./
+defaults:
+  run:
+    working-directory: './fugtreact'
 
-# Installer les dépendances
-RUN npm install
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-# Copier tous les autres fichiers du projet
-COPY . .
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-# Construire l'application
-RUN npm run build
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
-# Étape 2: Servir l'application avec un serveur web léger
-FROM nginx:stable-alpine
-COPY --from=0 /app/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests with coverage
+        run: npm test -- --coverage
+
+      - name: Upload coverage report as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: react-coverage-report
+          path: coverage/lcov.info
+
+      - name: Build
+        env:
+          CI: false
+        run: npm run build
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: ./fugtreact
+          push: true
+          tags: fugt/fugt-frontend:latest
+
+      - name: Run Docker container
+        run: docker run -d -p 3000:3000 fugt/fugt-frontend:latest
