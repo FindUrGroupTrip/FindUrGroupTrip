@@ -4,7 +4,7 @@ import allAdresse from 'leaflet'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMap } from '@fortawesome/free-solid-svg-icons'
 
-const geocodeAddress = async (address) => {
+export const geocodeAddress = async (address) => {
   const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
   const response = await fetch(url)
   const data = await response.json()
@@ -21,6 +21,8 @@ const MapChart = ({ address }) => {
   useEffect(() => {
     geocodeAddress(address).then(coords => {
       setMarkerPosition(coords)
+    }).catch(reason => {
+      console.log(reason)
     })
   }, [address])
 

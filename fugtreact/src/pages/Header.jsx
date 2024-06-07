@@ -38,7 +38,7 @@ export function Header() {
             </Link>
           </div>
 
-          <Weather></Weather>
+          <Weather latitude={48.866667} longitude={2.3333}></Weather>
 
           <div className="flex items-center">
             {isLoading && <span>Loading...</span>}

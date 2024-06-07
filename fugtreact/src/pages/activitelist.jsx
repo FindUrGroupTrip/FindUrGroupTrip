@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import ImageComponent from '../Template/ImageComponent';
 import ActivitiesFilterComponent from '../Template/ActivitiesFilterComponent';
 import axios from 'axios';
-import MapChart from '../Template/MapChart'
+import MapChart, { geocodeAddress } from '../Template/MapChart'
+import Weather from '../Template/Weather'
 
 export function Activitelist() {
   const [activities, setActivities] = useState([]);
@@ -29,20 +30,34 @@ export function Activitelist() {
   const pastActivities = activities.filter(activity => new Date(activity.date) < new Date());
   const upcomingActivities = activities.filter(activity => new Date(activity.date) >= new Date());
 
-  const ActivityCard = ({ activity, handleMouseEnter }) => (
+  const ActivityCard = ({ activity, handleMouseEnter }) => {
+    const [coords, setCoords] = useState(null)
+
+    useEffect(() => {
+      geocodeAddress(activity.lieu).then(_coords => {
+        const [lat, log] = _coords;
+        setCoords({
+          lat,
+          log
+        })
+      }).catch(reason => {
+        console.log('error', reason);
+      })
+    }, [])
+    return <>
       <Link to={`/activites/${activity.id}`} key={activity.id} className="rounded-lg overflow-hidden bg-white shadow-md hover:shadow-lg transition duration-300">
         <div onMouseEnter={(e) => handleMouseEnter(activity.lieu)} className="p-4 bg-white rounded-md shadow-md max-w-md mx-auto">
           <div className="text-center">
             {activity.image_path ? (
-                <div className="w-full h-40 overflow-hidden flex items-center justify-center mb-4">
-                  <img
-                      src={`http://localhost:8000${activity.image_path}`}
-                      alt={activity.nom}
-                      className="object-cover max-w-full max-h-full rounded-md"
-                  />
-                </div>
+              <div className="w-full h-40 overflow-hidden flex items-center justify-center mb-4">
+                <img
+                  src={`http://localhost:8000${activity.image_path}`}
+                  alt={activity.nom}
+                  className="object-cover max-w-full max-h-full rounded-md"
+                />
+              </div>
             ) : (
-                <ImageComponent style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+              <ImageComponent style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
             )}
             <h3 className="text-lg font-semibold mb-2">{activity.nom}</h3>
             <p className="text-gray-600">{activity.lieu}</p>
@@ -50,10 +65,15 @@ export function Activitelist() {
             <p className="text-gray-500">{activity.date}</p>
             <StarRating rating={activity.average_rating} />
             <p className="text-yellow-600 text-sm mt-2">{`Nombre de notes : ${activity.number_of_notes} `}</p>
+
+            {
+              !!coords ? <Weather latitude={coords.lat} longitude={coords.log}></Weather> : '.. C'
+            }
           </div>
         </div>
       </Link>
-  );
+    </>
+  }
 
   const StarRating = ({ rating }) => {
     const fullStars = Math.floor(rating);
