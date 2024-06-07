@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Clear Python cache
         run: |
@@ -47,7 +47,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./FUGTSite  # <--- Mettre à jour ce chemin si nécessaire
           push: true
           tags: fugt/fugt-backend:latest
 
