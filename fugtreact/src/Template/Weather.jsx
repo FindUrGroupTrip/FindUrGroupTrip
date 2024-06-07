@@ -1,26 +1,32 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const WEATHER_BASE_URL = 'https://api.open-meteo.com/v1/forecast?latitude=48.866667&longitude=2.3333&current=temperature_2m,wind_speed_10m'
-
-
-export default function Weather() {
-
+export default function Weather({ latitude, longitude }) {
   const [temperature, setTemperature] = useState(null)
   const [unit, setUnit] = useState(null)
 
   useEffect(() => {
-    axios.get(WEATHER_BASE_URL)
-      .then(({ data }) => {
-        const { current_units, current } = data
-        setTemperature(current.temperature_2m)
-        setUnit(current_units.temperature_2m)
-      })
-  })
+    const url = 'https://api.open-meteo.com/v1/forecast';
+    const params = {
+      latitude,
+      longitude,
+      current: 'temperature_2m,wind_speed_10m'
+    };
 
-  return <>
-    {
-      temperature && <b>{temperature} {unit} </b>
-    }
-  </>
+    axios.get(url, { params })
+      .then(({ data }) => {
+        const { current_units, current } = data;
+        setTemperature(current.temperature_2m);
+        setUnit(current_units.temperature_2m);
+      })
+      .catch(error => {
+        console.error('There was an error making the request:', error);
+      });
+  }, [latitude, longitude]);
+
+  return (
+    <>
+      {temperature && <b>{temperature} {unit}</b>}
+    </>
+  );
 }

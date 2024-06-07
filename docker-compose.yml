@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  frontend:
+    build: ./fugtreact
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./FUGTSite
+    ports:
+      - "8000:8000"

@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: latest
+          node-version: '16'
 
       - name: Install dependencies
         run: npm install
@@ -52,7 +52,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: ./fugtreact  # <--- Mettre à jour ce chemin si nécessaire
+          context: ./fugtreact
           push: true
           tags: fugt/fugt-frontend:latest
 
