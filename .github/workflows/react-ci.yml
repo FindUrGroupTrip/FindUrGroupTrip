@@ -16,12 +16,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: latest
 
       - name: Install dependencies
         run: npm install
@@ -54,7 +54,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/fugt-frontend:latest
+          tags: fugt/fugt-frontend:latest
 
       - name: Run Docker container
-        run: docker run -d -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/fugt-frontend:latest
+        run: docker run -d -p 3000:3000 fugt/fugt-frontend:latest
