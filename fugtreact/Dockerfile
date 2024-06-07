@@ -1,5 +1,5 @@
-# Étape 1: Utiliser une image de base avec Node
-FROM node:14
+# Étape 1 : Construire l'application React
+FROM node:16 as build
 
 # Définir le répertoire de travail dans le conteneur
 WORKDIR /app
@@ -10,14 +10,23 @@ COPY package*.json ./
 # Installer les dépendances
 RUN npm install
 
-# Copier tous les autres fichiers du projet
+# Copier le reste des fichiers de l'application
 COPY . .
 
-# Construire l'application
+# Construire l'application pour la production
 RUN npm run build
 
-# Étape 2: Servir l'application avec un serveur web léger
-FROM nginx:stable-alpine
-COPY --from=0 /app/build /usr/share/nginx/html
+# Étape 2 : Servir les fichiers statiques avec nginx
+FROM nginx:alpine
+
+# Copier les fichiers construits depuis l'étape précédente
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Copier le fichier de configuration nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Exposer le port sur lequel l'application tourne
 EXPOSE 80
+
+# Démarrer nginx
 CMD ["nginx", "-g", "daemon off;"]
