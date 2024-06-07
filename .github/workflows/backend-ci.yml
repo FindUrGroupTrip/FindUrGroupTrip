@@ -47,7 +47,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: ./FUGTSite  # <--- Mettre à jour ce chemin si nécessaire
+          context: ./FUGTSite
           push: true
           tags: fugt/fugt-backend:latest
 
