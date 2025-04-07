@@ -141,7 +141,7 @@ DATABASES = {
             'NAME': ':memory:',
         },
         'USER': 'root',
-        'PASSWORD': 'VtQYM8zD0317*',
+        'PASSWORD': 'pass',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     },
@@ -151,7 +151,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+#mysqld --console
+#mysql -u root -p
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 

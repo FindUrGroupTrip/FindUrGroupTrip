@@ -21,6 +21,7 @@ import VacationList from "./Template/VacationList"; // Import your new VacationL
 import Forum from './forum/Forum';
 import CreateWhatsAppChannel from './Template/CreateWhatsAppChannel';
 import CreateFeedBackImage from './Template/CreateFeedbackImage';
+import MedalsDashboard from './pages/MedalsDashboard'; // <<< ajoute ça tout en haut avec tes imports
 
 function App() {
     return (
@@ -50,6 +51,7 @@ function App() {
                         <Route path="/whatsapp-form/:idactivite" element={<CreateWhatsAppChannel />} />
                         <Route path="/feedbackimage-form/:idactivite" element={<CreateFeedBackImage />} />
                         <Route path="/contact-request" element={<ContactRequests />} />
+                        <Route path="/medals-dashbord" element={<MedalsDashboard />} />
 
                         <Route path="/forum" element={<Forum />} />
             {/* Add more routes as needed */}
