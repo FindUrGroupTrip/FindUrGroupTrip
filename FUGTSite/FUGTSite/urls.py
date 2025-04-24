@@ -30,7 +30,9 @@ from FUGTApp.views import get_vacations, ValiderVacationsView, contact_view,cont
 from FUGTApp.views import (get_vacations, ValiderVacationsView,
                            QuestionListView, AnswerListView, AnswerDetailView,
                            QuestionDetailView, AnswerCreateView,choropleth_medals_by_country_json,
-                           evolution_participants_olympics_json,medals_bar_animation_json,top15_country_discipline_json,medals_evolution_top10_json)
+                           evolution_participants_olympics_json,medals_bar_animation_json,
+                           top15_country_discipline_json,medals_evolution_top10_json,medals_predictions_ml,
+                           regenerate_ml_predictions,compare_predictions_real_2020)
 
 from FUGTApp.views import user_reservations, add_user_reservation, remove_user_reservation, activity_options, toggle_favorite,heatmap_medals, country_discipline_heatmap, country_discipline_barplot, country_discipline_heatmap_json,sunburst_medals_season_json,scatter_medals_by_discipline_country_year_json
 
@@ -88,6 +90,10 @@ urlpatterns = [
     path('api/medals/country-discipline-heatmap-json/', country_discipline_heatmap_json),
     path('api/medals/scatter-discipline-country-year-json/', scatter_medals_by_discipline_country_year_json),
     path('api/medals/medals-evolution-top10-json/', views.medals_evolution_top10_json, name='medals_evolution_top10_json'),
+    path('api/medals/ml-predictions/', medals_predictions_ml),
+    path('api/medals/regenerate-ml/', regenerate_ml_predictions),
+    path('api/medals/compare-ml-vs-real/', compare_predictions_real_2020),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

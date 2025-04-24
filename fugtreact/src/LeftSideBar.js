@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faList, faPlus, faTasks, faEnvelope } from '@fortawesome/free-solid-svg-icons'; // Ajout de l'icône d'enveloppe
+import { faBars, faList, faPlus, faTasks, faEnvelope,faChartLine } from '@fortawesome/free-solid-svg-icons'; // Ajout de l'icône d'enveloppe
 import { faHeadset, faComments,faMedal   } from '@fortawesome/free-solid-svg-icons';
 
 import './LeftSidebar.css';
@@ -59,6 +59,13 @@ const LeftSidebar = () => {
                         <FontAwesomeIcon icon={faMedal} className="mr-2" /> Event JO 🏅
                     </button>
                 </Link>
+
+                <Link to="/prediction-medailles">
+                    <button className="sidebar-button border-2 border-yellow-400 text-yellow-600 hover:bg-yellow-100">
+                        <FontAwesomeIcon icon={faChartLine} className="mr-2" /> Prédictions Médailles
+                    </button>
+                </Link>
+
             </div>
         </div>
     );

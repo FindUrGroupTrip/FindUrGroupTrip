@@ -16,6 +16,7 @@ import { Register } from './auth/Register'
 import { ProtectedRoute } from './auth/ProtectedRoute'
 import './auth/axios-interceptor'
 import ImageComponent from './Template/ImageComponent'
+import PredictionMedals from './pages/PredictionMedals';
 
 import VacationList from "./Template/VacationList"; // Import your new VacationList component
 import Forum from './forum/Forum';
@@ -52,7 +53,7 @@ function App() {
                         <Route path="/feedbackimage-form/:idactivite" element={<CreateFeedBackImage />} />
                         <Route path="/contact-request" element={<ContactRequests />} />
                         <Route path="/medals-dashbord" element={<MedalsDashboard />} />
-
+                        <Route path="/prediction-medailles" element={<PredictionMedals />} />
                         <Route path="/forum" element={<Forum />} />
             {/* Add more routes as needed */}
           </Routes>

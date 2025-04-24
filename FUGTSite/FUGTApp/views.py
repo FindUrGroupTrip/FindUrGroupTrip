@@ -1080,3 +1080,146 @@ def top15_country_discipline_json(request):
     safe_json = json.dumps(graph_json, cls=NumpyEncoder)
 
     return JsonResponse(json.loads(safe_json), safe=False)
+
+from django.http import JsonResponse
+import pandas as pd
+import numpy as np
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense
+import plotly.express as px
+
+def prepare_olympic_data(medals_df, athletes_df, hosts_df, results_df, year_min=2000, min_discipline_presence=2):
+    medals_df = medals_df.copy()
+    hosts_df = hosts_df.copy()
+
+    # Extraire l'année
+    medals_df['year'] = medals_df['slug_game'].str.extract(r'(\d{4})').astype(int)
+
+    # Garder uniquement les jeux d'été
+    hosts_df['game_season'] = hosts_df['game_season'].str.lower()
+    summer_games = hosts_df[hosts_df['game_season'] == 'summer']
+    medals_df = medals_df[medals_df['slug_game'].isin(summer_games['game_slug'])]
+
+    # Filtrer les disciplines suffisamment présentes
+    discipline_counts = medals_df.groupby('discipline_title')['year'].nunique()
+    valid_disciplines = discipline_counts[discipline_counts >= min_discipline_presence].index
+    medals_df = medals_df[medals_df['discipline_title'].isin(valid_disciplines)]
+
+    # Fusionner avec les données des athlètes
+    merged = medals_df.merge(athletes_df, on='athlete_full_name', how='left')
+
+    # Fusionner avec les données des hôtes
+    merged = merged.merge(
+        hosts_df[['game_slug', 'game_year', 'game_season', 'game_location']],
+        left_on='slug_game', right_on='game_slug', how='left', suffixes=('', '_host')
+    )
+
+    merged.dropna(subset=['discipline_title'], inplace=True)
+    merged = merged[merged['year'] >= year_min]
+
+    return merged
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Input, LSTM, Dense
+
+import numpy as np
+import time  # ⬅️ Ajout ici
+def medals_predictions_ml(request):
+    with open('./data/ml_predictions_2020.json', 'r') as f:
+        predictions = json.load(f)
+
+    pred_df = pd.DataFrame(predictions)
+    top10 = pred_df.groupby('country_name')['predicted_medals_2020'].sum().nlargest(10).index
+    top_df = pred_df[pred_df['country_name'].isin(top10)]
+
+    fig = px.bar(
+        top_df,
+        x='discipline_title',
+        y='predicted_medals_2020',
+        color='country_name',
+        title="Prédictions des Médailles par Pays et Discipline (2020)",
+        labels={
+            'predicted_medals_2020': "Médailles Prévues",
+            'discipline_title': "Discipline",
+            'country_name': "Pays"
+        },
+        height=600
+    )
+    safe_json = json.dumps(fig.to_plotly_json(), cls=NumpyEncoder)
+    return JsonResponse(json.loads(safe_json), safe=False)
+
+from django.http import JsonResponse
+import subprocess
+import sys
+import os
+
+def regenerate_ml_predictions(request):
+    try:
+        python_exec = os.path.join(sys.prefix, 'Scripts', 'python.exe') if os.name == 'nt' else os.path.join(sys.prefix, 'bin', 'python')
+        subprocess.run([python_exec, './scripts/generate_predictions.py'], check=True)
+        return JsonResponse({'status': 'success', 'message': 'Prédictions recalculées avec succès ✅'})
+    except subprocess.CalledProcessError as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+
+def country_to_flag(country):
+    mapping = {
+        "France": "FR", "Germany": "DE", "United States of America": "US",
+        "People's Republic of China": "CN", "Australia": "AU", "Great Britain": "GB",
+        "Brazil": "BR", "Canada": "CA", "Japan": "JP", "Italy": "IT"
+    }
+    iso_code = mapping.get(country, "")
+    return ''.join([chr(127397 + ord(c)) for c in iso_code.upper()]) if iso_code else ''
+
+def compare_predictions_real_2020(request):
+    import plotly.express as px
+
+    # Charger les prédictions
+    with open('./data/ml_predictions_2020.json', 'r') as f:
+        predictions = json.load(f)
+    pred_df = pd.DataFrame(predictions)
+
+    # Charger les données réelles
+    medals_df = pd.read_csv('./data/olympic_medals.csv')
+    medals_df['year'] = medals_df['slug_game'].str.extract(r'(\d{4})').astype(int)
+    real_df = medals_df[medals_df['year'] == 2020]
+
+    # Regrouper les données
+    real_counts = real_df.groupby(['country_name', 'discipline_title']).size().reset_index(name='real_medals')
+    pred_grouped = pred_df.groupby(['country_name', 'discipline_title'])['predicted_medals_2020'].sum().reset_index()
+
+    # Fusionner les deux
+    merged = pd.merge(pred_grouped, real_counts, on=['country_name', 'discipline_title'], how='inner')
+
+    # Top 10 pays les plus représentés
+    top_countries = merged.groupby('country_name')['predicted_medals_2020'].sum().nlargest(5).index
+    merged = merged[merged['country_name'].isin(top_countries)]
+
+    # Construire une seule colonne pour chaque valeur (plus clair)
+    melted = merged.melt(
+        id_vars=['country_name', 'discipline_title'],
+        value_vars=['predicted_medals_2020', 'real_medals'],
+        var_name='Type',
+        value_name='Médailles'
+    )
+
+    # Ajouter le drapeau aux noms
+    melted['Flag'] = melted['country_name'].apply(country_to_flag)
+    melted['Pays & Discipline'] = melted['Flag'] + ' ' + melted['country_name'] + ' – ' + melted['discipline_title']
+
+    melted['Groupe'] = melted['country_name'] + ' (' + melted['Type'].str.replace('_', ' ') + ')'
+    # Barres horizontales
+    fig = px.bar(
+        melted,
+        y='Pays & Discipline',
+        x='Médailles',
+        color='Groupe',
+        orientation='h',
+        title="🎯 Comparaison Simplifiée : Prédictions vs Réel (2020)",
+        labels={'Médailles': 'Nombre de Médailles'},
+        height=700
+    )
+
+    # Format JSON pour le front
+    graph_json = fig.to_plotly_json()
+    safe_json = json.dumps(graph_json, cls=NumpyEncoder)
+    return JsonResponse(json.loads(safe_json), safe=False)
