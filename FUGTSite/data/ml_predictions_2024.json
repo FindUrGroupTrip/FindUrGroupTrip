@@ -2,766 +2,586 @@
   {
     "country_name": "Argentina",
     "discipline_title": "Hockey",
-    "predicted_medals_2020": 1.0
-  },
-  {
-    "country_name": "Argentina",
-    "discipline_title": "Sailing",
-    "predicted_medals_2020": 2.0
+    "predicted_medals_2024": 1.0
   },
   {
     "country_name": "Australia",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 2.19
+    "predicted_medals_2024": 3.13
   },
   {
     "country_name": "Australia",
     "discipline_title": "Canoe Sprint",
-    "predicted_medals_2020": 2.23
+    "predicted_medals_2024": 2.22
   },
   {
     "country_name": "Australia",
     "discipline_title": "Cycling Track",
-    "predicted_medals_2020": 1.93
+    "predicted_medals_2024": 0.98
   },
   {
     "country_name": "Australia",
     "discipline_title": "Diving",
-    "predicted_medals_2020": 1.86
+    "predicted_medals_2024": 1.02
   },
   {
     "country_name": "Australia",
     "discipline_title": "Rowing",
-    "predicted_medals_2020": 3.89
+    "predicted_medals_2024": 3.87
   },
   {
     "country_name": "Australia",
     "discipline_title": "Swimming",
-    "predicted_medals_2020": 10.05
+    "predicted_medals_2024": 17.12
   },
   {
     "country_name": "Azerbaijan",
     "discipline_title": "Boxing",
-    "predicted_medals_2020": 1.03
+    "predicted_medals_2024": 1.01
   },
   {
     "country_name": "Azerbaijan",
     "discipline_title": "Wrestling",
-    "predicted_medals_2020": 4.27
+    "predicted_medals_2024": 2.96
   },
   {
     "country_name": "Bahamas",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 2.07
+    "predicted_medals_2024": 2.22
   },
   {
     "country_name": "Belarus",
     "discipline_title": "Canoe Sprint",
-    "predicted_medals_2020": 0.88
-  },
-  {
-    "country_name": "Brazil",
-    "discipline_title": "Beach Volleyball",
-    "predicted_medals_2020": 4.0
+    "predicted_medals_2024": 0.99
   },
   {
     "country_name": "Brazil",
     "discipline_title": "Football",
-    "predicted_medals_2020": 1.0
+    "predicted_medals_2024": 0.98
   },
   {
     "country_name": "Brazil",
     "discipline_title": "Judo",
-    "predicted_medals_2020": 3.13
+    "predicted_medals_2024": 2.01
   },
   {
     "country_name": "Brazil",
     "discipline_title": "Sailing",
-    "predicted_medals_2020": 1.99
+    "predicted_medals_2024": 2.0
   },
   {
     "country_name": "Brazil",
     "discipline_title": "Volleyball",
-    "predicted_medals_2020": 1.01
+    "predicted_medals_2024": 1.01
   },
   {
     "country_name": "Bulgaria",
     "discipline_title": "Wrestling",
-    "predicted_medals_2020": 1.03
+    "predicted_medals_2024": 2.14
   },
   {
     "country_name": "Canada",
     "discipline_title": "Diving",
-    "predicted_medals_2020": 3.07
+    "predicted_medals_2024": 2.0
   },
   {
     "country_name": "Canada",
     "discipline_title": "Rowing",
-    "predicted_medals_2020": 1.83
-  },
-  {
-    "country_name": "Canada",
-    "discipline_title": "Trampoline",
-    "predicted_medals_2020": 1.0
-  },
-  {
-    "country_name": "Canada",
-    "discipline_title": "Wrestling",
-    "predicted_medals_2020": 0.99
+    "predicted_medals_2024": 3.23
   },
   {
     "country_name": "Colombia",
     "discipline_title": "Weightlifting",
-    "predicted_medals_2020": 1.81
+    "predicted_medals_2024": 0.98
   },
   {
     "country_name": "Cuba",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 0.56
+    "predicted_medals_2024": 3.25
   },
   {
     "country_name": "Cuba",
     "discipline_title": "Boxing",
-    "predicted_medals_2020": 6.49
+    "predicted_medals_2024": 4.85
   },
   {
     "country_name": "Cuba",
     "discipline_title": "Judo",
-    "predicted_medals_2020": 0.62
+    "predicted_medals_2024": 0.97
   },
   {
     "country_name": "Cuba",
     "discipline_title": "Wrestling",
-    "predicted_medals_2020": 3.23
+    "predicted_medals_2024": 3.19
   },
   {
     "country_name": "Czech Republic",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 0.99
+    "predicted_medals_2024": 2.11
   },
   {
     "country_name": "Czech Republic",
     "discipline_title": "Canoe Slalom",
-    "predicted_medals_2020": 2.21
-  },
-  {
-    "country_name": "Czech Republic",
-    "discipline_title": "Rowing",
-    "predicted_medals_2020": 0.99
-  },
-  {
-    "country_name": "Democratic People's Republic of Korea",
-    "discipline_title": "Weightlifting",
-    "predicted_medals_2020": 2.7
+    "predicted_medals_2024": 3.35
   },
   {
     "country_name": "Denmark",
     "discipline_title": "Rowing",
-    "predicted_medals_2020": 3.47
+    "predicted_medals_2024": 1.91
   },
   {
     "country_name": "Denmark",
     "discipline_title": "Sailing",
-    "predicted_medals_2020": 3.17
+    "predicted_medals_2024": 0.88
   },
   {
     "country_name": "Ethiopia",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 7.52
+    "predicted_medals_2024": 5.91
   },
   {
     "country_name": "France",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 2.3
-  },
-  {
-    "country_name": "France",
-    "discipline_title": "Canoe Slalom",
-    "predicted_medals_2020": 2.66
+    "predicted_medals_2024": 1.05
   },
   {
     "country_name": "France",
     "discipline_title": "Cycling Track",
-    "predicted_medals_2020": 1.23
+    "predicted_medals_2024": 3.18
   },
   {
     "country_name": "France",
     "discipline_title": "Judo",
-    "predicted_medals_2020": 4.38
+    "predicted_medals_2024": 8.72
   },
   {
     "country_name": "France",
     "discipline_title": "Rowing",
-    "predicted_medals_2020": 3.26
+    "predicted_medals_2024": 4.49
   },
   {
     "country_name": "France",
     "discipline_title": "Sailing",
-    "predicted_medals_2020": 1.67
+    "predicted_medals_2024": 4.51
   },
   {
     "country_name": "France",
     "discipline_title": "Swimming",
-    "predicted_medals_2020": 5.31
+    "predicted_medals_2024": 1.03
   },
   {
     "country_name": "France",
     "discipline_title": "Taekwondo",
-    "predicted_medals_2020": 1.0
+    "predicted_medals_2024": 0.99
   },
   {
     "country_name": "Georgia",
     "discipline_title": "Judo",
-    "predicted_medals_2020": 1.86
+    "predicted_medals_2024": 2.79
   },
   {
     "country_name": "Georgia",
     "discipline_title": "Wrestling",
-    "predicted_medals_2020": 3.47
+    "predicted_medals_2024": 2.23
   },
   {
     "country_name": "Germany",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 3.19
+    "predicted_medals_2024": 2.72
   },
   {
     "country_name": "Germany",
     "discipline_title": "Canoe Sprint",
-    "predicted_medals_2020": 10.19
+    "predicted_medals_2024": 7.02
   },
   {
     "country_name": "Germany",
     "discipline_title": "Cycling Track",
-    "predicted_medals_2020": 3.23
-  },
-  {
-    "country_name": "Germany",
-    "discipline_title": "Equestrian Dressage",
-    "predicted_medals_2020": 1.76
-  },
-  {
-    "country_name": "Germany",
-    "discipline_title": "Hockey",
-    "predicted_medals_2020": 1.63
+    "predicted_medals_2024": 3.1
   },
   {
     "country_name": "Germany",
     "discipline_title": "Judo",
-    "predicted_medals_2020": 1.02
+    "predicted_medals_2024": 3.54
   },
   {
     "country_name": "Germany",
     "discipline_title": "Rowing",
-    "predicted_medals_2020": 3.04
+    "predicted_medals_2024": 3.02
   },
   {
     "country_name": "Great Britain",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 7.8
+    "predicted_medals_2024": 6.58
   },
   {
     "country_name": "Great Britain",
     "discipline_title": "Boxing",
-    "predicted_medals_2020": 3.53
+    "predicted_medals_2024": 3.77
   },
   {
     "country_name": "Great Britain",
     "discipline_title": "Canoe Slalom",
-    "predicted_medals_2020": 3.2
+    "predicted_medals_2024": 0.99
   },
   {
     "country_name": "Great Britain",
     "discipline_title": "Canoe Sprint",
-    "predicted_medals_2020": 2.92
+    "predicted_medals_2024": 0.98
   },
   {
     "country_name": "Great Britain",
     "discipline_title": "Cycling Track",
-    "predicted_medals_2020": 8.38
+    "predicted_medals_2024": 8.69
   },
   {
     "country_name": "Great Britain",
     "discipline_title": "Rowing",
-    "predicted_medals_2020": 6.88
+    "predicted_medals_2024": 2.06
   },
   {
     "country_name": "Great Britain",
     "discipline_title": "Sailing",
-    "predicted_medals_2020": 6.15
+    "predicted_medals_2024": 6.49
   },
   {
     "country_name": "Great Britain",
     "discipline_title": "Swimming",
-    "predicted_medals_2020": 2.28
+    "predicted_medals_2024": 9.63
   },
   {
     "country_name": "Hungary",
     "discipline_title": "Canoe Sprint",
-    "predicted_medals_2020": 4.32
+    "predicted_medals_2024": 7.71
   },
   {
     "country_name": "Hungary",
     "discipline_title": "Fencing",
-    "predicted_medals_2020": 2.17
+    "predicted_medals_2024": 3.25
   },
   {
     "country_name": "Hungary",
     "discipline_title": "Swimming",
-    "predicted_medals_2020": 2.52
+    "predicted_medals_2024": 2.08
   },
   {
     "country_name": "Indonesia",
     "discipline_title": "Weightlifting",
-    "predicted_medals_2020": 2.27
-  },
-  {
-    "country_name": "Islamic Republic of Iran",
-    "discipline_title": "Taekwondo",
-    "predicted_medals_2020": 0.99
+    "predicted_medals_2024": 1.26
   },
   {
     "country_name": "Islamic Republic of Iran",
     "discipline_title": "Wrestling",
-    "predicted_medals_2020": 5.43
+    "predicted_medals_2024": 3.06
   },
   {
     "country_name": "Italy",
     "discipline_title": "Fencing",
-    "predicted_medals_2020": 6.44
+    "predicted_medals_2024": 5.28
   },
   {
     "country_name": "Italy",
     "discipline_title": "Judo",
-    "predicted_medals_2020": 2.12
+    "predicted_medals_2024": 1.98
   },
   {
     "country_name": "Italy",
     "discipline_title": "Rowing",
-    "predicted_medals_2020": 3.57
+    "predicted_medals_2024": 3.83
   },
   {
     "country_name": "Italy",
     "discipline_title": "Shooting",
-    "predicted_medals_2020": 3.89
+    "predicted_medals_2024": 0.6
   },
   {
     "country_name": "Jamaica",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 7.52
+    "predicted_medals_2024": 10.21
   },
   {
     "country_name": "Japan",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 2.06
-  },
-  {
-    "country_name": "Japan",
-    "discipline_title": "Gymnastics Artistic",
-    "predicted_medals_2020": 3.18
+    "predicted_medals_2024": 1.25
   },
   {
     "country_name": "Japan",
     "discipline_title": "Judo",
-    "predicted_medals_2020": 8.5
+    "predicted_medals_2024": 9.04
   },
   {
     "country_name": "Japan",
     "discipline_title": "Swimming",
-    "predicted_medals_2020": 7.41
+    "predicted_medals_2024": 2.55
   },
   {
     "country_name": "Japan",
     "discipline_title": "Wrestling",
-    "predicted_medals_2020": 6.39
-  },
-  {
-    "country_name": "Kazakhstan",
-    "discipline_title": "Athletics",
-    "predicted_medals_2020": 1.0
+    "predicted_medals_2024": 6.79
   },
   {
     "country_name": "Kazakhstan",
     "discipline_title": "Boxing",
-    "predicted_medals_2020": 3.08
+    "predicted_medals_2024": 2.0
   },
   {
     "country_name": "Kazakhstan",
     "discipline_title": "Weightlifting",
-    "predicted_medals_2020": 1.95
+    "predicted_medals_2024": 1.99
   },
   {
     "country_name": "Kazakhstan",
     "discipline_title": "Wrestling",
-    "predicted_medals_2020": 3.0
+    "predicted_medals_2024": 1.32
   },
   {
     "country_name": "Kenya",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 11.81
-  },
-  {
-    "country_name": "Mexico",
-    "discipline_title": "Taekwondo",
-    "predicted_medals_2020": 1.0
+    "predicted_medals_2024": 9.8
   },
   {
     "country_name": "Mongolia",
     "discipline_title": "Judo",
-    "predicted_medals_2020": 1.0
+    "predicted_medals_2024": 2.46
   },
   {
     "country_name": "Netherlands",
     "discipline_title": "Cycling Track",
-    "predicted_medals_2020": 1.36
+    "predicted_medals_2024": 2.65
   },
   {
     "country_name": "Netherlands",
     "discipline_title": "Hockey",
-    "predicted_medals_2020": 1.0
+    "predicted_medals_2024": 0.98
   },
   {
     "country_name": "Netherlands",
     "discipline_title": "Judo",
-    "predicted_medals_2020": 1.05
+    "predicted_medals_2024": 0.99
   },
   {
     "country_name": "Netherlands",
     "discipline_title": "Rowing",
-    "predicted_medals_2020": 2.38
+    "predicted_medals_2024": 7.38
   },
   {
     "country_name": "New Zealand",
     "discipline_title": "Cycling Track",
-    "predicted_medals_2020": 1.01
+    "predicted_medals_2024": 2.03
   },
   {
     "country_name": "New Zealand",
     "discipline_title": "Rowing",
-    "predicted_medals_2020": 5.72
+    "predicted_medals_2024": 8.01
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 9.12
+    "predicted_medals_2024": 8.08
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Badminton",
-    "predicted_medals_2020": 9.0
+    "predicted_medals_2024": 9.71
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Boxing",
-    "predicted_medals_2020": 2.82
+    "predicted_medals_2024": 4.73
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Cycling Track",
-    "predicted_medals_2020": 2.28
+    "predicted_medals_2024": 2.22
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Diving",
-    "predicted_medals_2020": 15.01
+    "predicted_medals_2024": 17.84
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Fencing",
-    "predicted_medals_2020": 1.99
-  },
-  {
-    "country_name": "People's Republic of China",
-    "discipline_title": "Gymnastics Artistic",
-    "predicted_medals_2020": 1.66
-  },
-  {
-    "country_name": "People's Republic of China",
-    "discipline_title": "Judo",
-    "predicted_medals_2020": 1.98
+    "predicted_medals_2024": 1.88
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Sailing",
-    "predicted_medals_2020": 1.01
+    "predicted_medals_2024": 2.19
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Shooting",
-    "predicted_medals_2020": 7.11
+    "predicted_medals_2024": 11.95
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Swimming",
-    "predicted_medals_2020": 6.83
+    "predicted_medals_2024": 6.73
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Table Tennis",
-    "predicted_medals_2020": 5.4
+    "predicted_medals_2024": 7.66
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Taekwondo",
-    "predicted_medals_2020": 2.0
-  },
-  {
-    "country_name": "People's Republic of China",
-    "discipline_title": "Trampoline",
-    "predicted_medals_2020": 3.34
+    "predicted_medals_2024": 0.78
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Weightlifting",
-    "predicted_medals_2020": 8.27
+    "predicted_medals_2024": 9.26
   },
   {
     "country_name": "People's Republic of China",
     "discipline_title": "Wrestling",
-    "predicted_medals_2020": 2.12
+    "predicted_medals_2024": 2.46
   },
   {
     "country_name": "Poland",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 2.39
+    "predicted_medals_2024": 2.98
   },
   {
     "country_name": "Poland",
     "discipline_title": "Canoe Sprint",
-    "predicted_medals_2020": 2.6
+    "predicted_medals_2024": 2.23
   },
   {
     "country_name": "Poland",
     "discipline_title": "Rowing",
-    "predicted_medals_2020": 2.87
+    "predicted_medals_2024": 1.47
   },
   {
     "country_name": "Republic of Korea",
     "discipline_title": "Archery",
-    "predicted_medals_2020": 4.43
+    "predicted_medals_2024": 5.24
   },
   {
     "country_name": "Republic of Korea",
     "discipline_title": "Badminton",
-    "predicted_medals_2020": 2.01
+    "predicted_medals_2024": 1.96
   },
   {
     "country_name": "Republic of Korea",
     "discipline_title": "Judo",
-    "predicted_medals_2020": 3.0
+    "predicted_medals_2024": 2.99
   },
   {
     "country_name": "Republic of Korea",
     "discipline_title": "Shooting",
-    "predicted_medals_2020": 1.99
+    "predicted_medals_2024": 0.91
   },
   {
     "country_name": "Republic of Korea",
     "discipline_title": "Taekwondo",
-    "predicted_medals_2020": 4.54
-  },
-  {
-    "country_name": "Republic of Korea",
-    "discipline_title": "Weightlifting",
-    "predicted_medals_2020": 0.77
-  },
-  {
-    "country_name": "Republic of Korea",
-    "discipline_title": "Wrestling",
-    "predicted_medals_2020": 1.01
-  },
-  {
-    "country_name": "Russian Federation",
-    "discipline_title": "Boxing",
-    "predicted_medals_2020": 4.26
-  },
-  {
-    "country_name": "Russian Federation",
-    "discipline_title": "Canoe Sprint",
-    "predicted_medals_2020": 1.74
-  },
-  {
-    "country_name": "Russian Federation",
-    "discipline_title": "Cycling Road",
-    "predicted_medals_2020": 1.0
-  },
-  {
-    "country_name": "Russian Federation",
-    "discipline_title": "Fencing",
-    "predicted_medals_2020": 4.75
-  },
-  {
-    "country_name": "Russian Federation",
-    "discipline_title": "Gymnastics Artistic",
-    "predicted_medals_2020": 9.19
-  },
-  {
-    "country_name": "Russian Federation",
-    "discipline_title": "Gymnastics Rhythmic",
-    "predicted_medals_2020": 2.98
-  },
-  {
-    "country_name": "Russian Federation",
-    "discipline_title": "Shooting",
-    "predicted_medals_2020": 4.79
-  },
-  {
-    "country_name": "Russian Federation",
-    "discipline_title": "Swimming",
-    "predicted_medals_2020": 3.76
-  },
-  {
-    "country_name": "Russian Federation",
-    "discipline_title": "Synchronized Swimming",
-    "predicted_medals_2020": 3.0
-  },
-  {
-    "country_name": "Russian Federation",
-    "discipline_title": "Wrestling",
-    "predicted_medals_2020": 8.95
+    "predicted_medals_2024": 3.27
   },
   {
     "country_name": "Slovakia",
     "discipline_title": "Canoe Slalom",
-    "predicted_medals_2020": 3.0
+    "predicted_medals_2024": 2.35
   },
   {
     "country_name": "Slovenia",
     "discipline_title": "Judo",
-    "predicted_medals_2020": 1.65
-  },
-  {
-    "country_name": "South Africa",
-    "discipline_title": "Athletics",
-    "predicted_medals_2020": 1.78
+    "predicted_medals_2024": 1.03
   },
   {
     "country_name": "Spain",
     "discipline_title": "Canoe Sprint",
-    "predicted_medals_2020": 3.25
+    "predicted_medals_2024": 3.25
   },
   {
     "country_name": "Thailand",
     "discipline_title": "Taekwondo",
-    "predicted_medals_2020": 1.71
-  },
-  {
-    "country_name": "Thailand",
-    "discipline_title": "Weightlifting",
-    "predicted_medals_2020": 3.55
+    "predicted_medals_2024": 1.0
   },
   {
     "country_name": "Turkey",
     "discipline_title": "Taekwondo",
-    "predicted_medals_2020": 0.99
+    "predicted_medals_2024": 2.03
   },
   {
     "country_name": "Turkey",
     "discipline_title": "Wrestling",
-    "predicted_medals_2020": 2.23
+    "predicted_medals_2024": 2.0
   },
   {
     "country_name": "Ukraine",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 1.83
+    "predicted_medals_2024": 0.94
   },
   {
     "country_name": "Ukraine",
     "discipline_title": "Canoe Sprint",
-    "predicted_medals_2020": 1.92
+    "predicted_medals_2024": 2.43
   },
   {
     "country_name": "Ukraine",
     "discipline_title": "Fencing",
-    "predicted_medals_2020": 1.92
-  },
-  {
-    "country_name": "Ukraine",
-    "discipline_title": "Gymnastics Artistic",
-    "predicted_medals_2020": 1.99
+    "predicted_medals_2024": 1.0
   },
   {
     "country_name": "Ukraine",
     "discipline_title": "Shooting",
-    "predicted_medals_2020": 0.96
+    "predicted_medals_2024": 2.2
   },
   {
     "country_name": "Ukraine",
     "discipline_title": "Wrestling",
-    "predicted_medals_2020": 1.04
+    "predicted_medals_2024": 3.99
   },
   {
     "country_name": "United States of America",
     "discipline_title": "Athletics",
-    "predicted_medals_2020": 28.88
+    "predicted_medals_2024": 25.94
   },
   {
     "country_name": "United States of America",
     "discipline_title": "Basketball",
-    "predicted_medals_2020": 1.99
+    "predicted_medals_2024": 2.02
   },
   {
     "country_name": "United States of America",
     "discipline_title": "Beach Volleyball",
-    "predicted_medals_2020": 3.35
+    "predicted_medals_2024": 2.02
   },
   {
     "country_name": "United States of America",
     "discipline_title": "Boxing",
-    "predicted_medals_2020": 1.5
-  },
-  {
-    "country_name": "United States of America",
-    "discipline_title": "Cycling Road",
-    "predicted_medals_2020": 1.0
+    "predicted_medals_2024": 3.2
   },
   {
     "country_name": "United States of America",
     "discipline_title": "Fencing",
-    "predicted_medals_2020": 3.19
-  },
-  {
-    "country_name": "United States of America",
-    "discipline_title": "Gymnastics Artistic",
-    "predicted_medals_2020": 9.99
-  },
-  {
-    "country_name": "United States of America",
-    "discipline_title": "Judo",
-    "predicted_medals_2020": 1.37
-  },
-  {
-    "country_name": "United States of America",
-    "discipline_title": "Rowing",
-    "predicted_medals_2020": 2.01
+    "predicted_medals_2024": 1.99
   },
   {
     "country_name": "United States of America",
     "discipline_title": "Shooting",
-    "predicted_medals_2020": 2.99
+    "predicted_medals_2024": 9.25
   },
   {
     "country_name": "United States of America",
     "discipline_title": "Swimming",
-    "predicted_medals_2020": 29.89
+    "predicted_medals_2024": 30.12
   },
   {
     "country_name": "United States of America",
     "discipline_title": "Taekwondo",
-    "predicted_medals_2020": 1.46
-  },
-  {
-    "country_name": "United States of America",
-    "discipline_title": "Tennis",
-    "predicted_medals_2020": 6.43
+    "predicted_medals_2024": 0.95
   },
   {
     "country_name": "United States of America",
     "discipline_title": "Water Polo",
-    "predicted_medals_2020": 1.0
+    "predicted_medals_2024": 1.0
   },
   {
     "country_name": "United States of America",
     "discipline_title": "Wrestling",
-    "predicted_medals_2020": 2.98
+    "predicted_medals_2024": 6.11
   }
 ]

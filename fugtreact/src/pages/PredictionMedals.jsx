@@ -28,7 +28,6 @@ function PredictionMedals() {
 
             {/* 👉 Bouton pour recalculer les prédictions */}
             <PredictionControls/>
-
             {data && layout ? (
                 <Plot
                     data={data}

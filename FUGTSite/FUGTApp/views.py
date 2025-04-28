@@ -2,32 +2,24 @@ from datetime import datetime
 
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.views import APIView
-from rest_framework.response import Response
 # views.py
 import logging
 from .serializers import ActiviteSerializer
 from django.http import FileResponse, HttpResponse
-from django.conf import settings
 import os
 from rest_framework.generics import ListCreateAPIView
-from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
 import json
-from .models import Activite, ActiviteReservation, Note, ContactRequest
-from django.shortcuts import get_object_or_404, render
-from .models import Activite, ActiviteReservation
-from .models import Activite, Vacation, Question, Answer
-from django.shortcuts import get_object_or_404
+from .models import Activite, Note, ContactRequest
+from .models import Activite, Question, Answer
 from django.shortcuts import render
 
 from rest_framework.decorators import api_view, parser_classes
 
-from django.http import JsonResponse
 from .models import Activite, ActiviteReservation
 from django.shortcuts import get_object_or_404
-from django.core.mail import send_mail
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_POST
@@ -40,6 +32,7 @@ from .models import Vacation, Feedbackimage
 from .serializers import VacationSerializer, QuestionSerializer, AnswerSerializer
 import random
 from .models import Whatsappchanel
+
 
 def reservations_par_activite_api(request, id_activite):
     try:
@@ -56,6 +49,7 @@ def get_reservations_by_activite(request, id_activite):
     data = [{'nom': reservation.nom, 'prenom': reservation.prenom} for reservation in reservations]
     return JsonResponse(data, safe=False)
 
+
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser])
 def creer_activite(request):
@@ -64,6 +58,7 @@ def creer_activite(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ActiviteListView(ListCreateAPIView):
     queryset = Activite.objects.all()
@@ -92,7 +87,6 @@ class CreerActiviteView(View):
 
 
 import random
-import uuid  # Import the uuid module
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -178,8 +172,6 @@ def serve_static_image(request):
 
 from django.http import HttpResponse
 
-import logging
-
 
 @method_decorator(csrf_exempt, name='dispatch')
 class add_note_to_activite(View):
@@ -257,7 +249,7 @@ def get_activite_details(request, id):
         'lieu': activite.lieu,
         'date': activite.date,
         'description': activite.description,
-        'image_path':activite.image_path
+        'image_path': activite.image_path
     }
     return JsonResponse(data)
 
@@ -348,22 +340,27 @@ class VacationListCreateView(generics.ListCreateAPIView):
     queryset = Vacation.objects.all()
     serializer_class = VacationSerializer
 
-#Forum
+
+# Forum
 class QuestionListView(generics.ListCreateAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+
 
 class QuestionDetailView(generics.RetrieveAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
+
 class AnswerListView(generics.ListCreateAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
 
+
 class AnswerDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
+
 
 class AnswerCreateView(generics.CreateAPIView):
     queryset = Answer.objects.all()
@@ -371,8 +368,8 @@ class AnswerCreateView(generics.CreateAPIView):
 
 
 from django.core.mail import send_mail
-from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+
 
 @csrf_exempt
 def contact_view(request):
@@ -411,10 +408,13 @@ def contact_view(request):
 
     return JsonResponse({'success': False, 'error': 'Invalid request method'})
 
+
 def contact_requests_api(request):
     contact_requests = ContactRequest.objects.all()
-    data = [{'idcontactrequest': req.idcontactrequest, 'subject': req.subject, 'from_email': req.from_email, 'message': req.message} for req in contact_requests]
+    data = [{'idcontactrequest': req.idcontactrequest, 'subject': req.subject, 'from_email': req.from_email,
+             'message': req.message} for req in contact_requests]
     return JsonResponse(data, safe=False)
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class AddWhatsapp(View):
@@ -454,6 +454,7 @@ class AddWhatsapp(View):
             print(e)
             return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
 
+
 @method_decorator(csrf_exempt, name='dispatch')
 class UpdateWhatsapp(View):
     def put(self, request, *args, **kwargs):
@@ -475,11 +476,14 @@ class UpdateWhatsapp(View):
             whatsapp_channel.link = data.get('link')
             whatsapp_channel.save()
 
-            return JsonResponse({'message': 'Canal WhatsApp mis à jour avec succès', 'idwhatsappchanel': whatsapp_channel.idwhatsappchanel})
+            return JsonResponse({'message': 'Canal WhatsApp mis à jour avec succès',
+                                 'idwhatsappchanel': whatsapp_channel.idwhatsappchanel})
 
         except Exception as e:
             print(e)
             return JsonResponse({'error': 'Une erreur s\'est produite lors de la mise à jour'}, status=500)
+
+
 class GetWhatsapp(View):
     def get(self, request, *args, **kwargs):
         id_activite = kwargs.get('idactivite')
@@ -488,6 +492,7 @@ class GetWhatsapp(View):
             return JsonResponse({'link': whatsapp_channel.link})
         except Whatsappchanel.DoesNotExist:
             return JsonResponse({'error': 'Lien non trouvé'}, status=404)
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class AddFeedbackimage(View):
@@ -505,7 +510,7 @@ class AddFeedbackimage(View):
             feedback = Feedbackimage.objects.create(
                 idfeedbackimage=str(random_id),
                 image=image,
-                activite_id=id_activite # Utiliser directement le fichier image
+                activite_id=id_activite  # Utiliser directement le fichier image
             )
             feedback.image_path = feedback.image.url
             feedback.save()
@@ -513,6 +518,7 @@ class AddFeedbackimage(View):
         except Exception as e:
             print(e)
             return JsonResponse({'error': 'Une erreur s\'est produite'}, status=500)
+
 
 class GetFeedbackimage(View):
     def get(self, request, *args, **kwargs):
@@ -524,6 +530,7 @@ class GetFeedbackimage(View):
         except Feedbackimage.DoesNotExist:
             return JsonResponse({'error': 'Images non trouvées'}, status=404)
 
+
 # pour nouvelle version to do list
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes
@@ -533,6 +540,7 @@ from .serializers import UserReservationSerializer, ActiviteSerializer
 
 from rest_framework.response import Response
 from rest_framework import status
+
 
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
@@ -545,12 +553,14 @@ def toggle_favorite(request, reservation_id):
     except UserReservation.DoesNotExist:
         return Response({'error': 'User reservation not found.'}, status=status.HTTP_404_NOT_FOUND)
 
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def activity_options(request):
     activities = Activite.objects.all()
     options = [{'id': activity.id, 'name': activity.nom} for activity in activities]
     return JsonResponse(options, safe=False)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -563,9 +573,9 @@ def user_reservations(request):
     serializer = UserReservationSerializer(reservations, many=True)
     return JsonResponse(serializer.data, safe=False)
 
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-
 def add_user_reservation(request):
     data = request.data
     user = request.user
@@ -590,6 +600,7 @@ def add_user_reservation(request):
     serializer = UserReservationSerializer(user_reservation)
     return JsonResponse(serializer.data, status=201)
 
+
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 def remove_user_reservation(request, reservation_id):
@@ -600,15 +611,15 @@ def remove_user_reservation(request, reservation_id):
     except UserReservation.DoesNotExist:
         return JsonResponse({'error': 'La réservation n\'existe pas ou ne vous appartient pas.'}, status=404)
 
-import os
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
 import plotly.io as pio
 import io
 from django.conf import settings
 from django.http import HttpResponse
+
 
 def load_medals_data():
     csv_path = os.path.join(settings.BASE_DIR, 'data', 'olympic_medals.csv')
@@ -617,6 +628,7 @@ def load_medals_data():
     olympic_medals_df['athlete_full_name'] = olympic_medals_df['athlete_full_name'].fillna('No Data')
     olympic_medals_df['participant_title'] = olympic_medals_df['participant_title'].fillna('No Country')
     return olympic_medals_df
+
 
 def heatmap_medals(request):
     olympic_medals_df = load_medals_data()
@@ -642,15 +654,18 @@ def heatmap_medals(request):
 def country_discipline_heatmap(request):
     olympic_medals_df = load_medals_data()
 
-    medals_by_country_discipline = olympic_medals_df.groupby(['country_name', 'discipline_title']).size().reset_index(name='medal_count')
+    medals_by_country_discipline = olympic_medals_df.groupby(['country_name', 'discipline_title']).size().reset_index(
+        name='medal_count')
 
     top_countries = medals_by_country_discipline.groupby('country_name')['medal_count'].sum().nlargest(20).index
-    medals_top_countries = medals_by_country_discipline[medals_by_country_discipline['country_name'].isin(top_countries)]
+    medals_top_countries = medals_by_country_discipline[
+        medals_by_country_discipline['country_name'].isin(top_countries)]
 
     top_disciplines = medals_top_countries.groupby('discipline_title')['medal_count'].sum().nlargest(30).index
     medals_top_countries = medals_top_countries[medals_top_countries['discipline_title'].isin(top_disciplines)]
 
-    heatmap_data = medals_top_countries.pivot(index="country_name", columns="discipline_title", values="medal_count").fillna(0)
+    heatmap_data = medals_top_countries.pivot(index="country_name", columns="discipline_title",
+                                              values="medal_count").fillna(0)
     heatmap_data = heatmap_data.reindex(index=top_countries, fill_value=0)
 
     fig = px.imshow(
@@ -666,26 +681,30 @@ def country_discipline_heatmap(request):
     # Retourner une vraie page HTML avec Django
     return HttpResponse(graph_html, content_type='text/html')
 
+
 from django.http import JsonResponse
 import plotly.express as px
 import plotly.io as pio
 
 from django.http import HttpResponse
-import plotly.express as px
 import plotly.io as pio
+
 
 def country_discipline_heatmap_json(request):
     olympic_medals_df = load_medals_data()
 
-    medals_by_country_discipline = olympic_medals_df.groupby(['country_name', 'discipline_title']).size().reset_index(name='medal_count')
+    medals_by_country_discipline = olympic_medals_df.groupby(['country_name', 'discipline_title']).size().reset_index(
+        name='medal_count')
 
     top_countries = medals_by_country_discipline.groupby('country_name')['medal_count'].sum().nlargest(20).index
-    medals_top_countries = medals_by_country_discipline[medals_by_country_discipline['country_name'].isin(top_countries)]
+    medals_top_countries = medals_by_country_discipline[
+        medals_by_country_discipline['country_name'].isin(top_countries)]
 
     top_disciplines = medals_top_countries.groupby('discipline_title')['medal_count'].sum().nlargest(30).index
     medals_top_countries = medals_top_countries[medals_top_countries['discipline_title'].isin(top_disciplines)]
 
-    heatmap_data = medals_top_countries.pivot(index="country_name", columns="discipline_title", values="medal_count").fillna(0)
+    heatmap_data = medals_top_countries.pivot(index="country_name", columns="discipline_title",
+                                              values="medal_count").fillna(0)
     heatmap_data = heatmap_data.reindex(index=top_countries, fill_value=0)
 
     fig = px.imshow(
@@ -701,11 +720,11 @@ def country_discipline_heatmap_json(request):
     return HttpResponse(fig_json, content_type='application/json')
 
 
-
 def country_discipline_barplot(request):
     olympic_medals_df = load_medals_data()
 
-    medals_by_country_discipline = olympic_medals_df.groupby(['country_name', 'discipline_title'])['medal_type'].count().reset_index()
+    medals_by_country_discipline = olympic_medals_df.groupby(['country_name', 'discipline_title'])[
+        'medal_type'].count().reset_index()
 
     top_countries = medals_by_country_discipline.groupby('country_name')['medal_type'].sum().nlargest(15).index
     filtered_medals = medals_by_country_discipline[medals_by_country_discipline['country_name'].isin(top_countries)]
@@ -724,6 +743,8 @@ def country_discipline_barplot(request):
     # Convertir en image PNG
     img_bytes = pio.to_image(fig, format="png", width=1200, height=800)
     return HttpResponse(img_bytes, content_type='image/png')
+
+
 def load_hosts_data():
     csv_path = os.path.join(settings.BASE_DIR, 'data', 'olympic_hosts.csv')
     olympic_hosts_df = pd.read_csv(csv_path)
@@ -746,6 +767,8 @@ def load_hosts_data():
         olympic_hosts_df['game_year'] = olympic_hosts_df['game_year'].astype(int)
 
     return olympic_hosts_df
+
+
 def sunburst_medals_season_json(request):
     olympic_medals_df = load_medals_data()
     olympic_hosts_df = load_hosts_data()
@@ -791,6 +814,7 @@ def sunburst_medals_season_json(request):
 
     return HttpResponse(fig_json, content_type='application/json')
 
+
 def load_medals_data():
     csv_path = os.path.join(settings.BASE_DIR, 'data', 'olympic_medals.csv')
     olympic_medals_df = pd.read_csv(csv_path)
@@ -805,6 +829,7 @@ def load_medals_data():
     olympic_medals_df['participant_title'] = olympic_medals_df['participant_title'].fillna('No Country')
 
     return olympic_medals_df
+
 
 def scatter_medals_by_discipline_country_year_json(request):
     olympic_medals_df = load_medals_data()
@@ -836,6 +861,7 @@ def scatter_medals_by_discipline_country_year_json(request):
 
     return HttpResponse(fig_json, content_type='application/json')
 
+
 def load_medals_data():
     csv_path = os.path.join(settings.BASE_DIR, 'data', 'olympic_medals.csv')
     olympic_medals_df = pd.read_csv(csv_path)
@@ -850,6 +876,7 @@ def load_medals_data():
     olympic_medals_df['participant_title'] = olympic_medals_df['participant_title'].fillna('No Country')
 
     return olympic_medals_df
+
 
 def choropleth_medals_by_country_json(request):
     olympic_medals_df = load_medals_data()
@@ -902,6 +929,7 @@ def choropleth_medals_by_country_json(request):
 
     return HttpResponse(fig_json, content_type='application/json')
 
+
 def load_medals_data():
     csv_path = os.path.join(settings.BASE_DIR, 'data', 'olympic_medals.csv')
     olympic_medals_df = pd.read_csv(csv_path)
@@ -911,7 +939,11 @@ def load_medals_data():
     olympic_medals_df['athlete_full_name'] = olympic_medals_df['athlete_full_name'].fillna('No Data')
 
     return olympic_medals_df
+
+
 from plotly.utils import PlotlyJSONEncoder
+
+
 def load_athletes_data():
     csv_path = os.path.join(settings.BASE_DIR, 'data', 'olympic_athletes.csv')
     olympic_athletes_df = pd.read_csv(csv_path)
@@ -920,6 +952,7 @@ def load_athletes_data():
     olympic_athletes_df['athlete_year_birth'] = olympic_athletes_df['athlete_year_birth'].fillna(0).astype(int)
 
     return olympic_athletes_df
+
 
 def evolution_participants_olympics_json(request):
     olympic_medals_df = load_medals_data()
@@ -946,6 +979,7 @@ def evolution_participants_olympics_json(request):
 
     return HttpResponse(fig_json, content_type='application/json')
 
+
 def load_medals_data():
     csv_path = os.path.join(settings.BASE_DIR, 'data', 'olympic_medals.csv')
     olympic_medals_df = pd.read_csv(csv_path)
@@ -953,6 +987,7 @@ def load_medals_data():
     olympic_medals_df['year'] = olympic_medals_df['slug_game'].str.extract(r'(\d{4})').astype(int)
     olympic_medals_df['country_name'] = olympic_medals_df['country_name'].fillna('Unknown')
     return olympic_medals_df
+
 
 def medals_bar_animation_json(request):
     # Charger les données
@@ -1006,6 +1041,7 @@ def medals_bar_animation_json(request):
 
     return JsonResponse(graph_json, safe=False)
 
+
 def medals_evolution_top10_json(request):
     # Charger les données
     olympic_medals_df = pd.read_csv('./data/olympic_medals.csv')
@@ -1040,13 +1076,39 @@ def medals_evolution_top10_json(request):
         'layout': fig.to_plotly_json()['layout'],
     }, safe=False)
 
+
 import json
 import numpy as np
-from django.http import JsonResponse
-import plotly.express as px
+
+
+def medals_predictions_ml2024(request):
+    with open('./data/ml_predictions_2024.json', 'r') as f:
+        predictions = json.load(f)
+
+    pred_df = pd.DataFrame(predictions)
+    top10 = pred_df.groupby('country_name')['predicted_medals_2024'].sum().nlargest(10).index
+    top_df = pred_df[pred_df['country_name'].isin(top10)]
+
+    fig = px.bar(
+        top_df,
+        x='discipline_title',
+        y='predicted_medals_2024',
+        color='country_name',
+        title="Prédictions des Médailles par Pays et Discipline (2024)",
+        labels={
+            'predicted_medals_2024': "Médailles Prévues",
+            'discipline_title': "Discipline",
+            'country_name': "Pays"
+        },
+        height=600
+    )
+    safe_json = json.dumps(fig.to_plotly_json(), cls=NumpyEncoder)
+    return JsonResponse(json.loads(safe_json), safe=False)
+
 
 class NumpyEncoder(json.JSONEncoder):
     """Permet de transformer np.int64, np.float64, np.ndarray... en types normaux"""
+
     def default(self, obj):
         if isinstance(obj, (np.integer, np.int_, np.intc, np.intp, np.int8, np.int16, np.int32, np.int64)):
             return int(obj)
@@ -1056,12 +1118,14 @@ class NumpyEncoder(json.JSONEncoder):
             return obj.tolist()
         return super(NumpyEncoder, self).default(obj)
 
+
 def top15_country_discipline_json(request):
     olympic_medals_df = pd.read_csv('./data/olympic_medals.csv')
     olympic_medals_df.columns = olympic_medals_df.columns.str.strip()
     olympic_medals_df['year'] = olympic_medals_df['slug_game'].str.extract(r'(\d{4})').astype(int)
 
-    medals_by_country_discipline = olympic_medals_df.groupby(['country_name', 'discipline_title'])['medal_type'].count().reset_index()
+    medals_by_country_discipline = olympic_medals_df.groupby(['country_name', 'discipline_title'])[
+        'medal_type'].count().reset_index()
     top_countries = medals_by_country_discipline.groupby('country_name')['medal_type'].sum().nlargest(15).index
     filtered_medals = medals_by_country_discipline[medals_by_country_discipline['country_name'].isin(top_countries)]
 
@@ -1081,12 +1145,10 @@ def top15_country_discipline_json(request):
 
     return JsonResponse(json.loads(safe_json), safe=False)
 
-from django.http import JsonResponse
-import pandas as pd
-import numpy as np
-from tensorflow.keras.models import Sequential
+
 from tensorflow.keras.layers import LSTM, Dense
 import plotly.express as px
+
 
 def prepare_olympic_data(medals_df, athletes_df, hosts_df, results_df, year_min=2000, min_discipline_presence=2):
     medals_df = medals_df.copy()
@@ -1118,11 +1180,12 @@ def prepare_olympic_data(medals_df, athletes_df, hosts_df, results_df, year_min=
     merged = merged[merged['year'] >= year_min]
 
     return merged
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Input, LSTM, Dense
+
 
 import numpy as np
 import time  # ⬅️ Ajout ici
+
+
 def medals_predictions_ml(request):
     with open('./data/ml_predictions_2020.json', 'r') as f:
         predictions = json.load(f)
@@ -1147,14 +1210,17 @@ def medals_predictions_ml(request):
     safe_json = json.dumps(fig.to_plotly_json(), cls=NumpyEncoder)
     return JsonResponse(json.loads(safe_json), safe=False)
 
-from django.http import JsonResponse
+
 import subprocess
 import sys
 import os
 
+
 def regenerate_ml_predictions(request):
     try:
-        python_exec = os.path.join(sys.prefix, 'Scripts', 'python.exe') if os.name == 'nt' else os.path.join(sys.prefix, 'bin', 'python')
+        python_exec = os.path.join(sys.prefix, 'Scripts', 'python.exe') if os.name == 'nt' else os.path.join(sys.prefix,
+                                                                                                             'bin',
+                                                                                                             'python')
         subprocess.run([python_exec, './scripts/generate_predictions.py'], check=True)
         return JsonResponse({'status': 'success', 'message': 'Prédictions recalculées avec succès ✅'})
     except subprocess.CalledProcessError as e:
@@ -1169,6 +1235,7 @@ def country_to_flag(country):
     }
     iso_code = mapping.get(country, "")
     return ''.join([chr(127397 + ord(c)) for c in iso_code.upper()]) if iso_code else ''
+
 
 def compare_predictions_real_2020(request):
     import plotly.express as px
@@ -1223,3 +1290,46 @@ def compare_predictions_real_2020(request):
     graph_json = fig.to_plotly_json()
     safe_json = json.dumps(graph_json, cls=NumpyEncoder)
     return JsonResponse(json.loads(safe_json), safe=False)
+
+
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+import pandas as pd
+import json
+from django.http import JsonResponse
+
+
+def evaluate_ml_model(request):
+    # Charger les prédictions
+    with open('./data/ml_predictions_2024.json', 'r') as f:
+        predictions = json.load(f)
+    pred_df = pd.DataFrame(predictions)
+
+    # Charger les données réelles
+    medals_df = pd.read_csv('./data/olympic_medals.csv')
+    medals_df['year'] = medals_df['slug_game'].str.extract(r'(\d{4})').astype(int)
+    real_df = medals_df[medals_df['year'] == 2024]
+
+    # Regrouper par pays + discipline
+    real_counts = real_df.groupby(['country_name', 'discipline_title']).size().reset_index(name='real_medals')
+    pred_df_grouped = pred_df.groupby(['country_name', 'discipline_title'])['predicted_medals_2024'].sum().reset_index()
+
+    # Fusion pour évaluer uniquement les cas présents dans les deux jeux
+    merged = pd.merge(pred_df_grouped, real_counts, on=['country_name', 'discipline_title'])
+
+    # Extraction des valeurs
+    y_true = merged['real_medals'].values
+    y_pred = merged['predicted_medals_2024'].values
+
+    # Calcul des scores
+    mae = mean_absolute_error(y_true, y_pred)
+    rmse = mean_squared_error(y_true, y_pred) ** 0.5
+    r2 = r2_score(y_true, y_pred)
+
+    # Retour JSON
+    return JsonResponse({
+        'mae': round(mae, 2),
+        'rmse': round(rmse, 2),
+        'r2_score': round(r2, 3),
+        'count': len(y_true)
+    })
